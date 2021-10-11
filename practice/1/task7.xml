@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<record xmlns="https://pers.com">
+	<name>Miller</name>
+	<title>Dr.</title>
+	<publications xmlns="https://publ.com">
+		<book>
+			<title>A true story</title>
+			<description>A real cool publication</description>
+		</book>
+	</publications>
+</record>
