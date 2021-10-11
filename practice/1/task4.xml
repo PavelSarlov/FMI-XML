@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table>
+    <row>
+        <condition>Equal to</condition>
+        <operator>=</operator>
+        <formula-example>=A1=B1</formula-example>
+        <description>The forumla returns TRUE if a value in cell A1 is equal to the values in cell B1; FALSE otherwise.</description>
+    </row>
+    <row>
+        <condition>Not equal to</condition>
+        <operator><![CDATA[<>]]></operator>
+        <formula-example><![CDATA[=A1<>B1]]></formula-example>
+        <description></description>
+    </row>
+    <row>
+        <condition>Greate than</condition>
+        <operator>&gt;</operator>
+        <formula-example>=A1&gt;B1</formula-example>
+        <description></description>
+    </row>
+    <row>
+        <condition></condition>
+        <operator></operator>
+        <formula-example></formula-example>
+        <description></description>
+    </row>
+    <row>
+        <condition></condition>
+        <operator></operator>
+        <formula-example></formula-example>
+        <description></description>
+    </row>
+    <row>
+        <condition></condition>
+        <operator></operator>
+        <formula-example></formula-example>
+        <description></description>
+    </row>
+</table>
