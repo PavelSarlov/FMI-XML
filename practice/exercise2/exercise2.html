@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html>
+<title>XML exercise 2</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../images/xml.jpg" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="../javascript/utils.js"></script>
+<body class="w3-light-grey">
+
+<div style="max-width:1200px;margin: 0 auto;">
+	<!-- Header -->
+	<header class="w3-container w3-center w3-padding-32"> 
+	  <h1><b>XML валидация чрез DTD</b></h1>
+	</header>
+
+	<!-- Content -->
+	<div class="w3-row">
+
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-panel w3-blue round-top">
+					<h3>Цели на упражнението:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<ol>
+						<li>Валидация на XML документ с вътрешно и външно DTD				 				 </li>
+						<li>Използване на entity (общо, параметризирано, вложено, рекурсивно)				 </li>
+						<li>Използване на нотации                                 			 				 </li>
+						<li>Упражняване на основните елементи на DTD - ID, IDREF, #REQUIRED, #IMPLIED и т.н.</li>
+					</ol>
+					</div>
+				<div class="w3-panel w3-blue round-top">
+					<h3>Средства за XML валидация чрез DTD:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<p> За реализация на това упражнения могат да бъдат използвани някои от следните инструменти:</p>
+					<ul class="checked">
+					    <li><a href="https://www.xmlvalidation.com/">XML validator</a></li>
+						<li><a href="https://validator.w3.org/#validate_by_upload+with_options" target="_blank">W3 XML validator</a></li>
+						<li>XML/DTD валидатора наличен в Eclipse</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--Start tasks-->
+		<div class="w3-col l8 s12" style="width: 100%;">
+		<!--Start task1-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 1: Свържете и валидирайте дадения по-долу XML документ с дадената DTD граматика по следните 2 начина:</h4>
+					<ul>
+						<li>С вътрешно DTD</li>
+						<li>С външно DTD</li>
+					</ul>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+					    &lt;?xml	version=&quot;1.0&quot;?&gt;	                          <br>
+						&lt;shiporder orderid=&quot;889923&quot;&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;orderperson&gt;John Smith&lt;/orderperson&gt;	          <br>
+							&nbsp;&nbsp;&nbsp;&lt;shipto&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;name&gt;Ola	Nordmann&lt;/name&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;address&gt;Langgt	23&lt;/address&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;city&gt;4000 Stavanger	&lt;/city&gt;	                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;country&gt;	Norway	&lt;/country&gt;	                          <br>
+							&nbsp;&nbsp;&nbsp;&lt;/shipto&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;item&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;Empire	Burlesque&lt;/title&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;note&gt;Special	Edition&lt;/note&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;quantity&gt;1&lt;/quantity&gt;		                          <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;price&gt;10.90&lt;/price&gt;	                              <br>
+							&nbsp;&nbsp;&nbsp;&lt;/item&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;item&gt;		                                                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;Hide your heart&lt;/title&gt;		                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;quantity&gt;1&lt;/quantity&gt;	                                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;price&gt;9.90&lt;/price&gt;	                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;/item&gt;	                                                      <br>
+						&lt;/shiporder&gt;	
+					</li>
+					<li>
+						&lt;?xml	version=&quot;1.0&quot;?&gt;	                                    <br>
+						&lt;!DOCTYPE	shiporder[	                                                    <br>
+						&lt;!ELEMENT	shiporder	(orderperson,shipto,item+)&gt;	                    <br>
+						&lt;!ATTLIST	shiporder orderid	CDATA	#REQUIRED&gt;	                    <br>
+						&lt;!ELEMENT	orderperson	(#PCDATA)&gt;	                                    <br>
+						&lt;!ELEMENT	shipto	(name,address,city,country)&gt;	                        <br>
+						&lt;!ELEMENT	name	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	address	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	city	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	country	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	item	(title,note?,quantity,price)&gt;	                        <br>
+						&lt;!ELEMENT	title	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	note	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	quantity	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	price	(#PCDATA)&gt;	<br>
+						]&gt;	
+					</li>
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction1')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction1" class="w3-hide w3-container">
+					    Синтаксис за включване на външна DTD граматика: &lt;!DOCTYPE root-element SYSTEM "file-name"&gt; <br>
+						Синтаксис за включване на вътрешна DTD граматика: &lt;!DOCTYPE root-element [element-declarations]&gt; 
+				    </li>
+					<li class="w3-padding-16 w3-green">
+					    <a onclick="showSolution('solution1')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution1" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					А) XML с вътрешно dtd:                                                  <br>
+					&lt;?xml	version=&quot;1.0&quot;?&gt;	                                    <br>
+						&lt;!DOCTYPE	shiporder[	                                                    <br>
+						&lt;!ELEMENT	shiporder	(orderperson,shipto,item+)&gt;	                    <br>
+						&lt;!ATTLIST	shiporder orderid	CDATA	#REQUIRED&gt;	                    <br>
+						&lt;!ELEMENT	orderperson	(#PCDATA)&gt;	                                    <br>
+						&lt;!ELEMENT	shipto	(name,address,city,country)&gt;	                        <br>
+						&lt;!ELEMENT	name	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	address	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	city	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	country	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	item	(title,note?,quantity,price)&gt;	                        <br>
+						&lt;!ELEMENT	title	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	note	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	quantity	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	price	(#PCDATA)&gt;	<br>
+						]&gt;	                                                           <br>
+						&lt;shiporder orderid=&quot;889923&quot;&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;orderperson&gt;	John	Smith	&lt;/orderperson&gt;	          <br>
+							&nbsp;&nbsp;&nbsp;&lt;shipto&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;name&gt;	Ola	Nordmann	&lt;/name&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;address&gt;	Langgt	23	&lt;/address&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;city&gt;	4000	Stavanger	&lt;/city&gt;	                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;country&gt;	Norway	&lt;/country&gt;	                          <br>
+							&nbsp;&nbsp;&nbsp;&lt;/shipto&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;item&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;	Empire	Burlesque&lt;/title&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;note&gt;	Special	Edi/on	&lt;/note&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;quantity&gt;	1	&lt;/quantity&gt;		                          <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;price&gt;	10.90	&lt;/price&gt;	                              <br>
+							&nbsp;&nbsp;&nbsp;&lt;/item&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;item&gt;		                                                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;	Hide your heart&lt;/title&gt;		                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;quantity&gt;1&lt;/quantity&gt;	                                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;price&gt;9.90&lt;/price&gt;	                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;/item&gt;	                                                      <br>
+						&lt;/shiporder&gt;	<br><br>
+					Б) XML с външно dtd:                                                    <br>
+					&lt;?xml version=&quot;1.0&quot;?&gt;                                   <br>
+					&lt;!DOCTYPE shiporder SYSTEM &quot;shiporder.dtd&quot;&gt;                       <br>
+					&lt;shiporder orderid=&quot;889923&quot;&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;orderperson&gt;	John	Smith	&lt;/orderperson&gt;	          <br>
+							&nbsp;&nbsp;&nbsp;&lt;shipto&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;name&gt;	Ola	Nordmann	&lt;/name&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;address&gt;	Langgt	23	&lt;/address&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;city&gt;	4000	Stavanger	&lt;/city&gt;	                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;country&gt;	Norway	&lt;/country&gt;	                          <br>
+							&nbsp;&nbsp;&nbsp;&lt;/shipto&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;item&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;	Empire	Burlesque&lt;/title&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;note&gt;	Special	Edi/on	&lt;/note&gt;	                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;quantity&gt;	1	&lt;/quantity&gt;		                          <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;price&gt;	10.90	&lt;/price&gt;	                              <br>
+							&nbsp;&nbsp;&nbsp;&lt;/item&gt;	                                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;item&gt;		                                                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;	Hide your heart&lt;/title&gt;		                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;quantity&gt;1&lt;/quantity&gt;	                                  <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;price&gt;9.90&lt;/price&gt;	                                      <br>
+							&nbsp;&nbsp;&nbsp;&lt;/item&gt;	       <br><br>
+					------------------------                                                <br>
+					shiporder.dtd:                                                               <br>
+						&lt;!ELEMENT	shiporder	(orderperson,shipto,item+)&gt;	                    <br>
+						&lt;!ATTLIST	shiporder orderid	CDATA	#REQUIRED&gt;	                    <br>
+						&lt;!ELEMENT	orderperson	(#PCDATA)&gt;	                                    <br>
+						&lt;!ELEMENT	shipto	(name,address,city,country)&gt;	                        <br>
+						&lt;!ELEMENT	name	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	address	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	city	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	country	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	item	(title,note?,quantity,price)&gt;	                        <br>
+						&lt;!ELEMENT	title	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	note	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	quantity	(#PCDATA)&gt;	                                        <br>
+						&lt;!ELEMENT	price	(#PCDATA)&gt;	
+				</div>
+			</div>
+		<!--End task1-->
+		<!--Start task2-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 2: За дадения по-долу XML документ създайте DTD граматика и го валидирайте спрямо нея.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+					&lt;?xml version=&quot;1.0&quot;?&gt;  <br>
+					&lt;games&gt;	                                                                      <br>
+					&nbsp;&nbsp;&nbsp; &lt;game	score=&quot;1-1&quot;&gt;	                                              <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   	&nbsp;&nbsp;&nbsp;&lt;home-team&gt;Roma&lt;/home-team&gt;	                                          <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   	&nbsp;&nbsp;&nbsp;&lt;ex-team&gt;Lazio&lt;/ex-team&gt;	                                          <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   	&nbsp;&nbsp;&nbsp;&lt;scores&gt;	                                                                  <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;score me=&quot;15&quot;&gt;	                                              <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;player&gt;Klose&lt;/player&gt;	                                                  <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/score&gt;	                                                                      <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;score me=&quot;85&quot;	type=&quot;penalty&quot;&gt;	                  <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;player&gt;Tox&lt;/player&gt;	                                                  <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/score&gt;	                                                                      <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&lt;/scores&gt;	                                                                      <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &lt;yellows&gt;	                                                                      <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   	&nbsp;&nbsp;&nbsp;&lt;player&gt;Tox&lt;/player&gt;	                                              <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   	&nbsp;&nbsp;&nbsp;&lt;player&gt;Hernanes&lt;/player&gt;	                                          <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &lt/yellows&gt;	                                                                  <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &lt;reds&gt;	                                                                      <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   	&nbsp;&nbsp;&nbsp;&lt;player&gt;Kjaer&lt;/player&gt;	                                              <br>
+					&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;   &lt;/reds&gt;	                                                                      <br>
+					&nbsp;&nbsp;&nbsp; &lt;/game&gt;	                                                                      <br>
+					&lt;/games&gt;
+					</li>
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution2')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution2" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;!ELEMENT	games	(game)*&gt;	                                                <br>
+					&lt;!ELEMENT	game	(home-team,	ex-team,	scores,	yellows,	reds)&gt;	    <br>
+					&lt;!ELEMENT	home-team	(#PCDATA)&gt;	                                        <br>
+					&lt;!ELEMENT	ex-team	(#PCDATA)&gt;	                                            <br>
+					&lt;!ELEMENT	scores	(score)*&gt;	                                            <br>
+					&lt;!ELEMENT	yellows	(player)*&gt;	                                            <br>
+					&lt;!ELEMENT	reds	(player)*&gt;	                                            <br>
+					&lt;!ELEMENT	score	(player)*&gt;	                                            <br>
+					&lt;!ELEMENT	player	(#PCDATA)&gt;	                                            <br>
+					&lt;!ATTLIST	game	score	CDATA	#REQUIRED&gt;	                            <br>
+					&lt;!ATTLIST	score	me	CDATA	#REQUIRED&gt;	                                <br>
+					&lt;!ATTLIST	score	type	(field|penalty)	#IMPLIED&gt;		                <br>
+				</div>
+			</div>
+		<!--End task2-->
+		<!--Start task3-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 3: За дадената по-долу DTD граматика създайте XML документ и го валидирайте спрямо нея.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                          <br>
+					&lt;!ELEMENT Chair (Professor)&gt;                                                                                                        <br>
+					&lt;!ELEMENT Title (#PCDATA)&gt;                                                                                                          <br>
+					&lt;!ELEMENT Course (Title, Description?, Instructors, Prerequisites?)&gt;                                                                <br>
+					&lt;!ATTLIST Course                                                                                                                       <br>
+						Number (CS106A | CS106B | CS107 | CS109 | CS124 | CS143 | CS145 | CS221 | CS228 | CS229 | EE108A | EE108B | LING180) #REQUIRED        <br>
+						Enrollment (1070 | 110 | 130 | 180 | 280 | 320 | 500 | 60 | 620 | 90) #IMPLIED                                                        <br>
+					&gt;                                                                                                                                      <br>
+					&lt;!ELEMENT Prereq (#PCDATA)&gt;                                                                                                         <br>
+					&lt;!ELEMENT Lecturer (First_Name, Middle_Initial?, Last_Name)&gt;                                                                        <br>
+					&lt;!ELEMENT Last_Name (#PCDATA)&gt;                                                                                                      <br>
+					&lt;!ELEMENT Professor (First_Name, Middle_Initial?, Last_Name)&gt;                                                                       <br>
+					&lt;!ELEMENT Department (Title, Chair, Course+)&gt;                                                                                       <br>
+					&lt;!ATTLIST Department Code (CS | EE | LING) #REQUIRED&gt;                                                                               <br>
+					&lt;!ELEMENT First_Name (#PCDATA)&gt;                                                                                                     <br>
+					&lt;!ELEMENT Description (#PCDATA)&gt;                                                                                                    <br>
+					&lt;!ELEMENT Instructors ((Lecturer, Professor*) | (Professor+, Lecturer?))&gt;                                                           <br>
+					&lt;!ELEMENT Prerequisites (Prereq+)&gt;                                                                                                  <br>
+					&lt;!ELEMENT Course_Catalog (Department+)&gt;                                                                                             <br>
+					&lt;!ELEMENT Middle_Initial (#PCDATA)&gt;
+					</li>
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution3')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution3" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot;?&gt;                                                                                                                                    <br>
+					&lt;!DOCTYPE Course_Catalog SYSTEM &quot;courseCatalog.dtd&quot;&gt;                                                                                                     <br>
+					&lt;Course_Catalog&gt;                                                                                                                                                   <br>
+						&lt;Department Code=&quot;CS&quot;&gt;                                                                                                                               <br>
+							&lt;Title&gt;Computer Science&lt;/Title&gt;                                                                                                                      <br>
+							&lt;Chair&gt;                                                                                                                                                    <br>
+								&lt;Professor&gt;                                                                                                                                            <br>
+									&lt;First_Name&gt;Jennifer&lt;/First_Name&gt;                                                                                                            <br>
+									&lt;Last_Name&gt;Widom&lt;/Last_Name&gt;                                                                                                                 <br>
+								&lt;/Professor&gt;                                                                                                                                           <br>
+							&lt;/Chair&gt;                                                                                                                                                   <br>
+							&lt;Course Number=&quot;CS106A&quot; Enrollment=&quot;1070&quot;&gt;                                                                                             <br>
+								&lt;Title&gt;Programming Methodology&lt;/Title&gt;                                                                                                           <br>
+								&lt;Description&gt;Introduction to the engineering of computer applications emphasizing modern software engineering principles.&lt;/Description&gt;          <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Lecturer&gt;                                                                                                                                         <br>
+										&lt;First_Name&gt;Jerry&lt;/First_Name&gt;                                                                                                           <br>
+										&lt;Middle_Initial&gt;R.&lt;/Middle_Initial&gt;                                                                                                      <br>
+										&lt;Last_Name&gt;Cain&lt;/Last_Name&gt;                                                                                                              <br>
+									&lt;/Lecturer&gt;                                                                                                                                        <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Eric&lt;/First_Name&gt;                                                                                                            <br>
+										&lt;Last_Name&gt;Roberts&lt;/Last_Name&gt;                                                                                                           <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Mehran&lt;/First_Name&gt;                                                                                                          <br>
+										&lt;Last_Name&gt;Sahami&lt;/Last_Name&gt;                                                                                                            <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS106B&quot; Enrollment=&quot;620&quot;&gt;                                                                                              <br>
+								&lt;Title&gt;Programming Abstractions&lt;/Title&gt;                                                                                                          <br>
+								&lt;Description&gt;Abstraction and its relation to programming.&lt;/Description&gt;                                                                          <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Eric&lt;/First_Name&gt;                                                                                                            <br>
+										&lt;Last_Name&gt;Roberts&lt;/Last_Name&gt;                                                                                                           <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+									&lt;Lecturer&gt;                                                                                                                                         <br>
+										&lt;First_Name&gt;Jerry&lt;/First_Name&gt;                                                                                                           <br>
+										&lt;Middle_Initial&gt;R.&lt;/Middle_Initial&gt;                                                                                                      <br>
+										&lt;Last_Name&gt;Cain&lt;/Last_Name&gt;                                                                                                              <br>
+									&lt;/Lecturer&gt;                                                                                                                                        <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;CS106A&lt;/Prereq&gt;                                                                                                                      <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS107&quot; Enrollment=&quot;500&quot;&gt;                                                                                               <br>
+								&lt;Title&gt;Computer Organization and Systems&lt;/Title&gt;                                                                                                 <br>
+								&lt;Description&gt;Introduction to the fundamental concepts of computer systems.&lt;/Description&gt;                                                         <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Lecturer&gt;                                                                                                                                         <br>
+										&lt;First_Name&gt;Julie&lt;/First_Name&gt;                                                                                                           <br>
+										&lt;Last_Name&gt;Zelenski&lt;/Last_Name&gt;                                                                                                          <br>
+									&lt;/Lecturer&gt;                                                                                                                                        <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;CS106B&lt;/Prereq&gt;                                                                                                                      <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS109&quot; Enrollment=&quot;280&quot;&gt;                                                                                               <br>
+								&lt;Title&gt;Introduction to Probability for Computer Scientists&lt;/Title&gt;                                                                               <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Mehran&lt;/First_Name&gt;                                                                                                          <br>
+										&lt;Last_Name&gt;Sahami&lt;/Last_Name&gt;                                                                                                            <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;CS106B&lt;/Prereq&gt;                                                                                                                      <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS124&quot; Enrollment=&quot;60&quot;&gt;                                                                                                <br>
+								&lt;Title&gt;From Languages to Information&lt;/Title&gt;                                                                                                     <br>
+								&lt;Description&gt;Natural language processing. Cross-listed as LING180.&lt;/Description&gt;                                                                 <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Dan&lt;/First_Name&gt;                                                                                                             <br>
+										&lt;Last_Name&gt;Jurafsky&lt;/Last_Name&gt;                                                                                                          <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;CS107&lt;/Prereq&gt;                                                                                                                       <br>
+									&lt;Prereq&gt;CS109&lt;/Prereq&gt;                                                                                                                       <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS143&quot; Enrollment=&quot;90&quot;&gt;                                                                                                <br>
+								&lt;Title&gt;Compilers&lt;/Title&gt;                                                                                                                         <br>
+								&lt;Description&gt;Principles and practices for design and implementation of compilers and interpreters.&lt;/Description&gt;                                 <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Alex&lt;/First_Name&gt;                                                                                                            <br>
+										&lt;Middle_Initial&gt;S.&lt;/Middle_Initial&gt;                                                                                                      <br>
+										&lt;Last_Name&gt;Aiken&lt;/Last_Name&gt;                                                                                                             <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;CS107&lt;/Prereq&gt;                                                                                                                       <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS145&quot; Enrollment=&quot;130&quot;&gt;                                                                                               <br>
+								&lt;Title&gt;Introduction to Databases&lt;/Title&gt;                                                                                                         <br>
+								&lt;Description&gt;Database design and use of database management systems for applications.&lt;/Description&gt;                                              <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Jennifer&lt;/First_Name&gt;                                                                                                        <br>
+										&lt;Last_Name&gt;Widom&lt;/Last_Name&gt;                                                                                                             <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;CS107&lt;/Prereq&gt;                                                                                                                       <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS221&quot; Enrollment=&quot;180&quot;&gt;                                                                                               <br>
+								&lt;Title&gt;Artificial Intelligence: Principles and Techniques&lt;/Title&gt;                                                                                <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Andrew&lt;/First_Name&gt;                                                                                                          <br>
+										&lt;Last_Name&gt;Ng&lt;/Last_Name&gt;                                                                                                                <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Sebastian&lt;/First_Name&gt;                                                                                                       <br>
+										&lt;Last_Name&gt;Thrun&lt;/Last_Name&gt;                                                                                                             <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS228&quot; Enrollment=&quot;110&quot;&gt;                                                                                               <br>
+								&lt;Title&gt;Structured Probabilistic Models: Principles and Techniques&lt;/Title&gt;                                                                        <br>
+								&lt;Description&gt;Using probabilistic modeling languages to represent complex domains.&lt;/Description&gt;                                                  <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Daphne&lt;/First_Name&gt;                                                                                                          <br>
+										&lt;Last_Name&gt;Koller&lt;/Last_Name&gt;                                                                                                            <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;CS229&quot; Enrollment=&quot;320&quot;&gt;                                                                                               <br>
+								&lt;Title&gt;Machine Learning&lt;/Title&gt;                                                                                                                  <br>
+								&lt;Description&gt;A broad introduction to machine learning and statistical pattern recognition.&lt;/Description&gt;                                         <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Andrew&lt;/First_Name&gt;                                                                                                          <br>
+										&lt;Last_Name&gt;Ng&lt;/Last_Name&gt;                                                                                                                <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+						&lt;/Department&gt;                                                                                                                                                  <br>
+						&lt;Department Code=&quot;EE&quot;&gt;                                                                                                                               <br>
+							&lt;Title&gt;Electrical Engineering&lt;/Title&gt;                                                                                                                <br>
+							&lt;Chair&gt;                                                                                                                                                    <br>
+								&lt;Professor&gt;                                                                                                                                            <br>
+									&lt;First_Name&gt;Mark&lt;/First_Name&gt;                                                                                                                <br>
+									&lt;Middle_Initial&gt;A.&lt;/Middle_Initial&gt;                                                                                                          <br>
+									&lt;Last_Name&gt;Horowitz&lt;/Last_Name&gt;                                                                                                              <br>
+								&lt;/Professor&gt;                                                                                                                                           <br>
+							&lt;/Chair&gt;                                                                                                                                                   <br>
+							&lt;Course Number=&quot;EE108A&quot;&gt;                                                                                                                         <br>
+								&lt;Title&gt;Digital Systems I&lt;/Title&gt;                                                                                                                 <br>
+								&lt;Description&gt;Digital circuit, logic, and system design.&lt;/Description&gt;                                                                            <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Subhasish&lt;/First_Name&gt;                                                                                                       <br>
+										&lt;Last_Name&gt;Mitra&lt;/Last_Name&gt;                                                                                                             <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+							&lt;Course Number=&quot;EE108B&quot;&gt;                                                                                                                         <br>
+								&lt;Title&gt;Digital Systems II&lt;/Title&gt;                                                                                                                <br>
+								&lt;Description&gt;The design of processor-based digital systems.&lt;/Description&gt;                                                                        <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;William&lt;/First_Name&gt;                                                                                                         <br>
+										&lt;Middle_Initial&gt;J.&lt;/Middle_Initial&gt;                                                                                                      <br>
+										&lt;Last_Name&gt;Dally&lt;/Last_Name&gt;                                                                                                             <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Oyekunle&lt;/First_Name&gt;                                                                                                        <br>
+										&lt;Last_Name&gt;Olukotun&lt;/Last_Name&gt;                                                                                                          <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;EE108A&lt;/Prereq&gt;                                                                                                                      <br>
+									&lt;Prereq&gt;CS106B&lt;/Prereq&gt;                                                                                                                      <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+						&lt;/Department&gt;                                                                                                                                                  <br>
+						&lt;Department Code=&quot;LING&quot;&gt;                                                                                                                             <br>
+							&lt;Title&gt;Linguistics&lt;/Title&gt;                                                                                                                           <br>
+							&lt;Chair&gt;                                                                                                                                                    <br>
+								&lt;Professor&gt;                                                                                                                                            <br>
+									&lt;First_Name&gt;Beth&lt;/First_Name&gt;                                                                                                                <br>
+									&lt;Last_Name&gt;Levin&lt;/Last_Name&gt;                                                                                                                 <br>
+								&lt;/Professor&gt;                                                                                                                                           <br>
+							&lt;/Chair&gt;                                                                                                                                                   <br>
+							&lt;Course Number=&quot;LING180&quot; Enrollment=&quot;60&quot;&gt;                                                                                              <br>
+								&lt;Title&gt;From Languages to Information&lt;/Title&gt;                                                                                                     <br>
+								&lt;Description&gt;Natural language processing. Cross-listed as CS124.&lt;/Description&gt;                                                                   <br>
+								&lt;Instructors&gt;                                                                                                                                          <br>
+									&lt;Professor&gt;                                                                                                                                        <br>
+										&lt;First_Name&gt;Dan&lt;/First_Name&gt;                                                                                                             <br>
+										&lt;Last_Name&gt;Jurafsky&lt;/Last_Name&gt;                                                                                                          <br>
+									&lt;/Professor&gt;                                                                                                                                       <br>
+								&lt;/Instructors&gt;                                                                                                                                         <br>
+								&lt;Prerequisites&gt;                                                                                                                                        <br>
+									&lt;Prereq&gt;CS107&lt;/Prereq&gt;                                                                                                                       <br>
+									&lt;Prereq&gt;CS109&lt;/Prereq&gt;                                                                                                                       <br>
+								&lt;/Prerequisites&gt;                                                                                                                                       <br>
+							&lt;/Course&gt;                                                                                                                                                  <br>
+						&lt;/Department&gt;                                                                                                                                                  <br>
+					&lt;/Course_Catalog&gt;
+				</div>
+			</div>
+		<!--End task3-->
+		
+		<!--Start task4-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 4: За DTD граматиката, намираща се на адрес: http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd, създайте XML документ. Включете в XML документа дадената DTD граматика като публична и го валидирайте спрямо нея.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction4')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction4" class="w3-hide w3-container">
+					    Синтаксис за включване на публична външна DTD граматика: &lt;!DOCTYPE rootname PUBLIC FPI URL&gt; <br>
+						Пример: <br>
+						 &lt;?xml version=&quot;1.0&quot; &quot;?&gt;                                                   <br>
+						 &lt;!DOCTYPE rss PUBLIC &quot;-//RSS//DTD RSS 0.91//EN&quot; &quot;http://rss.com/publish/formats/rss-0.91.dtd&quot;&gt;                           <br>
+						 &lt;rss version=&quot;0.91&quot;&gt;                                                           <br>
+						 &lt;channel&gt; ...... &lt;/channel&gt;                                                        <br>
+						 &lt;/rss&gt; 
+				    </li>
+					<li class="w3-padding-16 w3-green">
+					    <a onclick="showSolution('solution4')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                                 <br>
+					&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;              <br>
+					&lt;html&gt;                                                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;&lt;head&gt;                                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;text&lt;/title&gt;                                                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/head&gt;                                                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;&lt;body&gt;text&lt;/body&gt;                                                                                                                               <br>
+					&lt;/html&gt;
+				</div>
+			</div>
+		<!--End task4-->
+		<!--Start task5-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 5: За дадената по-долу схема създайте DTD граматика и XML документ и го валидирайте спрямо нея. DTD граматиката трябва да изпълнява следните условия: </h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li>
+						1. Елементът channel има атрибут с име version
+					</li>
+					<li>
+						2. Под-елементите на channel имат следния ред на подреждане: item, title, link, image, language и description
+					</li>
+					<li>
+						3. Под-елементите на channel - item, title, link и description са задължителни, а останалите елементи image и language - не
+					</li>
+					<li>
+						4. Елементите item и image могат да се срещат много пъти
+					</li>
+					<li>
+						5. Под-елементите на item (т.е. title, link, description) и image (т.е. title, link, url) нямат определена последователност
+					</li>
+					<li>
+						6. Под-елементът description на item е незадължителен
+					</li>
+					
+					<li>
+						<img src="../images/rss.gif">
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution5')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution5" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					<ul>
+					    <li><a href="channel.xml" target="_blank">XML документ:</a>
+						<br>
+							&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                      <br>
+							&lt;!DOCTYPE channel SYSTEM &quot;channel.dtd&quot;&gt;                                                               <br>
+							&lt;channel version=&quot;1.0&quot;&gt;                                                                               <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                                                    <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;                         <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS&lt;/title&gt;                                              <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                                                   <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                                                    <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;description&gt;RSS specification 2&lt;/description&gt;                  <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS2&lt;/title&gt;                                             <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;                         <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                                                   <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                                                    <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;                         <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS3&lt;/title&gt;                                             <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;description&gt;RSS specification 3&lt;/description&gt;                  <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                                                   <br>
+								&nbsp;&nbsp;&nbsp;&lt;title&gt;Title of the channel&lt;/title&gt;                                                 <br>
+								&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com&lt;/link&gt;                                                        <br>
+								&nbsp;&nbsp;&nbsp;&lt;language&gt;EN&lt;/language&gt;                                                             <br>
+								&nbsp;&nbsp;&nbsp;&lt;image&gt;                                                                                   <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;url&gt;https://rss.com/images/rss.png&lt;/url&gt;                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS Schema&lt;/title&gt;                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;Go to our page&lt;/link&gt;                                     <br>
+								&nbsp;&nbsp;&nbsp;&lt;/image&gt;   <br>
+								&nbsp;&nbsp;&nbsp;&lt;image&gt;                                                                                   <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;url&gt;https://rss.com/images/rss.gif&lt;/url&gt;                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS Schema&lt;/title&gt;                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;Go to our page&lt;/link&gt;                                     <br>
+								&nbsp;&nbsp;&nbsp;&lt;/image&gt;   								<br>
+								&nbsp;&nbsp;&nbsp;&lt;description&gt;Description of the channel&lt;/description&gt;                               <br>
+							&lt;/channel&gt;<br><br>
+						</li>
+						<li><a href="channel.dtd" target="_blank">DTD граматика:</a><br>
+							&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                                          <br>
+							&lt;!ELEMENT url (#PCDATA)&gt;                                                                                                                                            <br>
+							&lt;!ELEMENT item ((title, link, description?) | (description?, title, link) | (description?, link, title) | (title, description?, link) | (link, title, description?) | <(link, description?, title) )&gt;<br>
+							&lt;!ELEMENT link (#PCDATA)&gt;                                                                                                                                          <br>
+							&lt;!ELEMENT image (title | link | url)*&gt;                                                                                                                             <br>
+							&lt;!ELEMENT title (#PCDATA)&gt;                                                                                                                                         <br>
+							&lt;!ELEMENT channel (item+, title, link, language?, image*, description)&gt;                                                                                            <br>
+							&lt;!ATTLIST channel version CDATA &quot;0.0&quot;&gt;                                                                                                                   <br>
+							&lt;!ELEMENT language (#PCDATA)&gt;                                                                                                                                      <br>
+							&lt;!ELEMENT description (#PCDATA)&gt;
+						</li>
+					</ul>
+				</div>
+			</div>
+		<!--End task5-->
+		<!--Start task6-->
+		<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 6: Съставете DTD граматика, която позволява да бъдат представени в XML документ резултатите от футболните мачове и включва следната информация: </h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				   <li>
+						1. Футболните отбори участващи в един мач
+				   </li>
+				   <li>
+						2. Крайния резултат за всеки мач
+				   </li>
+				   <li>
+						3. Играчите отбелязали гол в мача 
+				   </li>
+				   <li>
+						4. Времето, в което е отбелязан всеки гол
+				   </li>
+				   <li>
+						5. Играчите получили наказателни картони (жълти или червени)
+				   </li>
+				   <li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution6')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution6" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                <br>
+					&lt;!DOCTYPE games [                                                            <br>
+					&lt;!ELEMENT	games	(game)*&gt;	                                            <br>
+					&lt;!ELEMENT	game	(home-team,	ex-team,	scores,	yellows,	reds)&gt;	<br>
+					&lt;!ELEMENT	home-team	(#PCDATA)&gt;	                                    <br>
+					&lt;!ELEMENT	ex-team	(#PCDATA)&gt;	                                        <br>
+					&lt;!ELEMENT	scores	(score)*&gt;	                                        <br>
+					&lt;!ELEMENT	yellows	(player)*&gt;	                                        <br>
+					&lt;!ELEMENT	reds	(player)*&gt;	                                        <br>
+					&lt;!ELEMENT	score	(player)*&gt;	                                        <br>
+					&lt;!ELEMENT	player	(#PCDATA)&gt;	                                        <br>
+					&lt;!ATTLIST	game	score	CDATA	#REQUIRED&gt;	                        <br>
+					&lt;!ATTLIST	score	time	CDATA	#REQUIRED&gt;	                        <br>
+					&lt;!ATTLIST	score	type	(field|penalty)	#IMPLIED&gt;	                <br>
+					]&gt;                                                                           <br>
+					&lt;games&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;&lt;game score=&quot;1-1&quot;&gt;                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;home-team&gt;Roma&lt;/home-team&gt;                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;ex-team&gt;Lazio&lt;/ex-team&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;scores&gt;                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;score time=&quot;15&quot;&gt;                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;player&gt;Klose&lt;/player&gt;                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/score&gt;                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;score time=&quot;85&quot; type=&quot;penalty&quot;&gt;          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;player&gt;Tox&lt;/player&gt;                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/score&gt;                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/scores&gt;                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;yellows&gt;                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;player&gt;Tox&lt;/player&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;player&gt;Hernanes&lt;/player&gt;                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/yellows&gt;                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;reds&gt;                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;player&gt;Kjaer&lt;/player&gt;                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/reds&gt;                                                           <br>
+						&nbsp;&nbsp;&nbsp;&lt;/game&gt;                                                               <br>
+					&lt;/games&gt;
+				</div>
+			</div>
+		<!--End task6-->
+		<!--Start task7-->
+		<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 7: Да се включи в DTD файла от задача 5 и да се използва в XML файл: </h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li>
+						1. Една вътрешна (System) и една външна декларация (Public) на DTD нотация за някои от MIME типовете image/jpeg, image/png или image/gif. След това да се декларира entity използващо тези 2 нотации
+					</li>
+					<li>
+						2. Общо entity задаващо стойността на елемента link на image
+					</li>
+					<li>
+						3. Параметризирано entity със стойност "title" и да се използва навсякъде където тази дума се среща в DTD файла
+					</li>
+					<li>
+						4. Вложено еntity в entity
+					</li>
+					<li>
+						5. <span style="color:red">Рекурсивно entity</span>
+					</li>
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction7')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction7" class="w3-hide w3-container">
+					    Синтаксис за дефиниране на нотации: &lt;!NOTATION Name SYSTEM SystemLiternal&gt; или &lt;!NOTATION Name PUBLIC PublicID&gt; или &lt;!NOTATION Name PUBLIC PublicID SystemID&gt;. Пример: &lt;!NOTATION gif SYSTEM "image/gif"&gt;, &lt;!NOTATION gif Public "GIF"&gt;<br>
+					    Синтаксис за дефиниране на общо entity: &lt;!ENTITY name definition&gt; <br>
+						Синтаксис за дефиниране на външно общо entity: &lt;!ENTITY name SYSTEM uri&gt; или &lt;!ENTITY name PUBLIC FPI uri&gt;<br> 
+					    Синтаксис за дефиниране на общо entity, което използва нотации: &lt;!ENTITY name SYSTEM/PUBLIC uri NDATA notationName&gt;<br>
+						Синтаксис за дефиниране на параметрично entity: &lt;!ENTITY % name definition&gt; или &lt;!ENTITY % name SYSTEM uri&gt;  или &lt;!ENTITY % name PUBLIC FPI uri&gt;<br> 
+				    </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution7')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution7" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					<ul>
+					    <li><a href=".xml" target="_blank">XML документ:</a>
+						<br>
+							&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;       <br>
+							&lt;!DOCTYPE channel SYSTEM &quot;channelTask7.dtd&quot;&gt;           <br>
+							&lt;channel version=&quot;1.0&quot;&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;            <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS&lt;/title&gt;                                 <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                      <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;description&gt;RSS specification 2&lt;/description&gt;     <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS2&lt;/title&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;            <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                      <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;            <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS3&lt;/title&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;description&gt;RSS specification 3&lt;/description&gt;     <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                      <br>
+								&nbsp;&nbsp;&nbsp;&lt;title&gt;Title of the channel&lt;/title&gt;                    <br>
+								&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com&lt;/link&gt;                           <br>
+								&nbsp;&nbsp;&nbsp;&lt;language&gt;EN&lt;/language&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;&lt;image src=&quot;xmlJPGAddress&quot;&gt;                        <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;url&gt;https://rss.com/images/rss.png&lt;/url&gt;          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS Schema&lt;/title&gt;                          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;&amp;goto;&lt;/link&gt;                            <br>
+								&nbsp;&nbsp;&nbsp;&lt;/image&gt;                                                     <br>
+								&nbsp;&nbsp;&nbsp;&lt;image src=&quot;xmlPNGAddress&quot;&gt;                        <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;url&gt;https://rss.com/images/rss.gif&lt;/url&gt;          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS Schema&lt;/title&gt;                          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;&amp;goto;&lt;/link&gt;                            <br>
+								&nbsp;&nbsp;&nbsp;&lt;/image&gt;                                                     <br>
+								&nbsp;&nbsp;&nbsp;&lt;description&gt;Description of the channel&lt;/description&gt;  <br>
+							&lt;/channel&gt;                                                       <br> <br>
+						</li>
+						<li><a href=".dtd" target="_blank">DTD граматика:</a><br>
+							&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                                         <br>
+							&lt;!ENTITY % titleElementName &quot;title&quot; &gt;                                                                                                                    <br>
+							&lt;!ENTITY % channelElements &quot;(item+, %titleElementName;, link, language?, image*, description)&quot; &gt;                                                         <br>
+							&lt;!ELEMENT url (#PCDATA)&gt;                                                                                                                                           <br>
+							&lt;!ELEMENT item ((%titleElementName;, link, description?) | (description?, %titleElementName;, link) | (description?, link, %titleElementName;) | (%titleElementName;,  description?, link) | (link, %titleElementName;, description?) | (link, description?, %titleElementName;) )&gt;<br>
+							&lt;!ELEMENT link (#PCDATA)&gt;                                                                                                                                          <br>
+							&lt;!ELEMENT image (title | link | url)*&gt;                                                                                                                             <br>
+							&lt;!ATTLIST image src ENTITY #REQUIRED&gt;                                                                                                                              <br>
+							&lt;!ELEMENT %titleElementName; (#PCDATA)&gt;                                                                                                                            <br>
+							&lt;!ELEMENT channel  %channelElements;&gt;                                                                                                                              <br>
+							&lt;!ATTLIST channel version CDATA &quot;0.0&quot;&gt;                                                                                                                   <br>
+							&lt;!ELEMENT language (#PCDATA)&gt;                                                                                                                                      <br>
+							&lt;!ELEMENT description (#PCDATA)&gt;                                                                                                                                   <br>
+							&lt;!NOTATION JPG SYSTEM &quot;image/jpeg&quot;&gt;                                                                                                                      <br>
+							&lt;!NOTATION GIF PUBLIC &quot;GIF 1.0&quot;&gt;                                                                                                                         <br>
+							&lt;!NOTATION PNG PUBLIC &quot;PNG 1.0&quot; &quot;image/png&quot;&gt;                                                                                                   <br>
+							&lt;!ENTITY xmlJPGAddress SYSTEM &quot;https://eathenasolutions.com/wp-content/uploads/Fotolia_12413408_XS.jpg&quot; NDATA JPG&gt;                                       <br>
+							&lt;!ENTITY xmlPNGAddress SYSTEM &quot;https://eathenasolutions.com/wp-content/uploads/Fotolia_12413408_XS.jpg&quot; NDATA PNG&gt;                                       <br>
+							&lt;!ENTITY W3GIFAddress PUBLIC &quot;-//W3C//GIF logo//EN&quot; &quot;https://www.w3.org/2008/site/images/logo-w3c-screen-lg&quot; NDATA GIF&gt;                        <br>
+							&lt;!ENTITY goto &quot;Go to our page&quot;&gt;
+						</li>
+					</ul>
+				</div>
+			</div>
+		<!--End task7-->
+		<!--Start task8-->
+		<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 8: За по-долу дадения XML документ и схема да се създаде DTD граматика, в която са налични: </h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li>
+						1. ID и IDREF, за атрибутите при които това е необходимо (напр. за InstrID, Code, Instructors)
+					</li>
+					<li>
+						2. #REQUIRED, за атрибутите при които това е необходимо (напр. за Number)
+					</li>
+					<li>
+						3. #IMPLIED, за атрибутите при които това е приложимо (напр. за Enrollment)
+					</li>
+					<li>
+						4. #FIXED, за атрибут по избор
+					</li>		
+					<li>
+						&lt;?xml version=&quot;1.0&quot; ?&gt;                                                                                                                          <br>
+						&lt;Course_Catalog Year="2017-2018"&gt;                                                                                                                                          <br>
+						&nbsp;&nbsp;&nbsp; &lt;Department Code=&quot;CS&quot; Chair=&quot;JW&quot;&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Title&gt;Computer Science&lt;/Title&gt;                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS106A&quot; Instructors=&quot;JC ER MS&quot; Enrollment=&quot;1070&quot;&gt;                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Programming Methodology&lt;/Title&gt;                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Introduction to the engineering of computer applications emphasizing modern software engineering principles.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS106B&quot; Prerequisites=&quot;CS106A&quot; Instructors=&quot;JC ER&quot; Enrollment=&quot;620&quot;&gt;    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Programming Abstractions&lt;/Title&gt;                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Abstraction and its relation to programming.&lt;/Description&gt;                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS107&quot; Prerequisites=&quot;CS106B&quot; Instructors=&quot;JZ&quot; Enrollment=&quot;500&quot;&gt;        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Computer Organization and Systems&lt;/Title&gt;                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Introduction to the fundamental concepts of computer systems.&lt;/Description&gt;              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS109&quot; Prerequisites=&quot;CS106B&quot; Instructors=&quot;MS&quot; Enrollment=&quot;280&quot;&gt;        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Introduction to Probability for Computer Scientists&lt;/Title&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS124&quot; Prerequisites=&quot;CS107 CS109&quot; Instructors=&quot;DJ&quot; Enrollment=&quot;60&quot;&gt;    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;From Languages to Information&lt;/Title&gt;                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Natural language processing. Cross-listed as &lt;Courseref Number=&quot;LING180&quot;/&gt;.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS143&quot; Prerequisites=&quot;CS107&quot; Instructors=&quot;AA&quot; Enrollment=&quot;90&quot;&gt;          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Compilers&lt;/Title&gt;                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Principles and practices for design and implementation of compilers and interpreters.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS145&quot; Prerequisites=&quot;CS107&quot; Instructors=&quot;JW&quot; Enrollment=&quot;130&quot;&gt;         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Introduction to Databases&lt;/Title&gt;                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Database design and use of database management systems for applications.&lt;/Description&gt;   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS221&quot; Prerequisites=&quot;CS107&quot; Instructors=&quot;AN ST&quot; Enrollment=&quot;180&quot;&gt;      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Artificial Intelligence: Principles and Techniques&lt;/Title&gt;                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS228&quot; Instructors=&quot;DK&quot; Enrollment=&quot;110&quot;&gt;                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Structured Probabilistic Models: Principles and Techniques&lt;/Title&gt;                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Using probabilistic modeling languages to represent complex domains.&lt;/Description&gt;       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS229&quot; Instructors=&quot;AN&quot; Enrollment=&quot;320&quot;&gt;                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Machine Learning&lt;/Title&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;A broad introduction to machine learning and statistical pattern recognition.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;AA&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Alex&lt;/First_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;S.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Aiken&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Lecturer InstrID=&quot;JC&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Jerry&lt;/First_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;R.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Cain&lt;/Last_Name&gt;                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Lecturer&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;DK&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Daphne&lt;/First_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Koller&lt;/Last_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;AN&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Andrew&lt;/First_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Ng&lt;/Last_Name&gt;                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;ER&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Eric&lt;/First_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Roberts&lt;/Last_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;MS&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Mehran&lt;/First_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Sahami&lt;/Last_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;ST&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Sebastian&lt;/First_Name&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Thrun&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;JW&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Jennifer&lt;/First_Name&gt;                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Widom&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Lecturer InstrID=&quot;JZ&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Julie&lt;/First_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Zelenski&lt;/Last_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Lecturer&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp; &lt;/Department&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp; &lt;Department Code=&quot;EE&quot; Chair=&quot;MH&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Title&gt;Electrical Engineering&lt;/Title&gt;                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;EE108A&quot; Instructors=&quot;SM&quot;&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Digital Systems I&lt;/Title&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Digital circuit, logic, and system design.&lt;/Description&gt;                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;EE108B&quot; Prerequisites=&quot;EE108A CS106B&quot; Instructors=&quot;WD OO&quot;&gt;                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Digital Systems II&lt;/Title&gt;                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;The design of processor-based digital systems.&lt;/Description&gt;                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;WD&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;William&lt;/First_Name&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;J.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Dally&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;MH&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Mark&lt;/First_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;A.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Horowitz&lt;/Last_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;SM&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Subhasish&lt;/First_Name&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Mitra&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;OO&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Oyekunle&lt;/First_Name&gt;                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Olukotun&lt;/Last_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp; &lt;/Department&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp; &lt;Department Code=&quot;LING&quot; Chair=&quot;BL&quot;&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Title&gt;Linguistics&lt;/Title&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;LING180&quot; Prerequisites=&quot;CS107 CS109&quot; Instructors=&quot;DJ&quot; Enrollment=&quot;60&quot;&gt;  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;From Languages to Information&lt;/Title&gt;                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Natural language processing. Cross-listed as &lt;Courseref Number=&quot;CS124&quot;/&gt;.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;DJ&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Dan&lt;/First_Name&gt;                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Jurafsky&lt;/Last_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;BL&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Beth&lt;/First_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Levin&lt;/Last_Name&gt;                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp; &lt;/Department&gt;                                                                                                                                       <br>
+						&lt;/Course_Catalog&gt;
+					</li>
+                    <li><img src="courseCatalogSchema.png"/><br>					
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution8')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution8" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot; ?&gt;                                                                                                                          <br>
+					&lt;!DOCTYPE Course_Catalog [                                                                                                                                     <br>
+						  &lt;!ELEMENT Course_Catalog (Department*)&gt;                                                                                                               <br>
+						  &lt;!ELEMENT Department (Title, Course+, (Professor|Lecturer)*)&gt;                                                                                         <br>
+						  &lt;!ATTLIST Department Code ID #REQUIRED Chair IDREF #REQUIRED&gt;                                                                                         <br>
+						  &lt;!ATTLIST Course_Catalog Year CDATA #FIXED "2017-2018"&gt;<br>
+						  &lt;!ELEMENT Title (#PCDATA)&gt;                                                                                                                            <br>
+						  &lt;!ELEMENT Course (Title, Description?)&gt;                                                                                                               <br>
+						  &lt;!ATTLIST Course Number ID #REQUIRED Prerequisites IDREFS #IMPLIED Instructors IDREFS #REQUIRED Enrollment CDATA #IMPLIED&gt;                            <br>
+						  &lt;!ELEMENT Description (#PCDATA|Courseref)*&gt;                                                                                                           <br>
+						  &lt;!ELEMENT Courseref EMPTY&gt;                                                                                                                            <br>
+						  &lt;!ATTLIST Courseref Number IDREF #REQUIRED&gt;                                                                                                           <br>
+						  &lt;!ELEMENT Professor (First_Name, Middle_Initial?, Last_Name)&gt;                                                                                         <br>
+						  &lt;!ATTLIST Professor InstrID ID #REQUIRED&gt;                                                                                                             <br>
+						  &lt;!ELEMENT Lecturer (First_Name, Middle_Initial?, Last_Name)&gt;                                                                                          <br>
+						  &lt;!ATTLIST Lecturer InstrID ID #REQUIRED&gt;                                                                                                              <br>
+						  &lt;!ELEMENT First_Name (#PCDATA)&gt;                                                                                                                       <br>
+						  &lt;!ELEMENT Middle_Initial (#PCDATA)&gt;                                                                                                                   <br>
+						  &lt;!ELEMENT Last_Name (#PCDATA)&gt;                                                                                                                        <br>
+						]&gt;                                                                                                                                                         <br>
+						&lt;Course_Catalog Year="2017-2018"&gt;                                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp; &lt;Department Code=&quot;CS&quot; Chair=&quot;JW&quot;&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Title&gt;Computer Science&lt;/Title&gt;                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS106A&quot; Instructors=&quot;JC ER MS&quot; Enrollment=&quot;1070&quot;&gt;                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Programming Methodology&lt;/Title&gt;                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Introduction to the engineering of computer applications emphasizing modern software engineering principles.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS106B&quot; Prerequisites=&quot;CS106A&quot; Instructors=&quot;JC ER&quot; Enrollment=&quot;620&quot;&gt;    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Programming Abstractions&lt;/Title&gt;                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Abstraction and its relation to programming.&lt;/Description&gt;                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS107&quot; Prerequisites=&quot;CS106B&quot; Instructors=&quot;JZ&quot; Enrollment=&quot;500&quot;&gt;        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Computer Organization and Systems&lt;/Title&gt;                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Introduction to the fundamental concepts of computer systems.&lt;/Description&gt;              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS109&quot; Prerequisites=&quot;CS106B&quot; Instructors=&quot;MS&quot; Enrollment=&quot;280&quot;&gt;        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Introduction to Probability for Computer Scientists&lt;/Title&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS124&quot; Prerequisites=&quot;CS107 CS109&quot; Instructors=&quot;DJ&quot; Enrollment=&quot;60&quot;&gt;    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;From Languages to Information&lt;/Title&gt;                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Natural language processing. Cross-listed as &lt;Courseref Number=&quot;LING180&quot;/&gt;.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS143&quot; Prerequisites=&quot;CS107&quot; Instructors=&quot;AA&quot; Enrollment=&quot;90&quot;&gt;          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Compilers&lt;/Title&gt;                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Principles and practices for design and implementation of compilers and interpreters.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS145&quot; Prerequisites=&quot;CS107&quot; Instructors=&quot;JW&quot; Enrollment=&quot;130&quot;&gt;         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Introduction to Databases&lt;/Title&gt;                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Database design and use of database management systems for applications.&lt;/Description&gt;   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS221&quot; Prerequisites=&quot;CS107&quot; Instructors=&quot;AN ST&quot; Enrollment=&quot;180&quot;&gt;      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Artificial Intelligence: Principles and Techniques&lt;/Title&gt;                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS228&quot; Instructors=&quot;DK&quot; Enrollment=&quot;110&quot;&gt;                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Structured Probabilistic Models: Principles and Techniques&lt;/Title&gt;                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Using probabilistic modeling languages to represent complex domains.&lt;/Description&gt;       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;CS229&quot; Instructors=&quot;AN&quot; Enrollment=&quot;320&quot;&gt;                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Machine Learning&lt;/Title&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;A broad introduction to machine learning and statistical pattern recognition.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;AA&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Alex&lt;/First_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;S.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Aiken&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Lecturer InstrID=&quot;JC&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Jerry&lt;/First_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;R.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Cain&lt;/Last_Name&gt;                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Lecturer&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;DK&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Daphne&lt;/First_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Koller&lt;/Last_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;AN&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Andrew&lt;/First_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Ng&lt;/Last_Name&gt;                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;ER&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Eric&lt;/First_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Roberts&lt;/Last_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;MS&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Mehran&lt;/First_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Sahami&lt;/Last_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;ST&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Sebastian&lt;/First_Name&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Thrun&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;JW&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Jennifer&lt;/First_Name&gt;                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Widom&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Lecturer InstrID=&quot;JZ&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Julie&lt;/First_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Zelenski&lt;/Last_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Lecturer&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp; &lt;/Department&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp; &lt;Department Code=&quot;EE&quot; Chair=&quot;MH&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Title&gt;Electrical Engineering&lt;/Title&gt;                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;EE108A&quot; Instructors=&quot;SM&quot;&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Digital Systems I&lt;/Title&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Digital circuit, logic, and system design.&lt;/Description&gt;                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;EE108B&quot; Prerequisites=&quot;EE108A CS106B&quot; Instructors=&quot;WD OO&quot;&gt;                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;Digital Systems II&lt;/Title&gt;                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;The design of processor-based digital systems.&lt;/Description&gt;                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;WD&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;William&lt;/First_Name&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;J.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Dally&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;MH&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Mark&lt;/First_Name&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Middle_Initial&gt;A.&lt;/Middle_Initial&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Horowitz&lt;/Last_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;SM&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Subhasish&lt;/First_Name&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Mitra&lt;/Last_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;OO&quot;&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Oyekunle&lt;/First_Name&gt;                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Olukotun&lt;/Last_Name&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp; &lt;/Department&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp; &lt;Department Code=&quot;LING&quot; Chair=&quot;BL&quot;&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Title&gt;Linguistics&lt;/Title&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Course Number=&quot;LING180&quot; Prerequisites=&quot;CS107 CS109&quot; Instructors=&quot;DJ&quot; Enrollment=&quot;60&quot;&gt;  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Title&gt;From Languages to Information&lt;/Title&gt;                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Description&gt;Natural language processing. Cross-listed as &lt;Courseref Number=&quot;CS124&quot;/&gt;.&lt;/Description&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Course&gt;                                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;DJ&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Dan&lt;/First_Name&gt;                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Jurafsky&lt;/Last_Name&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;Professor InstrID=&quot;BL&quot;&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;First_Name&gt;Beth&lt;/First_Name&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;Last_Name&gt;Levin&lt;/Last_Name&gt;                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/Professor&gt;                                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp; &lt;/Department&gt;                                                                                                                                       <br>
+						&lt;/Course_Catalog&gt;
+				</div>
+			</div>
+		<!--End task8-->
+		
+		<!--Start task9-->
+		<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 9: Използвайки параметрични entity и условни секции, декларирайте по-долу описаните 2 варианта за елемента channel в DTD граматиката от задача 6. Включете/Изключете всеки един от двата варианта и направете съответните промени в XML документа </h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						1. Вариант 1: Елементът channel включва само задължителните под-елементи дефинирани в задача 6 - т.е. item, title, link и description
+					</li>
+					<li>
+						2. Вариант 2: Елементът channel включва всички под-елементи дефинирани в задача 6 - т.е. item, title, link и description, image и language
+					</li>			
+                    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction9')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction9" class="w3-hide w3-container">
+					    <ol>
+					        <li>DTD граматиките дават възможност да бъдат включвани и изключвани дадени декларации от тях, чрез условните секции. Ключовата дума INCLUDE специфицира декларации, които са включени в DTD граматиката, а ключовата дума IGNORE обратното.</li>
+						    <li>Синтаксис: &lt;![ IGNORE [DTD Declarations]]&gt;; &lt;![ INCLUDE [DTD Declarations]]&gt;</li>
+						    <li>Обикновено условните секции се използват в комбинация с параметризирани entity по следния начин: <br>
+						        &lt;!ENTITY % ignoredPart "IGNORE"&gt;<br>
+						        &lt;![%ignoredPart;[&lt;!ELEMENT element (sub-element1*, sub-element2, sub-element3)&gt;]]&gt;</li>
+						    <li>Условните секции могат да бъдат използвани само във външна DTD граматика</li>
+						</ol>
+				    </li>					
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution9')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution9" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					<ul>
+					    <li><a href=".xml" target="_blank">XML документ:</a>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;       <br>
+							&lt;!DOCTYPE channel SYSTEM &quot;channelTask7.dtd&quot;&gt;           <br>
+							&lt;channel version=&quot;1.0&quot;&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;            <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS&lt;/title&gt;                                 <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                      <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;description&gt;RSS specification 2&lt;/description&gt;     <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS2&lt;/title&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;            <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                      <br>
+								&nbsp;&nbsp;&nbsp;&lt;item&gt;                                                       <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com/index.html&lt;/link&gt;            <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS3&lt;/title&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;description&gt;RSS specification 3&lt;/description&gt;     <br>
+								&nbsp;&nbsp;&nbsp;&lt;/item&gt;                                                      <br>
+								&nbsp;&nbsp;&nbsp;&lt;title&gt;Title of the channel&lt;/title&gt;                    <br>
+								&nbsp;&nbsp;&nbsp;&lt;link&gt;https://rss.com&lt;/link&gt;                           <br>
+								&nbsp;&nbsp;&nbsp;&lt;!--It is valid for the variant variantAllElements<br>
+								&nbsp;&nbsp;&nbsp;&lt;language&gt;EN&lt;/language&gt;                                <br>
+								&nbsp;&nbsp;&nbsp;&lt;image src=&quot;xmlJPGAddress&quot;&gt;                        <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;url&gt;https://rss.com/images/rss.png&lt;/url&gt;          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS Schema&lt;/title&gt;                          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;&amp;goto;&lt;/link&gt;                            <br>
+								&nbsp;&nbsp;&nbsp;&lt;/image&gt;                                                     <br>
+								&nbsp;&nbsp;&nbsp;&lt;image src=&quot;xmlPNGAddress&quot;&gt;                        <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;url&gt;https://rss.com/images/rss.gif&lt;/url&gt;          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;RSS Schema&lt;/title&gt;                          <br>
+								&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;link&gt;&amp;goto;&lt;/link&gt;                            <br>
+								&nbsp;&nbsp;&nbsp;&lt;/image&gt; <br> 
+								&nbsp;&nbsp;&nbsp;--&gt;							<br>
+								&nbsp;&nbsp;&nbsp;&lt;description&gt;Description of the channel&lt;/description&gt;  <br>
+							&lt;/channel&gt;               
+						<br><br>
+						</li>
+						<li><a href=".dtd" target="_blank">DTD граматика:</a><br>
+							&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                                         <br>
+							&lt;!ENTITY % titleElementName &quot;title&quot; &gt;                                                                                                                    <br>
+							&lt;!ENTITY % channelAllElements "(item+, %titleElementName;, link, language?, image*, description)" &gt;   <br>
+							&lt;!ENTITY % channelMandatoryElements "(item+, %titleElementName;, link, description)" &gt;                <br>
+							&lt;!ENTITY % variantAllMandatory "INCLUDE"&gt;                                                             <br>
+							&lt;!ENTITY % variantAllElements "IGNORE"&gt;                                                               <br>
+							&lt;![%variantAllElements; [&lt;!ELEMENT channel  %channelAllElements;&gt;]]&gt;                                  <br>
+							&lt;![%variantAllMandatory; [&lt;!ELEMENT channel  %channelMandatoryElements;&gt;]]&gt;  
+							<br>
+							&lt;!ELEMENT url (#PCDATA)&gt;                                                                                                                                           <br>
+							&lt;!ELEMENT item ((%titleElementName;, link, description?) | (description?, %titleElementName;, link) | (description?, link, %titleElementName;) | (%titleElementName;,  description?, link) | (link, %titleElementName;, description?) | (link, description?, %titleElementName;) )&gt;<br>
+							&lt;!ELEMENT link (#PCDATA)&gt;                                                                                                                                          <br>
+							&lt;!ELEMENT image (title | link | url)*&gt;                                                                                                                             <br>
+							&lt;!ATTLIST image src ENTITY #REQUIRED&gt;                                                                                                                              <br>
+							&lt;!ELEMENT %titleElementName; (#PCDATA)&gt;                                                                                                                            <br>
+							&lt;!ELEMENT channel  %channelElements;&gt;                                                                                                                              <br>
+							&lt;!ATTLIST channel version CDATA &quot;0.0&quot;&gt;                                                                                                                   <br>
+							&lt;!ELEMENT language (#PCDATA)&gt;                                                                                                                                      <br>
+							&lt;!ELEMENT description (#PCDATA)&gt;                                                                                                                                   <br>
+							&lt;!NOTATION JPG SYSTEM &quot;image/jpeg&quot;&gt;                                                                                                                      <br>
+							&lt;!NOTATION GIF PUBLIC &quot;GIF 1.0&quot;&gt;                                                                                                                         <br>
+							&lt;!NOTATION PNG PUBLIC &quot;PNG 1.0&quot; &quot;image/png&quot;&gt;                                                                                                   <br>
+							&lt;!ENTITY xmlJPGAddress SYSTEM &quot;https://eathenasolutions.com/wp-content/uploads/Fotolia_12413408_XS.jpg&quot; NDATA JPG&gt;                                       <br>
+							&lt;!ENTITY xmlPNGAddress SYSTEM &quot;https://eathenasolutions.com/wp-content/uploads/Fotolia_12413408_XS.jpg&quot; NDATA PNG&gt;                                       <br>
+							&lt;!ENTITY W3GIFAddress PUBLIC &quot;-//W3C//GIF logo//EN&quot; &quot;https://www.w3.org/2008/site/images/logo-w3c-screen-lg&quot; NDATA GIF&gt;                        <br>
+							&lt;!ENTITY goto &quot;Go to our page&quot;&gt;
+						</li>
+					</ul>
+				</div>
+			</div>
+		<!--End task8-->
+		
+		
+		</div>
+		<!--End tasks-->
+		
+		
+		
+	</div><br>
+	<!-- END Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+	<div class="w3-center">
+		<div class="w3-bar w3-xlarge w3-border w3-round">
+<!--
+		  <a href="../index.html" class="w3-bar-item w3-button" active><i class="fa fa-home"></i></a>
+		  <a href="../exercise1/exercise1.html" class="w3-bar-item w3-button">1</a>
+		  <a href="../exercise2/exercise2.html" class="w3-bar-item w3-button w3-white">2</a>
+		  <a href="../exercise3/exercise3.html" class="w3-bar-item w3-button">3</a>
+		  <a href="../exercise4/exercise4.html" class="w3-bar-item w3-button">4</a>
+		  <a href="../exercise5/exercise5.html" class="w3-bar-item w3-button">5</a>
+		  <a href="../exercise6/exercise6.html" class="w3-bar-item w3-button">6</a>
+		  <a href="../exercise7/exercise7.html" class="w3-bar-item w3-button">7</a>
+		  <a href="../exercise8/exercise8.html" class="w3-bar-item w3-button">8</a>
+-->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

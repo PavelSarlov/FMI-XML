@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<title>XML exercise 1</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../images/xml.jpg" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+function showSolution(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<body class="w3-light-grey">
+
+<div style="max-width:1200px;margin: 0 auto;">
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32">
+  <h1><b>Създаване на XML документи и използване на пространства от имена</b></h1>
+</header>
+
+<!-- Content -->
+<div class="w3-row">
+<div class="w3-card-2 w3-margin">
+ <div class="w3-panel w3-round w3-pale-grey w3-border w3-border-blue">
+    <h3>Цели на упражнението:</h3>
+	<ol>
+	    <li>Да се упражнят правилата за добре оформен xml    </li>
+		<li>Редактиране на xml                               </li>
+		<li>Създаване на xml                                 </li>
+		<li>Използване на CDATA секции                       </li>
+		<li>Използване на encoding                           </li>
+		<li>Използване на пространство от имена              </li>
+		<li>Структуриране на информация в xml документ       </li>
+	</ol>
+    <h3>Ресурси:</h3>
+	<ol>
+		<li><a href="https://www.w3schools.com/xml/default.asp" rel="nofollow">XML Tutorial</a></li>
+		<li><a href="https://www.webucator.com/tutorial/learn-xml/xml-basics.cfm" rel="nofollow">XML Basics</a></li>
+	</ol>
+    <h3>Редактори:</h3>
+	<ol>
+		<li> NotePad++ </li>
+		<li> Visual Studio Code </li>
+		<li> EditiX </li>
+		<li> NotePad </li>
+	</ol>
+    <h3>Браузъри:</h3>
+	<ol>
+		<li> Mozilla Firefox </li>
+		<li> Google Chrome </li>
+		<li> Edge </li>
+		<li> Opera </li>
+		<li> Internet Explorer </li>
+	</ol>
+ </div>
+</div>
+<div class="w3-col l8 s12" style="width: 100%;">
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding" style="text-align: center;">
+      <h4>Задача 1: Поправете грешките допуснати в по-долу дадения xml файл и проверете как се отваря в браузер.</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+	  <font color="blue">&lt;?xml version="1.0"?&gt;</font><br>
+                <font color="green">&lt;name&gt;</font>Бисквитена торта<font color="green">&lt;/name&gt;</font><br>
+                <font color="green">&lt;author&gt;</font>Анонимен<font color="green">&lt;/author&gt;</font><br>
+                <font color="green">&lt;address site=www.recipes.com&gt;</font><br>
+                <font color="green">&lt;ingredients&gt;</font><br>
+                &nbsp;&nbsp;<font color="green">&lt;list&gt;</font><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 пакет бисквити<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 кофичка кисело мляко<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 бурканче сладко<br>
+                &nbsp;&nbsp;<font color="green">&lt;/list&gt;</font><br>
+                <font color="green">&lt;/ingredients&gt;</font><br>
+                <font color="green">&lt;process&gt;</font><br>
+                  &nbsp;&nbsp;<font color="green">&lt;P&gt;</font>Разбъркваме млякото и сладкото. Един ред бисквити, един ред от сместа и пак така, най-отгоре поръсваме орехи. Изчаква се до омекване на бисквитите.<font color="green">&lt;/p&gt;</font><br>
+                <font color="green">&lt;p&gt;&lt;i&gt;</font>Много вкусно!<font color="green">&lt;/p&gt;&lt;/i&gt;</font><br>
+                <font color="green">&lt;/process&gt;</font>
+      </li>
+	  <li class="w3-padding-16 w3-green">
+	      <a onclick="showSolution('solution1')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+	  </li>
+    </ul>
+	<div id="solution1" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+	            <font color="blue">&lt;?xml version="1.0"?&gt;</font><br>
+				<font color="red">&lt;recipe&gt;</font><br>
+                &nbsp;<font color="green">&lt;name&gt;</font>Бисквитена торта<font color="green">&lt;/name&gt;</font><br>
+                &nbsp;<font color="green">&lt;author&gt;</font>Анонимен<font color="green">&lt;/author&gt;</font><br>
+                &nbsp;<font color="green">&lt;address site=<font color="red">"</font>www.recipes.com<font color="red">"/</font>&gt;</font><br>
+                &nbsp;<font color="green">&lt;ingredients&gt;</font><br>
+                &nbsp;&nbsp;&nbsp;<font color="green">&lt;list&gt;</font><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 пакет бисквити<font color="red">&lt;/item&gt;</font><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 кофичка кисело мляко<font color="red">&lt;/item&gt;</font><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 бурканче сладко<font color="red">&lt;/item&gt;</font><br>
+                &nbsp;&nbsp;&nbsp;<font color="green">&lt;/list&gt;</font><br>
+                &nbsp;<font color="green">&lt;/ingredients&gt;</font><br>
+                &nbsp;<font color="green">&lt;process&gt;</font><br>
+                  &nbsp;&nbsp;&nbsp;<font color="red">&lt;p&gt;</font>Разбъркваме млякото и сладкото. Един ред бисквити, един ред от сместа и пак така, най-отгоре поръсваме орехи. Изчаква се до омекване на бисквитите.<font color="green">&lt;/p&gt;</font><br>
+                &nbsp;<font color="green">&lt;p&gt;&lt;i&gt;</font>Много вкусно!<font color="red">&lt;/i&gt;</font><font color="green">&lt;/p&gt;</font><br>
+                &nbsp;<font color="green">&lt;/process&gt;</font><br>
+				<font color="red">&lt;/recipe&gt;</font>
+	</div>
+  </div>
+
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding" style="text-align: center;">
+      <h4>Задача 2: Направете следните промени в xml файла от <i>задача 1</i>:</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+	  <li class="w3-padding-16">
+		1. Добавете 2 нови елемента <i>item</i>
+	  </li>
+	  <li class="w3-padding-16">
+		2. В елемента <i>recipe</i> заменете неговия под-елемент <i>author</i> с атрибут. Добавете атрибути за брой и грамаж към елементите <i>item></i>
+	  </li>
+	  <li class="w3-padding-16">
+		3. В елемента <i>address</i> заменете неговия атрибут <i>site</i> с негов под-елемент
+	  </li>
+	  <li class="w3-padding-16">
+		4. В елемента <i>recipe</i> добавете негов под-елемент <i>images</i> включващ няколко под-елемента <i>image</i>
+	  </li>
+    <li class="w3-padding-16">
+		5. Екпериментирайте в браузър със следните имена на елементи или атрибути:
+    <i>Author</i>, <i>autór</i>, <i>XMLauthor</i>, <i>2017author</i>, <i>author 1</i>, <i>author=XXX</i>,
+    <i>author&amp;date</i>, <i>/ author</i>, <i>?author</i>. Кои от тях са недопустими и защо?
+    </li>
+    <li class="w3-padding-16">
+		6. Екпериментирайте в браузър следната промяна в документа:<br>
+    &nbsp;<font color="green">&lt;process&gt;</font><br>
+      &nbsp;&nbsp;&nbsp;<font color="red">&lt;p&gt;</font>Разбъркваме млякото и сладкото. Един ред бисквити, един ред от сместа и пак така, най-отгоре поръсваме орехи. Изчаква се до омекване на бисквитите.<font color="green">&lt;/p&gt;</font><br>
+    &nbsp;<font color="green">&lt;p&gt;&lt;i&gt;</font>Много вкусно!<font color="red">&lt;/i&gt;</font><font color="green">&lt;/p&gt;</font><br>
+    &nbsp;<font color="green">&lt;/Process&gt;</font><br>
+    </li>
+	  <li class="w3-padding-16 w3-green">
+	      <a onclick="showSolution('solution2')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+	  </li>
+    </ul>
+	<div id="solution2" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+	            <font color="blue">&lt;?xml version="1.0"?&gt;</font><br>
+				<font color="green">&lt;recipe</font> <font color="red">author="Анонимен"</font><font color="green">&gt;</font><br>
+                &nbsp;<font color="green">&lt;name&gt;</font>Бисквитена торта<font color="green">&lt;/name&gt;</font><br>
+                &nbsp;<font color="green">&lt;address&gt;</font><br>
+				&nbsp;&nbsp;<font color="red">&lt;site&gt;www.recipes.com&lt;/site&gt;</font><br>
+				&nbsp;<font color="red">&lt;/address&gt;</font><br>
+                &nbsp;<font color="green">&lt;ingredients&gt;</font><br>
+                &nbsp;&nbsp;&nbsp;<font color="green">&lt;list&gt;</font><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 пакет бисквити<font color="green">&lt;/item&gt;</font><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 кофичка кисело мляко<font color="green">&lt;/item&gt;</font><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green">&lt;item&gt;</font>1 бурканче сладко<font color="green">&lt;/item&gt;</font><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">&lt;item&gt;</font>1 ванилия<font color="red">&lt;/item&gt;</font></font><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">&lt;item&gt;</font>100 гр. едро смляни орехи<font color="red">&lt;/item&gt;</font><br>
+                &nbsp;&nbsp;&nbsp;<font color="green">&lt;/list&gt;</font><br>
+                &nbsp;<font color="green">&lt;/ingredients&gt;</font><br>
+				&nbsp;<font color="red">&lt;images&gt;</font><br>
+                &nbsp;&nbsp;&nbsp;<font color="red">&lt;image&gt;http://i.zajenata.bg/images/9/big_950e09f5588219a1d49f21ce13e3960c.jpg&lt;/image&gt;</font><br>
+				&nbsp;&nbsp;&nbsp;<font color="red">&lt;image&gt;http://recepti.gotvach.bg/files/lib/600x350/biskvitena-torta-stefi.jpg&lt;/image&gt;</font><br>
+				&nbsp;<font color="red">&lt;/images&gt;</font><br>
+                &nbsp;<font color="green">&lt;process&gt;</font><br>
+                  &nbsp;&nbsp;&nbsp;&lt;p&gt;</font>Разбъркваме млякото и сладкото. Един ред бисквити, един ред от сместа и пак така, най-отгоре поръсваме орехи. Изчаква се до омекване на бисквитите.<font color="green">&lt;/p&gt;</font><br>
+                &nbsp;<font color="green">&lt;p&gt;&lt;i&gt;</font>Много вкусно!<font color="green">&lt;/i&gt;&lt;/p&gt;</font><br>
+                &nbsp;<font color="green">&lt;/process&gt;</font><br>
+				<font color="green">&lt;/recipe&gt;</font>
+	</div>
+  </div>
+
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding" style="text-align: center;">
+      <h4>Задача 3: По дадената по-долу схема съставете xml файл</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+	  <img src="../images/xmlSchema.png"/>
+      </li>
+	  <li class="w3-padding-16 w3-green">
+	      <a onclick="showSolution('solution3')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+	  </li>
+    </ul>
+	<div id="solution3" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+	&lt;?xml version="1.0"?&gt;<br>
+	&lt;bookstore&gt;<br>
+		&nbsp;&nbsp;&lt;book category="COOKING"&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;author&gt;Giada De Laurentiis&lt;/author&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2005&lt;/year&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;price&gt;30.00&lt;/price&gt;<br>
+		&nbsp;&lt;/book&gt;<br>
+		&nbsp;&lt;book category="CHILDREN"&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;title lang="en"&gt;Harry Potter&lt;/title&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;author&gt;J K. Rowling&lt;/author&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2005&lt;/year&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;price&gt;29.99&lt;/price&gt;<br>
+		&nbsp;&nbsp;&lt;/book&gt;<br>
+		&nbsp;&nbsp;&lt;book category="WEB"&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;title lang="en"&gt;Learning XML&lt;/title&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;author&gt;Erik T. Ray&lt;/author&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2003&lt;/year&gt;<br>
+			 &nbsp;&nbsp;&nbsp;&nbsp;&lt;price&gt;39.95&lt;/price&gt;<br>
+		&nbsp;&nbsp;&lt;/book&gt;<br>
+	&lt;/bookstore&gt;
+	</div>
+  </div>
+
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding" style="text-align: left;">
+      <h4>Задача 4: Използвайки CDATA секции съставете xml файл структуриращ информацията (относно логическите оператори в Excel) дадена в таблицата по-долу:</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+	  <img src="../images/cdatasections.png"/>
+      </li>
+	  <li class="w3-padding-16 w3-blue">
+	      <a onclick="showSolution('insrtuction4')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+	  </li>
+	  <li id="insrtuction4" class="w3-hide w3-container">Една CDATA секция представя текстово съдържание на XML елемент и позволява включване на специални XML знаци. <br>
+			Синтаксис: &lt;![CDATA[ ..... ]]&gt; <br>
+			Пример: &lt;![CDATA[ if(x &gt;  y &amp;&amp; x &gt;  max) { max = x;} ]]&gt;
+	  </li>
+	  <li class="w3-padding-16 w3-green">
+	      <a onclick="showSolution('solution4')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+	  </li>
+    </ul>
+	<div id="solution4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+		&nbsp;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                                                   <br>
+		&nbsp;&lt;ExcelLogicalOperators&gt;                                                                                                                                                      <br>
+			&nbsp;&nbsp;&lt;ExcelLogicalOperator&gt;                                                                                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Condition&gt;Equal to&lt;/Condition&gt;                                                                                                              <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Operator&gt;=&lt;/Operator&gt;                                                                                                                       <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;FormulaExample&gt;=A1=B1&lt;/FormulaExample&gt;                                                                                                      <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Description&gt;The formula returns TRUE if a value in cell A1 is equal to the values in cell B1; FALSE otherwise.&lt;/Description&gt;                <br>
+			&nbsp;&nbsp;&lt;/ExcelLogicalOperator&gt;                                                                                                                                            <br>
+			&nbsp;&nbsp;&lt;ExcelLogicalOperator&gt;                                                                                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Condition&gt;Not equal to&lt;/Condition&gt;                                                                                                          <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Operator&gt;&lt;![CDATA[&lt;&gt;]]&gt;&lt;/Operator&gt;                                                                                              <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;FormulaExample&gt;&lt;![CDATA[=A1&lt;&gt;B1]]&gt;&lt;/FormulaExample&gt;                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Description&gt;The formula returns TRUE if a value in cell A1 is not equal to the value in cell B1; FALSE otherwise.&lt;/Description&gt;             <br>
+			&nbsp;&nbsp;&lt;/ExcelLogicalOperator&gt;                                                                                                                                            <br>
+			&nbsp;&nbsp;&lt;ExcelLogicalOperator&gt;                                                                                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Condition&gt;Greater than&lt;/Condition&gt;                                                                                                          <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Operator&gt;&lt;![CDATA[&gt;]]&gt;&lt;/Operator&gt;                                                                                                  <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;FormulaExample&gt;&lt;![CDATA[=A1&gt;B1]]&gt;&lt;/FormulaExample&gt;                                                                                 <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Description&gt;The formula returns TRUE if a value in cell A1 is greater than a value in cell B1; otherwise it returns FALSE.&lt;/Description&gt;    <br>
+			&nbsp;&nbsp;&lt;/ExcelLogicalOperator&gt;                                                                                                                                            <br>
+			&nbsp;&nbsp;&lt;ExcelLogicalOperator&gt;                                                                                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Condition&gt;Less than&lt;/Condition&gt;                                                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Operator&gt;&lt;![CDATA[&lt;]]&gt;&lt;/Operator&gt;                                                                                                  <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;FormulaExample&gt;&lt;![CDATA[=A1&lt;B1]]&gt;&lt;/FormulaExample&gt;                                                                                 <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Description&gt;The formula returns TRUE if a value in cell A1 is less than in cell B1; FALSE otherwise.&lt;/Description&gt;                          <br>
+			&nbsp;&nbsp;&lt;/ExcelLogicalOperator&gt;                                                                                                                                            <br>
+			&nbsp;&nbsp;&lt;ExcelLogicalOperator&gt;                                                                                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Condition&gt;Greater than or equal to&lt;/Condition&gt;                                                                                              <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Operator&gt;&lt;![CDATA[&gt;=]]&gt;&lt;/Operator&gt;                                                                                                 <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;FormulaExample&gt;&lt;![CDATA[=A1&gt;=B1]]&gt;&lt;/FormulaExample&gt;                                                                                <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Description&gt;The formula returns TRUE if a value in cell A1 is greater than or equal to the values in cell B1; FALSE otherwise.&lt;/Description&gt;<br>
+			&nbsp;&nbsp;&lt;/ExcelLogicalOperator&gt;                                                                                                                                            <br>
+			&nbsp;&nbsp;&lt;ExcelLogicalOperator&gt;                                                                                                                                             <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Condition&gt;Less than or equal to&lt;/Condition&gt;                                                                                                 <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Operator&gt;&lt;![CDATA[&lt;=]]&gt;&lt;/Operator&gt;                                                                                                 <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;FormulaExample&gt;&lt;![CDATA[=A1&lt;=B1]]&gt;&lt;/FormulaExample&gt;                                                                                <br>
+			&nbsp;&nbsp;	&nbsp;&nbsp;&lt;Description&gt;The formula returns TRUE if a value in cell A1 is less than or equal to the values in cell B1; FALSE otherwise.&lt;/Description&gt;   <br>
+			&nbsp;&nbsp;&lt;/ExcelLogicalOperator&gt;                                                                                                                                            <br>
+
+		&nbsp;&lt;/ExcelLogicalOperators&gt;
+	</div>
+  </div>
+
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding" style="text-align: left;">
+      <h4>Задача 5: Преработете горният пример, като използвате екранни последователности за символите, които не са РCDATA съдържание.
+    </div>
+    <li class="w3-padding-16 w3-blue">
+	      <a onclick="showSolution('insrtuction41')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+	  </li>
+	  <li id="insrtuction41" class="w3-hide w3-container">Примери за екранни последователности:
+      <br><br>
+&amp;amp;		задава &amp;	(ampersand)<br>
+&amp;lt;		задава &lt;	(less than)<br>
+&amp;apos;	задава &apos;	(apostrophe)<br>
+	  </li>
+  </div>
+
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding" style="">
+      <h4>Задача 6:  Създайте xml файл и използвайте правилния encoding, за да представите по-долу дадените изрази.
+    <br>
+      Пробвайте във вашия браузер как тези изрази ще бъдат представени ако използвате encoding ISO-8859-1</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+		1. ∀ x ∈ {y-10, y+10} ∃ i
+      </li>
+	  <li class="w3-padding-16">
+		2. Einführung
+      </li>
+	  <li class="w3-padding-16">
+		3. Γεια Γιάννη
+      </li>
+	  <li class="w3-padding-16">
+		4. 嗨你好
+      </li>
+	  <li class="w3-padding-16 w3-green">
+	      <a onclick="showSolution('solution5')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+	  </li>
+    </ul>
+	<div id="solution5" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+	&nbsp;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                           <br>
+	&nbsp;&lt;Expressions&gt;                                                                        <br>
+	&nbsp;	&nbsp;&nbsp;&lt;Expression id=&quot;1&quot;&gt;∀ x ∈ {y-10, y+10} ∃ i&lt;/Expression&gt;           <br>
+	&nbsp;	&nbsp;&nbsp;&lt;Expression id=&quot;2&quot;&gt;Einführung&lt;/Expression&gt;                       <br>
+	&nbsp;	&nbsp;&nbsp;&lt;Expression id=&quot;3&quot;&gt;Γεια Γιάννη&lt;/Expression&gt;                      <br>
+	&nbsp;	&nbsp;&nbsp;&lt;Expression id=&quot;4&quot;&gt;嗨你好&lt;/Expression&gt;                            <br>
+	&nbsp;&lt;/Expressions&gt;
+	</div>
+  </div>
+
+
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding" style="text-align: center;">
+      <h4>Задача 7:  Като използвате пространство от имена обединете дадените по-долу 2 xml файла в един документ</h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+		&lt;book&gt;                                                                 <br>
+		 &lt;title&gt;A true story&lt;/title&gt;                                     <br>
+		 &lt;description&gt;A real cool publication&lt;/description&gt;              <br>
+		&lt;/book&gt;
+      </li>
+	  <li class="w3-padding-16">
+		&lt;record&gt;                                                     <br>
+		 &lt;name&gt;Miller&lt;/name&gt;                                   <br>
+		 &lt;title&gt;Dr. &lt;/title&gt;                                   <br>
+		 &lt;publications&gt; ... &lt;/publications&gt;                    <br>
+		&lt;/record&gt;
+      </li>
+	  <li class="w3-padding-16 w3-blue">
+	      <a onclick="showSolution('insrtuction6')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+	  </li>
+	  <li id="insrtuction6" class="w3-hide w3-container">Пространството от имена осигурява начин за разграничаване на два или повече XML елемента, които имат едно и също име, но принадлежат към различни речници (например set е елемент както в SVG, така и в MathML, но смисълът му в двата езика е различен). Това се извършва чрез асоцииране на елемент с пространство от имена. Името на пространството от имена задава обхвата на всички свързани с него елементи. <br>
+			Синтаксис: &lt;prefix:element xmlns:prefix="URI"&gt; <br>
+			Пример: &lt;html:html xmlns:html="http://www.w3.org/1999/xhtml"&gt; <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;html:head&gt; ..... &lt;/html:head&gt;
+	  </li>
+	  <li class="w3-padding-16 w3-green">
+	      <a onclick="showSolution('solution6')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+	  </li>
+    </ul>
+	<div id="solution6" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+	&nbsp;&lt;?xml version=&quot;1.0&quot;?&gt;                                                                                          <br>
+	&nbsp;&lt;employees:record xmlns:employees=&quot;http://employees.org/&quot; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:biblio=&quot;http://biblio.org/&quot;&gt;         <br>
+	&nbsp;  &nbsp;&nbsp;&lt;employees:name&gt;Miller&lt;/employees:name&gt;                                                                          <br>
+	&nbsp;  &nbsp;&nbsp;&lt;employees:title&gt;Dr. &lt;/employees:title&gt;                                                                          <br>
+	&nbsp;  &nbsp;&nbsp;&lt;employees:publications&gt;                                                                                               <br>
+	&nbsp;	&nbsp;&nbsp;&nbsp;&lt;biblio:book&gt;                                                                                                        <br>
+	&nbsp;	&nbsp;&nbsp;  &nbsp;&nbsp;&lt;biblio:title&gt;A true story&lt;/biblio:title&gt;                                                                    <br>
+	&nbsp;	&nbsp;&nbsp;  &nbsp;&nbsp;&lt;biblio:description&gt;A real cool publication&lt;/biblio:description&gt;                                             <br>
+	&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;&lt;/biblio:book&gt;                                                                                                       <br>
+	&nbsp;  &nbsp;&nbsp;&lt;/employees:publications&gt;                                                                                              <br>
+	&nbsp;&lt;/employees:record&gt;
+	</div>
+  </div>
+
+
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Задача 8:  Използвайки информацията от следния линк: <a href="http://programata.bg/?p=31&l=1&c=1&id=7037" target="_blank">http://programata.bg/?p=31&l=1&c=1&id=7037</a>,
+        описващ програмата на кино Cinema City Paradise, създайте и покажете в браузър XML документ, структуриращ следната информация: </h4>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+		1. Обща информация за Cinema City Paradise - адрес, телефон, описание и т.н.
+      </li>
+	 <li class="w3-padding-16">
+		2. Цените на билетите от понеделник до неделя
+      </li>
+	  <li class="w3-padding-16">
+		3. За всеки филм - дата и час на прожекция
+      </li>
+	  <li class="w3-padding-16 w3-green">
+	      <a onclick="showSolution('solution7')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+	  </li>
+    </ul>
+	<div id="solution7" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+	<pre style="font-family: inherit;font-size: 15px;line-height: 10px;">
+    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                  <br>
+    &lt;Cinema name=&quot;Cinema City Paradise&quot;&gt;                                                                  <br>
+	&lt;Address&gt;София, бул. Черни връх 100, в сградата на Paradise Center&lt;/Address&gt;                          <br>
+	&lt;Telephones&gt;                                                                                                <br>
+		&lt;Telephone&gt; 02 903 74 74 &lt;/Telephone&gt;                                                             <br>
+		&lt;Telephone&gt;02 903 74 40 &lt;/Telephone&gt;                                                              <br>
+	&lt;/Telephones&gt;                                                                                               <br>
+	&lt;Email&gt;info.paradise@cinemacity.bg&lt;/Email&gt;                                                            <br>
+	&lt;Info&gt;
+	            Cinema City Paradise е второто кино на веригата в София.                                              <br>
+                Оборудвано е с последно поколение кинотехника, прожектори Christie и 7-канален дигитален съраунд звук.                <br>
+                Киното разполага с 14 модерни зали, 8 от които са 3D, с общ капацитет от 2166 места. <br>
+                14 зали означават още по-голямо разнообразие на филми, на практика на всеки 10 минути започва филм.<br>
+       &lt;/Info&gt;<br>
+	&lt;Prices&gt;                                                                                                 <br>
+		&lt;Monday&gt;                                                                                             <br>
+			&lt;CinameHall type=&quot;Normal&quot;&gt;                                                             <br>
+				&lt;Tickets&gt;                                                                                    <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;General Ticket&lt;/Type&gt;                                                    <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Discount Ticket&lt;/Type&gt;                                                   <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Premiere Ticket&lt;/Type&gt;                                                   <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+				&lt;/Tickets&gt;                                                                                   <br>
+			&lt;/CinameHall&gt;                                                                                    <br>
+			&lt;CinameHall type=&quot;3D DIGITAL CINEMA&quot;&gt;                                                  <br>
+				&lt;Tickets&gt;                                                                                    <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;General Ticket&lt;/Type&gt;                                                    <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Discount Ticket&lt;/Type&gt;                                                   <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Premiere Movie&lt;/Type&gt;                                                    <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Premiere Animation&lt;/Type&gt;                                                <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+				&lt;/Tickets&gt;                                                                                   <br>
+			&lt;/CinameHall&gt;                                                                                    <br>
+			&lt;CinameHall type=&quot;4DX 2D&quot;&gt;                                                             <br>
+				&lt;Tickets&gt;                                                                                    <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;General Ticket&lt;/Type&gt;                                                    <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Discount Ticket&lt;/Type&gt;                                                   <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Premiere&lt;/Type&gt;                                                          <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+				&lt;/Tickets&gt;                                                                                   <br>
+			&lt;/CinameHall&gt;                                                                                    <br>
+			&lt;CinameHall type=&quot;4DX 3D&quot;&gt;                                                             <br>
+				&lt;Tickets&gt;                                                                                    <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;General Ticket&lt;/Type&gt;                                                    <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Discount Ticket&lt;/Type&gt;                                                   <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Premiere Movie&lt;/Type&gt;                                                    <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+					&lt;Ticket&gt;                                                                                 <br>
+						&lt;Type&gt;Premiere Animation&lt;/Type&gt;                                                <br>
+						&lt;Price&gt;XX.XX&lt;/Price&gt;                                                           <br>
+					&lt;/Ticket&gt;                                                                                <br>
+				&lt;/Tickets&gt;                                                                                   <br>
+			&lt;/CinameHall&gt;                                                                                    <br>
+		&lt;/Monday&gt;                                                                                            <br>
+		&lt;Tuesday&gt;                                                                                            <br>
+		.......................                                                                                    <br>
+		&lt;/Tuesday&gt;                                                                                           <br>
+		.......................                                                                                    <br>
+	&lt;/Prices&gt;                                                                                                <br>
+	&lt;CinemaProjection&gt;                                                                                       <br>
+		&lt;Title&gt;XX&lt;/Title&gt;                                                                              <br>
+		&lt;Projections&gt;                                                                                        <br>
+			&lt;Projection&gt;                                                                                     <br>
+				&lt;Date&gt;XX.XX.XXXX&lt;/Date&gt;                                                                <br>
+				&lt;Hours&gt;                                                                                      <br>
+					&lt;Hour&gt;XX:XX&lt;/Hour&gt;                                                                 <br>
+					&lt;Hour&gt;XX:XX&lt;/Hour&gt;                                                                 <br>
+					..........                                                                                     <br>
+				&lt;/Hours&gt;                                                                                     <br>
+			&lt;/Projection&gt;                                                                                    <br>
+			&lt;Projection&gt;                                                                                     <br>
+				&lt;Date&gt;XX.XX.XXXX&lt;/Date&gt;                                                                <br>
+				&lt;Hours&gt;                                                                                      <br>
+					&lt;Hour&gt;XX:XX&lt;/Hour&gt;                                                                 <br>
+					&lt;Hour&gt;XX:XX&lt;/Hour&gt;                                                                 <br>
+					..........                                                                                     <br>
+				&lt;/Hours&gt;                                                                                     <br>
+			&lt;/Projection&gt;                                                                                    <br>
+			.............                                                                                          <br>
+	&lt;/Projections&gt;                                                                                           <br>
+	&lt;/CinemaProjection&gt;                                                                                      <br>
+	...................                                                                                            <br>
+&lt;/Cinema&gt;
+</pre>
+	</div>
+  </div>
+
+
+</div>
+<!-- END Content -->
+</div><br>
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+	<div class="w3-center">
+		<div class="w3-bar w3-xlarge w3-border w3-round">
+<!--
+		  <a href="../index.html" class="w3-bar-item w3-button" active><i class="fa fa-home"></i></a>
+		  <a href="../exercise1/exercise1.html" class="w3-bar-item w3-button w3-white">1</a>
+		  <a href="../exercise2/exercise2.html" class="w3-bar-item w3-button">2</a>
+		  <a href="../exercise3/exercise3.html" class="w3-bar-item w3-button">3</a>
+		  <a href="../exercise4/exercise4.html" class="w3-bar-item w3-button">4</a>
+		  <a href="../exercise5/exercise5.html" class="w3-bar-item w3-button">5</a>
+		  <a href="../exercise6/exercise6.html" class="w3-bar-item w3-button">6</a>
+		  <a href="../exercise7/exercise7.html" class="w3-bar-item w3-button">7</a>
+		  <a href="../exercise8/exercise8.html" class="w3-bar-item w3-button">8</a>
+-->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

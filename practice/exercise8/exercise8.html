@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<title>Resource Description Framework (RDF), RDF Schema (RDFS) и OWL (Ontology Web Language)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../images/xml.jpg" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="../javascript/utils.js"></script>
+<body class="w3-light-grey">
+
+<div style="max-width:1200px;margin: 0 auto;">
+	<!-- Header -->
+	<header class="w3-container w3-center w3-padding-32">
+	  <h1>Resource Description Framework (RDF), RDF Schema (RDFS) и OWL (Ontology Web Language)</b></h1>
+	</header>
+
+	<!-- Content -->
+	<div class="w3-row">
+
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-panel w3-blue round-top">
+					<h3>Цели на упражнението:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<ul>
+					    <li>
+							Използване на основни конструкции на Resource Description Framework (RDF) в примери и валидирането им
+						</li>
+						<li>
+							Създаване на авторски RDF документи
+						</li>
+						<li>
+							Използване на основни конструкции на RDF Schema (RDFS) в примери и валидирането им 
+						</li>
+						<li>
+							Създаване на авторски RDFS документи
+						</li>
+						<li>
+							Използване на основни конструкции на OWL (Ontology Web Language) в примери и валидирането им 
+						</li>
+						<li>
+							Създаване на авторски OWL документи
+						</li>
+					</ul>
+					</div>
+				<div class="w3-panel w3-blue round-top">
+					<h3>Средства за работа:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<p> За създаването на XML документите в това упражнение може да използвате произволен текстов редактор, като например Notepad, Notepad++, Atom и да тествате с Уеб браузер, като например Mozilla Firefox, Google Chrome, Internet Explorer.</p>
+					<p>За валидиране на RDF документи използвайте онлайн услугата, налична на адрес <a href="https://www.w3.org/RDF/Validator/">https://www.w3.org/RDF/Validator/</a></p>
+				</div>
+			</div>
+		</div>
+		<!--Start tasks-->
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<!--Start task1-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 1: Разгледайте следния RDF документ:</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						&lt;?xml version=&quot;1.0&quot;?&gt;
+						<br>&lt;rdf:RDF
+						<br>xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+						<br>xmlns:bc=&quot;https://learn.fmi.uni-sofia.bg/&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;rdf:Description rdf:about=&quot;https://learn.fmi.uni-sofia.bg/course/view.php?id=3660&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bc:title&gt;XML technologies for Semantic Web, winter semester 2017/2018&lt;/bc:title&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;bc:author&gt;Prof. Boyan Bontchev&lt;/bc:author&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/rdf:Description&gt;
+						<br>&lt;/rdf:RDF&gt;
+					</li>
+					<li>
+						1. Валидирайте го онлайн на адрес <a href="https://www.w3.org/RDF/Validator/">https://www.w3.org/RDF/Validator/</a>, като изберете Display Result опциите „Triples and Graph“ и „PNG - embedded“. 
+					</li>
+					<li>
+						2. Трябва да получите следния резултат:
+					</li>	
+					<li>
+						<img src="task1.png"/>
+					</li>	
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution1')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution1" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					
+				</div>
+			</div>
+		    <!--End task1-->
+			<!--Start task2-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 2: За съдържанието от дадената таблица по-долу, създайте RDF документ, като използвате елементите &lt;cd:artist&gt;, &lt;cd:country&gt;, &lt;cd:company&gt; и т.н. като свойства на ресурса.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						<img src="task2Table.png"/>
+					</li>
+					<li>
+						Валидирайте го онлайн на адрес <a href="https://www.w3.org/RDF/Validator/">https://www.w3.org/RDF/Validator/</a>, като трябва да получите следния резултат:
+					</li>
+					<li>
+						<img src="task2.png"/>
+					</li>	
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution2')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution2" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot;?&gt;
+					<br>&lt;rdf:RDF
+					<br>xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+					<br>xmlns:cd=&quot;http://www.myshop.bg/cd#&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;rdf:Description
+					<br>&nbsp;&nbsp;&nbsp;rdf:about=&quot;http://www.myshop.bg/cd/Unchain my heart&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:artist&gt;Joe Cocker&lt;/cd:artist&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:country&gt;USA&lt;/cd:country&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:company&gt;EMI&lt;/cd:company&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:price&gt;8.20&lt;/cd:price&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:year&gt;1987&lt;/cd:year&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/rdf:Description&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;rdf:Description
+					<br>&nbsp;&nbsp;&nbsp;rdf:about=&quot;http://www.myshop.bg/cd/Pavarotti Gala Concert&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:artist&gt;Luciano Pavarotti&lt;/cd:artist&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:country&gt;UK&lt;/cd:country&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:company&gt;DECCA&lt;/cd:company&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:price&gt;9.90&lt;/cd:price&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:year&gt;1991&lt;/cd:year&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/rdf:Description&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;rdf:Description
+					<br>&nbsp;&nbsp;&nbsp;rdf:about=&quot;http://www.myshop.bg/cd/Soulsville&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:artist&gt;Jorn Hoel&lt;/cd:artist&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:country&gt;Norway&lt;/cd:country&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:company&gt;WEA&lt;/cd:company&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:price&gt;7.90&lt;/cd:price&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cd:year&gt;1996&lt;/cd:year&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/rdf:Description&gt;
+					<br>&lt;/rdf:RDF&gt;
+				</div>
+			</div>
+		    <!--End task2-->
+			<!--Start task3-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 3: За създадения от задача 2 RDF документ, заменете елементите &lt;cd:artist&gt;, &lt;cd:country&gt;, &lt;cd:company&gt; и т.н. с атрибути като свойства на ресурса. Валидирайте новосъздадения документ на адрес <a href="https://www.w3.org/RDF/Validator/">https://www.w3.org/RDF/Validator/</a>.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution3')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution3" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					
+				</div>
+			</div>
+		    <!--End task3-->
+			<!--Start task4-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 4: Преработете създадения от задача 2 RDF документ, като:
+						<ol>
+							<li>
+								Замените литералната стойност за елементите &lt;cd:artist&gt; с референция към ресурс, например &lt;cd:artist rdf:resource=" http://www.myshop.bg/cd/joecocker" /&gt;. 
+							</li>
+							<li>
+								Опишете новия ресурс в отделен rdf:Description елемент, като използвате елементите &lt;cd:name&gt;, &lt;cd:country&gt;, &lt;cd:born&gt;, &lt;cd:style&gt; и &lt;cd:homepage&gt;. 
+							</li>
+							<li>
+								Валидирайте новосъздадения документ на адрес <a href="https://www.w3.org/RDF/Validator/">https://www.w3.org/RDF/Validator/</a>, като трябва да получите следния резултат:
+							</li>
+						</ol>
+					</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						<img src="task4.png"/>
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution4')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					
+				</div>
+			</div>
+		    <!--End task4-->
+			<!--Start task5-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>
+						Задача 5: Създайте и валидирайте на адрес <a href="https://www.w3.org/RDF/Validator/">https://www.w3.org/RDF/Validator/</a> примерни RDF документи с контейнери, описващите групи от тип &lt;Bag&gt;, &lt;Seq&gt; и &lt;Alt&gt;. <br>След валидирането, разгледайте и обяснете получените графи, които трябва да включват конструкции като тези по-долу:
+					</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						1. <img src="task5_1.png"/>
+					</li>
+					<li>
+						2. <img src="task5_2.png"/>
+					</li>
+					<li>
+						3. <img src="task5_3.png"/>
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution5')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution5" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					
+				</div>
+			</div>
+		    <!--End task5-->
+			<!--Start task6-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>
+						Задача 6: Създайте и валидирайте на адрес <a href="https://www.w3.org/RDF/Validator/">https://www.w3.org/RDF/Validator/</a> примерен RDF документ с колекция (с използването на атрибута rdf:parseType="Collection"). <br>
+                        След валидирането, разгледайте и обяснете получения граф.
+					</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						Примерен граф:
+					</li>
+					<li>
+						<img src="task6.png"/>
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution6')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution6" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					
+				</div>
+			</div>
+		    <!--End task6-->
+			<!--Start task7-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>
+						Задача 7: Създайте XML документ за следния граф:
+					</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						<img src="task7.png"/>
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution7')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution7" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					Вариант 1:<br>
+					&lt;?xml version=&quot;1.0&quot;?&gt;
+					<br>&lt;rdf:RDF
+					<br>xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+					<br>xmlns:rdfs=&quot;http://www.w3.org/2000/01/rdf-schema#&quot;
+					<br>xml:base=&quot;http://www.animals.fake/animals#&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;rdf:Description rdf:ID=&quot;animal&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:type rdf:resource=&quot;http://www.w3.org/2000/01/rdf-schema#Class&quot;/&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/rdf:Description&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;rdf:Description rdf:ID=&quot;horse&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:type rdf:resource=&quot;http://www.w3.org/2000/01/rdf-schema#Class&quot;/&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rdfs:subClassOf rdf:resource=&quot;#animal&quot;/&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/rdf:Description&gt;
+					<br>&lt;/rdf:RDF&gt;
+					<br><br>
+					Вариант 2:<br>
+					&lt;?xml version=&quot;1.0&quot;?&gt;
+					<br>&lt;rdf:RDF
+					<br>xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+					<br>xmlns:rdfs=&quot;http://www.w3.org/2000/01/rdf-schema#&quot;
+					<br>xml:base=&quot;http://www.animals.fake/animals#&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;rdfs:Class rdf:ID=&quot;animal&quot; /&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;rdfs:Class rdf:ID=&quot;horse&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rdfs:subClassOf rdf:resource=&quot;#animal&quot;/&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/rdfs:Class&gt;
+					<br>&lt;/rdf:RDF&gt;
+				</div>
+			</div>
+		    <!--End task7-->
+			<!--Start task8-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>
+						Задача 8: Регистрирайте се в страницата на Web Protégé на адрес <a href="https://webprotege.stanford.edu/">https://webprotege.stanford.edu/</a> и създайте свой проект с примерна OWL онтология. За помощ използвайте инструкциите от <a href="https://protegewiki.stanford.edu/wiki/WebProtegeUsersGuide">https://protegewiki.stanford.edu/wiki/WebProtegeUsersGuide</a>.
+					</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution8')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution8" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+				</div>
+			</div>
+		    <!--End task8-->
+		</div>
+		<!--End tasks-->  
+	</div>
+	<!-- END Content -->
+</div><br>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+	<div class="w3-center">
+		<div class="w3-bar w3-xlarge w3-border w3-round">
+<!--
+		  <a href="../index.html" class="w3-bar-item w3-button" active><i class="fa fa-home"></i></a>
+		  <a href="../exercise1/exercise1.html" class="w3-bar-item w3-button">1</a>
+		  <a href="../exercise2/exercise2.html" class="w3-bar-item w3-button">2</a>
+		  <a href="../exercise3/exercise3.html" class="w3-bar-item w3-button">3</a>
+		  <a href="../exercise4/exercise4.html" class="w3-bar-item w3-button">4</a>
+		  <a href="../exercise5/exercise5.html" class="w3-bar-item w3-button">5</a>
+		  <a href="../exercise6/exercise6.html" class="w3-bar-item w3-button">6</a>
+		  <a href="../exercise7/exercise7.html" class="w3-bar-item w3-button">7</a>
+		  <a href="../exercise8/exercise8.html" class="w3-bar-item w3-button w3-white">8</a>
+-->
+		</div>
+	</div>
+</footer>
+
+
+</body>
+</html>

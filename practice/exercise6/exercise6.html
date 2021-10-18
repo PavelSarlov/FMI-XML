@@ -1,0 +1,1510 @@
+﻿<!DOCTYPE html>
+<html>
+<title>DOM, SAX и StAX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../images/xml.jpg" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="../javascript/utils.js"></script>
+<body class="w3-light-grey">
+
+<div style="max-width:1200px;margin: 0 auto;">
+	<!-- Header -->
+	<header class="w3-container w3-center w3-padding-32">
+	  <h1><b>DOM, SAX и StAX</b></h1>
+	</header>
+
+	<!-- Content -->
+	<div class="w3-row">
+
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-panel w3-blue round-top">
+					<h3>Цели на упражнението:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<ul>
+						<li>Използване на основни DOM, SAX и StAX интерфейси</li>
+					</ul>
+					</div>
+				<div class="w3-panel w3-blue round-top">
+					<h3>Среди поддържащи DOM, SAX и StAX XML парсъри:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<p> За реализация на това упражнение може да използвате някоя от следните Интернет базирани среди, поддържащи компилатори за Java, C#, JavaScript и др.:</p>
+					<ul class="checked">
+						<li><a href="https://repl.it" target="_blank">repl.it</a>&nbsp;(за предпочитане, понеже позволява създаването на началния XML документ)</li>
+						<li><a href="https://ideone.com/" target="_blank">ideone</a>&nbsp;(началният XML документ трябва да се въведе като стринг)</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--Start tasks-->
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<!--Start task1-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 1: Като използвате SAX, принтирайте дадения по-долу XML документ в стандартната конзола, спазвайки следните условия:</h4>
+					<ol>
+						<li>Йерархията на елементите да бъде запазена</li>
+						<li>Всеки елемент да бъде разпечатан на нов ред заедно с включените в него атрибути</li>
+						<li>Текстовите стойности на елементите да бъдат разпечатани с главни букви</li>
+					</ol>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						XML документ:<br><br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+						<br>&lt;rss version=&quot;0.91&quot;&gt;
+						<br>    &nbsp;&nbsp;&nbsp;&lt;channel location=&quot;remote&quot; company=&quot;N.A.&quot;&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux Today&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;http://linuxtoday.com&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;language&gt;en-us&lt;/language&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Linux Today News Service&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;image author=&quot;anonymous&quot;&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux Today&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;url&gt;http://linuxtoday.com/pics/ltnet.png&lt;/url&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;http://linuxtoday.com&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/image&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;CNET News.com: USB 2 arrives in Linux test version&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-008-20-NW-KN-DV
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;The USB support in the world of Linux is much more freewheeling than at
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Microsoft. The Linux USB software has been created by a largely
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;self-appointed team of programmers, who feed batches of code to the
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;main kernel project.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;The Register: Open source developers face new warranty threat
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-007-20-NW-LL
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;If there&apos;s one thing free software developers hate more than writing
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;documentation, it&apos;s fighting a long-drawn out and unglamorous legal
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;battle. But the latest episode in the UCITA saga bodes ill for any
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;free software author based in the United States.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Mandrake Linux Security Update Advisory: sudo&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-012-20-SC-MD
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;The SuSE Security Team discovered a vulnerability in sudo that can be
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;exploited to obtain root privilege because sudo is installed setuid
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;root. An attacker could trick sudo to log failed sudo calls
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;executing the sendmail (or equivalent mailer) program with root
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;privileges and an environment that is not completely clean.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;NewsForge: An Open Source adventure at MacWorld&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-006-20-PS-BD
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;&apos;For me, what Darwin brings is not so much another alternative to Linux
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;or FreeBSD or whatever, as those systems I have that are running
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;some Open Source BSD are likely to continue doing that. It&apos;s the
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;fact that there is an Open Source kernel and utility suite and
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;libraries that will support proprietary commercial applications that
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;I&apos;m willing to pay for but can&apos;t run on most of my other systems.&apos;&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Linux Journal: Sysadmin Corner: Unsung Heroes, Part 2
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-005-20-RV-SW
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;It seems that several people decided I should show off their web photo
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;album generation tool of choice. So, in response to your
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;suggestions, I&apos;m going to put off the cool network tool for today;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;let&apos;s go on the premise that you all took thousands of pictures over
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;the holidays and are dying to make them available on the Web.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Conectiva Linux Security Announcement: sudo&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-004-20-SC
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;Sebastian Krahmer from SuSe found a vulnerability in the sudo package which
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;could be used by a local attacker to obtain root privileges.
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Versions prior to and including 1.6.3p7 remove a few potentially
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;dangerous environment variables prior to executing a command as
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;root, but other variables could be abused and used to obtain root
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;privileges.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;IBM developerWorks: Introducing XFS&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-003-20-PS-KN
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;Up until now, choosing the appropriate next-generation Linux
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;filesystem has been refreshingly straightforward. Those who were
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;looking for raw performance generally leaned towards ReiserFS, while
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;those more interested in meticulous data integrity features
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;preferred ext3. However, with the release of XFS for Linux, things
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;have suddenly become much more confusing. In particular, it&apos;s no
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;longer clear that ReiserFS is still the next-gen performance
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;leader.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Red Hat Security Advisory: sudo&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-002-20-SC-RH
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;Versions of sudo prior to 1.6.4 would not clear the environment before
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;sending an email notification about unauthorized sudo attempts,
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;making it possible for an attacker to supply parameters to the mail
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;program. In the worst case, this could lead to a local root
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;exploit.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;ZDNet: SuSE 7.3 offers solid server reach and desktop usability
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-001-20-RV-SS
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;SuSE Linux 7.3 is well prepared for corporate computing, offering
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;support for a broad range of server architectures and significant
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;advances in usability for both administrators and end users.
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Companies looking for a solid server platform--and perhaps even a
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;desktop replacement for Windows--would be well advised to evaluate
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;SuSE 7.3&apos;s stellar offerings.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux 2.4.18-pre4 Released&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-025-20-NW-KN
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Changelog, link within.&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux 2.5.3-pre1 Released&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-024-20-NW-KN
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Changelog, link within.&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;LinuxProgramming: Tcl-URL! - weekly Tcl news and links (Jan 15)
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-023-20-PS
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;All the latest news from the Tcl world.&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;MLUG.ca: Up2date with RedHat&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-022-20-PS-RH-SW
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;What up2date does is similar to what Debian has been doing for years
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;now, namely, finding updates and installing packages without having
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;dependency issues. For those who have used Debian I&apos;m refering to
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;the program apt-get which does exactly what up2date does. Some might
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;argue that apt-get is a better program, but I certainly don&apos;t want
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;to start a holy war.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Call for papers out for Ottawa Linux Symposium 2002
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-021-20-NW-CY-DV
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;OLS is Linux and Linux related software developers symposium with a
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;strong focus on emerging technologies, research projects, and works
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;in progress. We invite contribution from the free software and
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;commercial developers.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Newsforge: Community commentary: The case for &apos;lagom&apos; copyright
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-021-20-OP-LL
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;One of the big issues of free software during 2001 was whether Richard
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;M Stallman was for or against a codified GNU GPL. Hence, did
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Stallman --the father of Free Software -- propagate a law to support
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;his beliefs?&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;textinput&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Search&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Search Linux Today:&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;name&gt;query&lt;/name&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;http://linuxtoday.com/search.php3&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/textinput&gt;
+						<br>    &nbsp;&nbsp;&nbsp;&lt;/channel&gt;
+						<br>&lt;/rss&gt;
+					</li>	
+
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction1')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction1" class="w3-hide w3-container">
+					    Примерно частично решение на задачата за използване в https://repl.it/ (след като сте извършили следните стъпки):
+					<br>Регистрирайте се в https://repl.it/
+					<br>Направете логин в https://repl.it/
+					<br>Изберете нов проект и език за програмиране Java
+					<br>Създайте нов файл rss.xml и копирайте горното xml съдържание в него
+					<br>Копирайте кода в Main.java и го редактирайте, както е указано
+					<br>Изпълнете кода чез натискане на бутона Run
+<hr>				
+					<br>import org.xml.sax.InputSource;
+					<br>import org.xml.sax.XMLReader;
+					<br>import org.xml.sax.helpers.XMLReaderFactory;
+					<br>import java.io.IOException;
+					<br>import java.io.OutputStreamWriter;
+					<br>import java.io.StringReader;
+					<br>
+					<br>import org.xml.sax.Attributes;
+					<br>import org.xml.sax.ContentHandler;
+					<br>import org.xml.sax.Locator;
+					<br>import org.xml.sax.SAXException;
+					<br>
+					<br>public class SAX1 { //replace SAX1 by Main for pasting it as Main.java in https://repl.it/
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) {       
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutputStreamWriter outputStreamWriter = new OutputStreamWriter(System.out);      
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XMLReader parser = XMLReaderFactory.createXMLReader();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputSource source = new InputSource("rss.xml");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//InputSource source = new InputSource(new StringReader("<rss><channel></channel></rss>")); //for using in https://ideone.com/ instead new InputSource("rss.xml")
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parser.setContentHandler(new SAXHandler(outputStreamWriter)
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parser.parse(source);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (Exception e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} finally {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.close();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (IOException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+					<br>
+					<br>
+					<br>class SAXHandler implements ContentHandler {
+					<br>&nbsp;&nbsp;&nbsp;Locator locator;
+					<br>&nbsp;&nbsp;&nbsp;Integer indent;
+					<br>&nbsp;&nbsp;&nbsp;OutputStreamWriter outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;private final Integer TAB_SIZE = 4;
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;public SAXHandler(OutputStreamWriter outputStreamWriter) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.outputStreamWriter = outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indent = 0;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void setDocumentLocator(Locator locator) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.locator = locator;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?>", false, false);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(String.format("&lt;%s", qName), true, false);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printAttributes(atts);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(">\r\n", false, true);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endElement(String uri, String localName, String qName) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(String.format("&lt;/%s>", qName), true, false);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void characters(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//use printIndented(str, false, false) and toUpperCase() to print PCDATA content
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startPrefixMapping(String prefix, String uri) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endPrefixMapping(String prefix) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void ignorableWhitespace(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void processingInstruction(String target, String data) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void skippedEntity(String name) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void printIndented(String what, boolean isEndOfElement, boolean isElement) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isEndOfElement) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write("\r\n");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (indent > 0 && !isElement) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write(String.format("%1$" + (indent * TAB_SIZE) + "s", ""));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write(what);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.flush();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (IOException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void printAttributes(Attributes atts) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (atts.getLength() > 0) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//in a for cycle, use atts.getLength(), atts.getQName(i) and printIndented(...) to print the attributes
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				
+						
+				    </li>
+
+
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution1')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution1" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					import org.xml.sax.InputSource;
+					<br>import org.xml.sax.XMLReader;
+					<br>import org.xml.sax.helpers.XMLReaderFactory;
+					<br>import java.io.IOException;
+					<br>import java.io.OutputStreamWriter;
+					<br>import java.io.StringReader;
+					<br>
+					<br>import org.xml.sax.Attributes;
+					<br>import org.xml.sax.ContentHandler;
+					<br>import org.xml.sax.Locator;
+					<br>import org.xml.sax.SAXException;
+					<br>
+					<br>public class SAX1 { //replace SAX1 by Main for pasting it as Main.java in https://repl.it/
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) {       
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OutputStreamWriter outputStreamWriter = new OutputStreamWriter(System.out);      
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;XMLReader parser = XMLReaderFactory.createXMLReader();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputSource source = new InputSource("rss.xml");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//InputSource source = new InputSource(new StringReader("<rss><channel></channel></rss>"));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parser.setContentHandler(new SAXHandler(outputStreamWriter)
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parser.parse(source);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (Exception e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} finally {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.close();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (IOException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+					<br>
+					<br>
+					<br>class SAXHandler implements ContentHandler {
+					<br>&nbsp;&nbsp;&nbsp;Locator locator;
+					<br>&nbsp;&nbsp;&nbsp;Integer indent;
+					<br>&nbsp;&nbsp;&nbsp;OutputStreamWriter outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;private final Integer TAB_SIZE = 4;
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;public SAXHandler(OutputStreamWriter outputStreamWriter) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.outputStreamWriter = outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indent = 0;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void setDocumentLocator(Locator locator) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.locator = locator;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?>", false, false);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(String.format("&lt;%s", qName), true, false);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printAttributes(atts);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(">\r\n", false, true);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endElement(String uri, String localName, String qName) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(String.format("&lt;/%s>", qName), true, false);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void characters(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String s = new String(chars, start, length).toUpperCase().trim();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (s.length() > 0) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(s, false, false);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startPrefixMapping(String prefix, String uri) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endPrefixMapping(String prefix) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void ignorableWhitespace(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void processingInstruction(String target, String data) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void skippedEntity(String name) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void printIndented(String what, boolean isEndOfElement, boolean isElement) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(isEndOfElement) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write("\r\n");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (indent > 0 && !isElement) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write(String.format("%1$" + (indent * TAB_SIZE) + "s", ""));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write(what);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.flush();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (IOException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void printAttributes(Attributes atts) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (atts.getLength() > 0) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i < atts.getLength(); ++i) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String name = atts.getQName(i);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(String.format(" %s = \"%s\"", name, atts.getValue(i)), false, true);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+			</div>
+		    <!--End task1-->
+			<!--Start task2-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 2: Като използвате SAX, имплементирайте валидация на XML документът от задача 1, която проверява дали са изпълнени следните условия:</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>1. Всеки елемент item трябва да съдържа едно множество от под-елементите title, link и description, всеки от тях срещащ се точно един път</li>	
+					<li>2. Стойността на атрибута version (принадлежащ на елемента rss) трябва да бъде цяло положително число</li>
+					<li>3. Елементът channel трябва да съдържа поне 2 и неповече от 10 под-елемента item</li>
+					<li>4. Разпечатайте информация за мястото (номер на ред и колона), на което грешката се среща</li>
+ 					<li class="w3-padding-16 w3-blue">
+						<a onclick="showSolution('insrtuction2')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction2" class="w3-hide w3-container">
+					    <br>За отпечатване на ред и колона използвайте locator.getLineNumber() и locator.getColumnNumber()
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution2')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution2" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					import java.io.IOException;
+					<br>import java.io.OutputStreamWriter;
+					<br>import org.xml.sax.Attributes;
+					<br>import org.xml.sax.ContentHandler;
+					<br>import org.xml.sax.Locator;
+					<br>import org.xml.sax.SAXException;
+					<br>
+					<br>public class SAXValidator implements ContentHandler {
+					<br>&nbsp;&nbsp;&nbsp;Locator locator;
+					<br>&nbsp;&nbsp;&nbsp;OutputStreamWriter outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;private final Integer TAB_SIZE = 4;
+					<br>&nbsp;&nbsp;&nbsp;private String currentElementName;
+					<br>&nbsp;&nbsp;&nbsp;private boolean titleDetected = false;
+					<br>&nbsp;&nbsp;&nbsp;private int countOfTitle = 0;
+					<br>&nbsp;&nbsp;&nbsp;private boolean linkDetected =false;
+					<br>&nbsp;&nbsp;&nbsp;private int countOfLink = 0;
+					<br>&nbsp;&nbsp;&nbsp;private boolean descriptionDetected = false;
+					<br>&nbsp;&nbsp;&nbsp;private int countOfDescription = 0;
+					<br>&nbsp;&nbsp;&nbsp;private boolean itemDetected = false;
+					<br>&nbsp;&nbsp;&nbsp;private int countOfItem = 0;
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;public SAXValidator(OutputStreamWriter outputStreamWriter) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.outputStreamWriter = outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void setDocumentLocator(Locator locator) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.locator = locator;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//..
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentElementName = qName;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validateVersion(atts);
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (qName.equals("item")) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;titleDetected = false;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linkDetected = false;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descriptionDetected = false;&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;countOfTitle = 0;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;countOfDescription = 0;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;countOfLink = 0;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemDetected = true;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++countOfItem;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (qName.equals("title")) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;titleDetected = true;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++countOfTitle;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (qName.equals("link")) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linkDetected = true;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++countOfLink;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (qName.equals("description")) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descriptionDetected = true;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++countOfDescription;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endElement(String uri, String localName, String qName) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (localName.equals("item")) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!(titleDetected && linkDetected && descriptionDetected && countOfTitle == 1 && countOfLink == 1 && countOfDescription == 1)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reportError("Item must have one subset of the sequence: title, link, description.");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (localName.equals("channel")) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!(itemDetected && countOfItem >= 2 && countOfItem &lt;= 10)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reportError("Number of elements item must be between 2 and 10: ");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void characters(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//..
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startPrefixMapping(String prefix, String uri) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endPrefixMapping(String prefix) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void ignorableWhitespace(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void processingInstruction(String target, String data) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void skippedEntity(String name) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void printIndented(String what) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write(what);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.flush();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (IOException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void reportError(String cause) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(String.format("\r\nError: %s on line %d column %d.", cause, locator.getLineNumber(), locator.getColumnNumber()));
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void validateVersion(Attributes atts) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (atts.getLength() > 0) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (currentElementName.equals("rss") && (Integer.parseInt(atts.getValue("version")) &lt; 0)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reportError("Attribute version is expected to have a positive integer value: ");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (NumberFormatException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reportError(String.format("Wrong value for version: %s (Attribute version is expected to have a positive integer value):", atts.getValue("version")));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+			</div>
+		    <!--End task2-->
+			<!--Start task3-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 3:  Като използвате SAX, трансформирайте XML документът от задача 1 в HTML документ, използвайки за изход стандартната конзола. Новият HTML документ трябва да съдържа таблица със следното съдържание:</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>1. Три колони с имена title, link и description </li>
+					<li>2. По един ред за всеки елемент item със стойностите на под-елементите му title, link и description </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution3')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution3" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					import java.io.IOException;
+					<br>import java.io.OutputStreamWriter;
+					<br>import org.xml.sax.Attributes;
+					<br>import org.xml.sax.ContentHandler;
+					<br>import org.xml.sax.Locator;
+					<br>import org.xml.sax.SAXException;
+					<br>
+					<br>public class SAXTransformator implements ContentHandler {
+					<br>&nbsp;&nbsp;&nbsp;private class Item {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String title;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String link;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String description;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;Locator locator;
+					<br>&nbsp;&nbsp;&nbsp;OutputStreamWriter outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;private final Integer TAB_SIZE = 4;
+					<br>&nbsp;&nbsp;&nbsp;private String currentElement;
+					<br>&nbsp;&nbsp;&nbsp;private Integer indent;
+					<br>&nbsp;&nbsp;&nbsp;private Item currentItem;
+					<br>&nbsp;&nbsp;&nbsp;boolean inItem = false;
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;public SAXTransformator(OutputStreamWriter outputStreamWriter) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.outputStreamWriter = outputStreamWriter;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void setDocumentLocator(Locator locator) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.locator = locator;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indent = 0;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;!DOCTYPE html&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;html&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;head&gt;&lt;title&gt;List of items&lt;/title&gt;&lt;/head&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;body&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;table style=\&quot;border: 1px solid black;\&quot;&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;Link&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;tbody&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++indent;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endDocument() throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;/tbody&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;/table&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;/body&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--indent;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;/html&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentElement = qName;
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (&quot;item&quot;.equals(currentElement)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentItem = new Item();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inItem = true;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endElement(String uri, String localName, String qName) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (&quot;item&quot;.equals(localName)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printIndented(&quot;&lt;tr&gt;&lt;td&gt;&quot; + currentItem.title + &quot;&lt;/td&gt;&lt;td&gt;&quot; + currentItem.link + &quot;&lt;/td&gt;&lt;td&gt;&quot; + currentItem.description + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inItem = false;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void characters(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String s = new String(chars, start, length).trim();
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (inItem &amp;&amp; s.length() &gt; 0) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (&quot;title&quot;.equals(currentElement)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentItem.title = s;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (&quot;link&quot;.equals(currentElement)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentItem.link = s;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (&quot;description&quot;.equals(currentElement)) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(currentItem.description == null) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentItem.description = s;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currentItem.description += s;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void startPrefixMapping(String prefix, String uri) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void endPrefixMapping(String prefix) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void ignorableWhitespace(char[] chars, int start, int length) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void processingInstruction(String target, String data) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;@Override
+					<br>&nbsp;&nbsp;&nbsp;public void skippedEntity(String name) throws SAXException {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// ...
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private void printIndented(String what) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (indent &gt; 0) { 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write(String.format(&quot;%1$&quot; + (indent * TAB_SIZE) + &quot;s&quot;, &quot;&quot;));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.write(what + &quot;\r\n&quot;);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outputStreamWriter.flush();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (IOException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+			</div>
+		    <!--End task3-->
+			<!--Start task4-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 4:  Решете задача 1 като вместо SAX използвате DOM</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+
+					<li class="w3-padding-16 w3-blue">
+						<a onclick="showSolution('hint4')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+				<div id="hint4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					<br>//примерно частично решение
+					<br>import javax.xml.parsers.DocumentBuilder;
+					<br>import javax.xml.parsers.DocumentBuilderFactory;
+					<br>
+					<br>import org.w3c.dom.Attr;
+					<br>import org.w3c.dom.Document;
+					<br>import org.w3c.dom.NamedNodeMap;
+					<br>import org.w3c.dom.Node;
+					<br>import org.w3c.dom.NodeList;
+					<br>import org.xml.sax.InputSource;
+					<br>
+					<br>
+					<br>public class Main {
+					<br>&nbsp;&nbsp;&nbsp;private static boolean skipNL;
+					<br>&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) throws Exception {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dbf.setValidating(false);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DocumentBuilder builder = dbf.newDocumentBuilder();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputSource source = new InputSource("rss.xml");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//InputSource source = new InputSource(new StringReader("<rss><channel></channel></rss>"));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Document document = builder.parse(source);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(printXML(document.getDocumentElement()));
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;private static String printXML(Node rootNode) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;    String tab = "";
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;    skipNL = false;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;    return(printXML(rootNode, tab));
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;private static String printXML(Node rootNode, String tab) {
+					<br>&nbsp;&nbsp;&nbsp;    String print = "";
+					<br>&nbsp;&nbsp;&nbsp;    if(rootNode.getNodeType()==Node.ELEMENT_NODE) {
+					<br>&nbsp;&nbsp;&nbsp;        print += "\n"+tab+"<"+rootNode.getNodeName();
+					<br>&nbsp;&nbsp;&nbsp;        NamedNodeMap attributes = rootNode.getAttributes();
+					<br>        &nbsp;&nbsp;&nbsp;for (int j = 0; j < attributes.getLength(); j++) {
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attr attr = (Attr) attributes.item(j);
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(attr !=  null) { 
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//append to print attr.getNodeName() and attr.getNodeValue()
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>        &nbsp;&nbsp;&nbsp;}
+					<br>        &nbsp;&nbsp;&nbsp;print += ">";
+					<br>&nbsp;&nbsp;&nbsp;    }
+					<br>&nbsp;&nbsp;&nbsp;    NodeList nl = rootNode.getChildNodes();
+					<br>&nbsp;&nbsp;&nbsp;    if(nl.getLength()>0) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        //append to print all nl.item(i) in a cycle until nl.getLength()
+					<br>&nbsp;&nbsp;&nbsp;    } else {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        if(rootNode.getNodeValue()!=null) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            print = rootNode.getNodeValue();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        }
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        skipNL = true;
+					<br>&nbsp;&nbsp;&nbsp;    }
+					<br>&nbsp;&nbsp;&nbsp;    if(rootNode.getNodeType()==Node.ELEMENT_NODE) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        if(!skipNL) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            print += "\n"+tab;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        }
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        skipNL = false;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;        print += "</"+rootNode.getNodeName()+">";
+					<br>&nbsp;&nbsp;&nbsp;    }
+					<br>&nbsp;&nbsp;&nbsp;    return(print);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution4')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					<br>//import java.io.StringReader;
+					<br>import javax.xml.parsers.DocumentBuilder;
+					<br>import javax.xml.parsers.DocumentBuilderFactory;
+					<br>
+					<br>import org.w3c.dom.Attr;
+					<br>import org.w3c.dom.Document;
+					<br>import org.w3c.dom.NamedNodeMap;
+					<br>import org.w3c.dom.Node;
+					<br>import org.w3c.dom.NodeList;
+					<br>import org.xml.sax.InputSource;
+					<br>
+					<br>
+					<br>public class Main {
+					<br>&nbsp;&nbsp;&nbsp;private static boolean skipNL;
+					<br>&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) throws Exception {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dbf.setValidating(false);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DocumentBuilder builder = dbf.newDocumentBuilder();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputSource source = new InputSource("rss.xml");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//InputSource source = new InputSource(new StringReader("<rss><channel></channel></rss>"));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Document document = builder.parse(source);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(printXML(document.getDocumentElement()));
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;private static String printXML(Node rootNode) {
+					<br>&nbsp;&nbsp;&nbsp;    String tab = "";
+					<br>&nbsp;&nbsp;&nbsp;    skipNL = false;
+					<br>&nbsp;&nbsp;&nbsp;    return(printXML(rootNode, tab));
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;private static String printXML(Node rootNode, String tab) {
+					<br>&nbsp;&nbsp;&nbsp;    String print = "";
+					<br>&nbsp;&nbsp;&nbsp;    if(rootNode.getNodeType()==Node.ELEMENT_NODE) {
+					<br>&nbsp;&nbsp;&nbsp;        print += "\n"+tab+"<"+rootNode.getNodeName();
+					<br>&nbsp;&nbsp;&nbsp;        NamedNodeMap attributes = rootNode.getAttributes();
+					<br>        &nbsp;&nbsp;&nbsp;for (int j = 0; j < attributes.getLength(); j++) {
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attr attr = (Attr) attributes.item(j);
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(attr !=  null) { 
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print += " " + attr.getNodeName() + "=\"" + attr.getNodeValue() + "\"";
+					<br>        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>        &nbsp;&nbsp;&nbsp;}
+					<br>        &nbsp;&nbsp;&nbsp;print += ">";
+					<br>&nbsp;&nbsp;&nbsp;    }
+					<br>&nbsp;&nbsp;&nbsp;    NodeList nl = rootNode.getChildNodes();
+					<br>&nbsp;&nbsp;&nbsp;    if(nl.getLength()>0) {
+					<br>&nbsp;&nbsp;&nbsp;        for (int i = 0; i < nl.getLength(); i++) {
+					<br>&nbsp;&nbsp;&nbsp;            print += printXML(nl.item(i), tab + "  ");    // \t
+					<br>&nbsp;&nbsp;&nbsp;        }
+					<br>&nbsp;&nbsp;&nbsp;    } else {
+					<br>&nbsp;&nbsp;&nbsp;        if(rootNode.getNodeValue()!=null) {
+					<br>&nbsp;&nbsp;&nbsp;            print = rootNode.getNodeValue();
+					<br>&nbsp;&nbsp;&nbsp;        }
+					<br>&nbsp;&nbsp;&nbsp;        skipNL = true;
+					<br>&nbsp;&nbsp;&nbsp;    }
+					<br>&nbsp;&nbsp;&nbsp;    if(rootNode.getNodeType()==Node.ELEMENT_NODE) {
+					<br>&nbsp;&nbsp;&nbsp;        if(!skipNL) {
+					<br>&nbsp;&nbsp;&nbsp;            print += "\n"+tab;
+					<br>&nbsp;&nbsp;&nbsp;        }
+					<br>&nbsp;&nbsp;&nbsp;        skipNL = false;
+					<br>&nbsp;&nbsp;&nbsp;        print += "</"+rootNode.getNodeName()+">";
+					<br>&nbsp;&nbsp;&nbsp;    }
+					<br>&nbsp;&nbsp;&nbsp;    return(print);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+			</div>
+		    <!--End task4-->
+			<!--Start task5-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 5:  Използвайки DOM, променете XML документът от задача 1, по следния начин:</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>1. Превърнете под-елемента link на елемента item в негов атрибут</li>
+					<li>2. Запазете първите 10 item елементи, а всички останали ги изтрийте</li>
+					<li>3. Добавете нов под-елемент sponsor на елемента channel</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution5')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution5" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					import java.io.File;
+					<br>import javax.xml.parsers.DocumentBuilder;
+					<br>import javax.xml.parsers.DocumentBuilderFactory;
+					<br>import javax.xml.transform.OutputKeys;
+					<br>import javax.xml.transform.Transformer;
+					<br>import javax.xml.transform.TransformerFactory;
+					<br>import javax.xml.transform.dom.DOMSource;
+					<br>import javax.xml.transform.stream.StreamResult;
+					<br>import org.w3c.dom.Document;
+					<br>import org.w3c.dom.Element;
+					<br>import org.w3c.dom.NodeList;
+					<br>import org.xml.sax.InputSource;
+					<br>
+					<br>public class DOM2 {
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) throws Exception {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dbf.setValidating(false);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DocumentBuilder builder = dbf.newDocumentBuilder();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputSource source = new InputSource("rss.xml");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//InputSource source = new InputSource(new StringReader("<rss><channel></channel></rss>"));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Document document = builder.parse(source);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processTree(document);
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TransformerFactory tf = TransformerFactory.newInstance();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transformer writer = tf.newTransformer();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer.setOutputProperty(OutputKeys.ENCODING, "utf-8");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writer.transform(new DOMSource(document), new StreamResult(new File("rss_new.xml")));
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void processTree(Document doc) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NodeList linkList = doc.getElementsByTagName("link");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NodeList itemList = doc.getElementsByTagName("item");
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = itemList.getLength() - 1; i >= 10; --i) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element item = (Element)itemList.item(i);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item.getParentNode().removeChild(item);           
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = linkList.getLength() - 1; i >= 0; --i) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element link = (Element)linkList.item(i);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element item = (Element)link.getParentNode();
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if("item".equals(item.getNodeName())) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item.setAttribute("link", link.getTextContent().trim());
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item.removeChild(link);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Element sponsor = doc.createElement("sponsor");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sponsor.setTextContent("IBM");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doc.getElementsByTagName("channel").item(0).appendChild(sponsor);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+					<br>
+				</div>
+			</div>
+		    <!--End task5-->
+			<!--Start task6-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 6:  Решете задача 1, използвайки StAX</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li class="w3-padding-16 w3-blue">
+						<a onclick="showSolution('hint6')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+				<div id="hint6" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					//sample partial solution of Task 6
+					<br>
+					<br>import java.io.FileNotFoundException;
+					<br>import java.io.FileReader;
+					<br>import javax.xml.stream.XMLInputFactory;
+					<br>import javax.xml.stream.XMLStreamConstants;
+					<br>import javax.xml.stream.XMLStreamException;
+					<br>import javax.xml.stream.XMLStreamReader;
+					<br>
+					<br>public class StAX {
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) {
+					<br>&nbsp;&nbsp;&nbsp;    XMLInputFactory xmlif = XMLInputFactory.newInstance(); 
+					<br>&nbsp;&nbsp;&nbsp;    XMLStreamReader xmlr = null;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlr = xmlif.createXMLStreamReader(new FileReader("rss.xml"));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    while(xmlr.hasNext()){ 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      printEvent(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      xmlr.next(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    } 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    xmlr.close(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (FileNotFoundException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (XMLStreamException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} 
+					<br>&nbsp;&nbsp;&nbsp;  }
+					<br>&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;private static void printEvent(XMLStreamReader xmlr) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (xmlr.getEventType()) { 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.START_ELEMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printName(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printNamespaces(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printAttributes(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(">"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.END_ELEMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;/"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printName(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(">"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.SPACE: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.CHARACTERS: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  int start = xmlr.getTextStart(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  int length = xmlr.getTextLength(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(new String(xmlr.getTextCharacters(), 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  start, 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  length)); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.PROCESSING_INSTRUCTION: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;?"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.hasText()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(xmlr.getText()); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("?>"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.CDATA: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;![CDATA["); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  start = xmlr.getTextStart(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  length = xmlr.getTextLength(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(new String(xmlr.getTextCharacters(), 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  start, 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  length)); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("]]>"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.COMMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;!--"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.hasText()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(xmlr.getText()); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("-->"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.ENTITY_REFERENCE: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(xmlr.getLocalName()+"="); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.hasText()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print("["+xmlr.getText()+"]"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.START_DOCUMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;?xml"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(" version='"+xmlr.getVersion()+"'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(" encoding='"+xmlr.getCharacterEncodingScheme()+"'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.isStandalone()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(" standalone='yes'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  else 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(" standalone='no'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("?>"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printName(XMLStreamReader xmlr){
+					<br>&nbsp;&nbsp;&nbsp;if(xmlr.hasName()){ 
+					<br>&nbsp;&nbsp;&nbsp;  String prefix = xmlr.getPrefix(); 
+					<br>&nbsp;&nbsp;&nbsp;  String uri = xmlr.getNamespaceURI(); 
+					<br>&nbsp;&nbsp;&nbsp;  String localName = xmlr.getLocalName(); 
+					<br>&nbsp;&nbsp;&nbsp;  printName(prefix,uri,localName);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printName(String prefix,
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String uri,
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String localName) {
+					<br>&nbsp;&nbsp;&nbsp;if (uri != null && !("".equals(uri)) ) System.out.print("['"+uri+"']:");
+					<br>&nbsp;&nbsp;&nbsp;if (prefix != null && prefix.length() > 0) System.out.print(prefix+":");
+					<br>&nbsp;&nbsp;&nbsp;if (localName != null) System.out.print(localName);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printAttributes(XMLStreamReader xmlr){
+					<br>&nbsp;&nbsp;&nbsp;for (int i=0; i &lt; xmlr.getAttributeCount(); i++) { 
+					<br>&nbsp;&nbsp;&nbsp;  printAttribute(xmlr,i); 
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printAttribute(XMLStreamReader xmlr, int index) {
+					<br>&nbsp;&nbsp;&nbsp;//use printName(prefix,namespace,localName) with  xmlr.getAttributePrefix(index), xmlr.getAttributeNamespace(index) and xmlr.getAttributeLocalName(index). 
+					<br>&nbsp;&nbsp;&nbsp;//Next print xmlr.getAttributeValue(index).
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printNamespaces(XMLStreamReader xmlr){
+					<br>&nbsp;&nbsp;&nbsp;for (int i=0; i &lt; xmlr.getNamespaceCount(); i++) { 
+					<br>&nbsp;&nbsp;&nbsp;  printNamespace(xmlr,i); 
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printNamespace(XMLStreamReader xmlr, int index) {
+					<br>&nbsp;&nbsp;&nbsp;String prefix = xmlr.getNamespacePrefix(index); 
+					<br>&nbsp;&nbsp;&nbsp;String uri = xmlr.getNamespaceURI(index); 
+					<br>&nbsp;&nbsp;&nbsp;System.out.print(" ");
+					<br>&nbsp;&nbsp;&nbsp;if (prefix == null)
+					<br>&nbsp;&nbsp;&nbsp;  System.out.print("xmlns='"+uri+"'");
+					<br>&nbsp;&nbsp;&nbsp;else
+					<br>&nbsp;&nbsp;&nbsp;  System.out.print("xmlns:"+prefix+"='"+uri+"'");
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution6')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution6" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					import java.io.FileNotFoundException;
+					<br>import java.io.FileReader;
+					<br>import javax.xml.stream.XMLInputFactory;
+					<br>import javax.xml.stream.XMLStreamConstants;
+					<br>import javax.xml.stream.XMLStreamException;
+					<br>import javax.xml.stream.XMLStreamReader;
+					<br>
+					<br>public class StAX {
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) {
+					<br>&nbsp;&nbsp;&nbsp;    XMLInputFactory xmlif = XMLInputFactory.newInstance(); 
+					<br>&nbsp;&nbsp;&nbsp;    XMLStreamReader xmlr = null;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlr = xmlif.createXMLStreamReader(new FileReader("rss.xml"));
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    while(xmlr.hasNext()){ 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      printEvent(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      xmlr.next(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    } 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    xmlr.close(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (FileNotFoundException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (XMLStreamException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} 
+					<br>&nbsp;&nbsp;&nbsp;  }
+					<br>&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;private static void printEvent(XMLStreamReader xmlr) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (xmlr.getEventType()) { 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.START_ELEMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printName(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printNamespaces(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printAttributes(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(">"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.END_ELEMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;/"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  printName(xmlr); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(">"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.SPACE: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.CHARACTERS: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  int start = xmlr.getTextStart(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  int length = xmlr.getTextLength(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(new String(xmlr.getTextCharacters(), 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  start, 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  length)); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.PROCESSING_INSTRUCTION: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;?"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.hasText()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(xmlr.getText()); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("?>"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.CDATA: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;![CDATA["); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  start = xmlr.getTextStart(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  length = xmlr.getTextLength(); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(new String(xmlr.getTextCharacters(), 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  start, 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  length)); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("]]>"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.COMMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;!--"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.hasText()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(xmlr.getText()); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("-->"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.ENTITY_REFERENCE: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(xmlr.getLocalName()+"="); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.hasText()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print("["+xmlr.getText()+"]"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case XMLStreamConstants.START_DOCUMENT: 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("&lt;?xml"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(" version='"+xmlr.getVersion()+"'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print(" encoding='"+xmlr.getCharacterEncodingScheme()+"'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (xmlr.isStandalone()) 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(" standalone='yes'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  else 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.print(" standalone='no'"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  System.out.print("?>"); 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printName(XMLStreamReader xmlr){
+					<br>&nbsp;&nbsp;&nbsp;if(xmlr.hasName()){ 
+					<br>&nbsp;&nbsp;&nbsp;  String prefix = xmlr.getPrefix(); 
+					<br>&nbsp;&nbsp;&nbsp;  String uri = xmlr.getNamespaceURI(); 
+					<br>&nbsp;&nbsp;&nbsp;  String localName = xmlr.getLocalName(); 
+					<br>&nbsp;&nbsp;&nbsp;  printName(prefix,uri,localName);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printName(String prefix,
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String uri,
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String localName) {
+					<br>&nbsp;&nbsp;&nbsp;if (uri != null && !("".equals(uri)) ) System.out.print("['"+uri+"']:");
+					<br>&nbsp;&nbsp;&nbsp;if (prefix != null && prefix.length() > 0) System.out.print(prefix+":");
+					<br>&nbsp;&nbsp;&nbsp;if (localName != null) System.out.print(localName);
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printAttributes(XMLStreamReader xmlr){
+					<br>&nbsp;&nbsp;&nbsp;for (int i=0; i &lt; xmlr.getAttributeCount(); i++) { 
+					<br>&nbsp;&nbsp;&nbsp;  printAttribute(xmlr,i); 
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printAttribute(XMLStreamReader xmlr, int index) {
+					<br>&nbsp;&nbsp;&nbsp;String prefix = xmlr.getAttributePrefix(index); 
+					<br>&nbsp;&nbsp;&nbsp;String namespace = xmlr.getAttributeNamespace(index); 
+					<br>&nbsp;&nbsp;&nbsp;String localName = xmlr.getAttributeLocalName(index); 
+					<br>&nbsp;&nbsp;&nbsp;String value = xmlr.getAttributeValue(index); 
+					<br>&nbsp;&nbsp;&nbsp;System.out.print(" ");
+					<br>&nbsp;&nbsp;&nbsp;printName(prefix,namespace,localName);
+					<br>&nbsp;&nbsp;&nbsp;System.out.print("='"+value+"'");
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printNamespaces(XMLStreamReader xmlr){
+					<br>&nbsp;&nbsp;&nbsp;for (int i=0; i &lt; xmlr.getNamespaceCount(); i++) { 
+					<br>&nbsp;&nbsp;&nbsp;  printNamespace(xmlr,i); 
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>
+					<br>&nbsp;&nbsp;&nbsp;private static void printNamespace(XMLStreamReader xmlr, int index) {
+					<br>&nbsp;&nbsp;&nbsp;String prefix = xmlr.getNamespacePrefix(index); 
+					<br>&nbsp;&nbsp;&nbsp;String uri = xmlr.getNamespaceURI(index); 
+					<br>&nbsp;&nbsp;&nbsp;System.out.print(" ");
+					<br>&nbsp;&nbsp;&nbsp;if (prefix == null)
+					<br>&nbsp;&nbsp;&nbsp;  System.out.print("xmlns='"+uri+"'");
+					<br>&nbsp;&nbsp;&nbsp;else
+					<br>&nbsp;&nbsp;&nbsp;  System.out.print("xmlns:"+prefix+"='"+uri+"'");
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+			</div>
+		    <!--End task6-->
+			<!--Start task7-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 7:  Използвайки StAX, създайте по-долу дадения XML документ</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						&lt;?xml version="1.0"?&gt;<br>
+						&lt;bookstore&gt;<br>
+							&nbsp;&nbsp;&lt;book category="COOKING"&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;title lang="en"&gt;Everyday Italian&lt;/title&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;author&gt;Giada De Laurentiis&lt;/author&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2005&lt;/year&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;price&gt;30.00&lt;/price&gt;<br>
+							&nbsp;&lt;/book&gt;<br>
+							&nbsp;&lt;book category="CHILDREN"&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;title lang="en"&gt;Harry Potter&lt;/title&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;author&gt;J K. Rowling&lt;/author&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2005&lt;/year&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;price&gt;29.99&lt;/price&gt;<br>
+							&nbsp;&nbsp;&lt;/book&gt;<br>
+							&nbsp;&nbsp;&lt;book category="WEB"&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;title lang="en"&gt;Learning XML&lt;/title&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;author&gt;Erik T. Ray&lt;/author&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2003&lt;/year&gt;<br>
+								 &nbsp;&nbsp;&nbsp;&nbsp;&lt;price&gt;39.95&lt;/price&gt;<br>
+							&nbsp;&nbsp;&lt;/book&gt;<br>
+						&lt;/bookstore&gt;
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution8')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution8" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					<br>import java.io.IOException;
+					<br>import java.io.StringWriter;
+					<br>import javax.xml.stream.XMLOutputFactory;
+					<br>import javax.xml.stream.XMLStreamException;
+					<br>import javax.xml.stream.XMLStreamWriter;
+					<br>
+					<br>public class StAX2 {
+					<br>&nbsp;&nbsp;&nbsp;public static void main(String[] args) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;StringWriter stringWriter = new StringWriter();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;XMLOutputFactory xMLOutputFactory = XMLOutputFactory.newInstance();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;XMLStreamWriter xMLStreamWriter = xMLOutputFactory.createXMLStreamWriter(stringWriter);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeStartDocument();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeStartElement("bookstore");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeStartElement("book");//book 1
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeAttribute("category", "COOKING");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "title", "lang", "en", "Everyday Italian");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "author", null, null, "Giada De Laurentiis");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "year", null, null, "2005");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "price", null, null, "30.00");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeEndElement();//book 1
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeStartElement("book");//book 2
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeAttribute("category", "CHILDREN");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "title", "lang", "en", "Harry Potter");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "author", null, null, "J K. Rowling");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "year", null, null, "2005");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "price", null, null, "29.99");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeEndElement();//book 2
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeStartElement("book"); //book 3
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeAttribute("category", "WEB");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "title", "lang", "en", "Learning XML");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "author", null, null, "Erik T. Ray");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "year", null, null, "2003");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;createSimpleElement(xMLStreamWriter, "price", null, null, "39.95");
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeEndElement();//book 3
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.writeEndDocument();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.flush();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;xMLStreamWriter.close();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;String xmlString = stringWriter.getBuffer().toString();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;stringWriter.close();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;System.out.println(xmlString);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      } catch (XMLStreamException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      } catch (IOException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         &nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      }
+					<br>&nbsp;&nbsp;&nbsp;   }
+					<br>&nbsp;&nbsp;&nbsp;
+					<br>&nbsp;&nbsp;&nbsp;public static void createSimpleElement(XMLStreamWriter xMLStreamWriter, String elementName, String attributeName, String attributeValue, String strValue) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(xMLStreamWriter != null && elementName != null) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xMLStreamWriter.writeStartElement(elementName);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(attributeName != null) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xMLStreamWriter.writeAttribute(attributeName, attributeValue);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(strValue != null) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xMLStreamWriter.writeCharacters(strValue);
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xMLStreamWriter.writeEndElement();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} catch (XMLStreamException e) {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+			</div>
+		    <!--End task7-->
+		</div>
+		<!--End tasks-->  
+	</div>
+	<!-- END Content -->
+</div><br>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+	<div class="w3-center">
+		<div class="w3-bar w3-xlarge w3-border w3-round">
+<!--
+		  <a href="../index.html" class="w3-bar-item w3-button" active><i class="fa fa-home"></i></a>
+		  <a href="../exercise1/exercise1.html" class="w3-bar-item w3-button">1</a>
+		  <a href="../exercise2/exercise2.html" class="w3-bar-item w3-button">2</a>
+		  <a href="../exercise3/exercise3.html" class="w3-bar-item w3-button">3</a>
+		  <a href="../exercise4/exercise4.html" class="w3-bar-item w3-button">4</a>
+		  <a href="../exercise5/exercise5.html" class="w3-bar-item w3-button">5</a>
+		  <a href="../exercise6/exercise6.html" class="w3-bar-item w3-button w3-white">6</a>
+		  <a href="../exercise7/exercise7.html" class="w3-bar-item w3-button">7</a>
+		  <a href="../exercise8/exercise8.html" class="w3-bar-item w3-button">8</a>
+-->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

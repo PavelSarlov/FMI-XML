@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<html>
+<title>XPATH & XQUERY</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../images/xml.jpg" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="../javascript/utils.js"></script>
+<body class="w3-light-grey">
+
+<div style="max-width:1200px;margin: 0 auto;">
+	<!-- Header -->
+	<header class="w3-container w3-center w3-padding-32">
+	  <h1><b>XPATH и XQUERY</b></h1>
+	</header>
+
+	<!-- Content -->
+	<div class="w3-row">
+
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-panel w3-blue round-top">
+					<h3>Цели на упражнението:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<ol>
+						<li>Използване на основни функции на XPATH в XSL</li>
+						<li>Използване на основни функции на XQUERY</li>
+					</ol>
+					</div>
+				<div class="w3-panel w3-blue round-top">
+					<h3>Средства за обработка на XPATH и XQUERY изрази:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<p> За изпълнението на това упражнения използвайте следните инструменти:</p>
+					<ul class="checked">
+					    <li><a href="http://videlibri.sourceforge.net/cgi-bin/xidelcgi" target="_blank">XPATH и XQUERY процесор</a></li>
+						<li><a href="http://try.zorba.io/" target="_blank">XQUERY процесор</a></li>	
+						<li>Задачите свързани с XPATH могат да бъда тествани с Internet Explorer и/или Mozilla Firefox, като XPATH изразите бъдат включени в XSL документ по начин подобен на дадения пример в задача 1.</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--Start tasks-->
+		<div class="w3-col l8 s12" style="width: 100%;">
+		    <!--Start task1-->
+			<div class="w3-card-2 w3-margin">
+			    <div class="w3-container w3-padding">
+					<h4>Задача 1: Създайте файлове със следните XSL и XML документи и разгледайте XML документа с Internet Explorer или Mozilla Firefox. За атрибута select на елемента xsl:value-of заменете функцията text() с '.' и вижте новия резултат в Internet Explorer.<br>
+					Може да включите XPATH изразите от задачи 2 и 3 в дадения по-долу XSL документ по подобен начин.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+					    XML документ:<br><br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br>
+						&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;catalogDisplay.xsl&quot;?&gt;<br>
+						&lt;catalog&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;cd category=&quot;Techno&quot; id=&quot;8c0a600b&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;artist&gt;TATU&lt;/artist&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;200 po vstrechnoy&lt;/title&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2002&lt;/year&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tracklist num=&quot;1&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:10&quot;&gt;Zachem ya? (Tell Me Why)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:34&quot;&gt;Ya soshla s uma (Mad as Hell)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:40&quot;&gt;Nas ne dogonyat (On The Run)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:39&quot;&gt;Doschitay do sta (Countdown)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:21&quot;&gt;30 minut (Another Minute)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:19&quot;&gt;Ya tvoy vrag (Wake Up, Time To Die)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:20&quot;&gt;Ya tvoya ne pervaya (First In First Out)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:55&quot;&gt;Robot (Robotronik)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:20&quot;&gt;Malchik-gay (Zoophilic Lolita)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:53&quot;&gt;Nas ne dogonyat (HarDrum rmx)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:04&quot;&gt;30 minut (HarDrum rmx)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tracklist&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;/cd&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;cd category=&quot;Techno&quot; id=&quot;cd100010&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;artist&gt;Tatu&lt;/artist&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Zvezdnaya seriya 2001&lt;/title&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;year&gt;2001&lt;/year&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tracklist num=&quot;2&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:31&quot;&gt;Ya soshla s uma&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:53&quot;&gt;Robot&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:08&quot;&gt;Zachem ya?&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:36&quot;&gt;Doschitaj do sta&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:17&quot;&gt;Ya tvoj vrag&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:38&quot;&gt;Nas ne dogonyat&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:18&quot;&gt;Mal'chik-gej&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:18&quot;&gt;30 minut&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:18&quot;&gt;Ya ne tvoya pervaya&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:50&quot;&gt;Nas ne dogonyat (hardrum remix)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:03&quot;&gt;30 minut (hardrum remix)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:03&quot;&gt;Ya soshla s uma (dj ram remix)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;4:10&quot;&gt;Ya soshla s uma (hardrum remix)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;3:37&quot;&gt;Ya soshla s uma (dj ram breakbeat remix)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;7:00&quot;&gt;Ya soshla s uma (S.Galoyan remix)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;track length=&quot;5:36&quot;&gt;Ya soshla s uma (Video)&lt;/track&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tracklist&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;/cd&gt;<br>
+						&lt;/catalog&gt;
+					</li>
+					<li>
+					    XSL документ - catalogDisplay.xsl:<br><br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;<br>
+						&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;xsl:template match=&quot;/&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;html&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;body&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;My CD Collection&lt;/h2&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table border=&quot;1&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr bgcolor=&quot;#9acd32&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th align=&quot;left&quot;&gt;Title&lt;/th&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th align=&quot;left&quot;&gt;Artist&lt;/th&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th align=&quot;left&quot;&gt;Year&lt;/th&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th align=&quot;left&quot;&gt;Category&lt;/th&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th align=&quot;left&quot;&gt;ID&lt;/th&gt; <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:for-each select=&quot;catalog/cd&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;xsl:value-of select=&quot;title&quot;/&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;xsl:value-of select=&quot;artist&quot;/&gt;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;xsl:value-of select=&quot;year&quot;/&gt;&lt;/td&gt; <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;xsl:value-of select=&quot;./@category&quot;/&gt;&lt;/td&gt; <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&lt;xsl:value-of select=&quot;./@id&quot;/&gt;&lt;/td&gt; <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsl:for-each select=&quot;tracklist/track&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;xsl:value-of select=&quot;text()&quot;/&gt;&lt;/li&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsl:for-each&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xsl:for-each&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/body&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/html&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;/xsl:template&gt;<br>
+						&lt;/xsl:stylesheet&gt;</td>
+					</li>
+				</ul>
+			</div>
+		    <!--End task1-->
+			<!--Start task2-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 2: За XML документа от задача 1 напишете XPATH изрази, които извеждат:</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						1. Стойностите на всички track елементи, чиито атрибут length е равен на '4:04' и са включени  в елемент cd, имащ id равно на 8c0a600b 
+					</li>
+					<li>
+						2. Всички track елементи на четни/нечетни позиции
+					</li>
+					<li>
+						3. Стойностите на всички track елементи, чиято дължина на текста е по-голяма от 35
+					</li>	
+					<li>
+						4. Дължината на текста на всички track елементи, чиято дължина на текста е по-голяма от 15
+					</li>						
+                    <li>
+						5. Последния track елемент от всяко cd
+					</li>
+					<li>
+						6. Петия track елемент от всяко cd
+					</li>
+                    <li>
+						7. Броя на track елементите за всяко cd
+					</li>	
+                    <li>
+						8. Всички track елементи, които съдържат 'Ya soshla s uma'
+					</li>				
+                    <li>
+						9. Всички track елементи, които започват с буквата 'D'
+					</li>		
+					<li>
+						10. Всички track елементи, които завършват с израза 'sta'
+					</li>	
+                    <li>
+						11. Стойностите на всички track елементи, разпечатани с главни букви
+					</li>
+                    <li>
+						12. Стойността на елемента year, който е под-елемент на елемента cd, съдържащ под-под-елемент track с length = '3:55' и имащ стойност 'Robot (Robotronik)'
+					</li>		
+                    <li>
+						13. Среден брой track елементи от всички налични cd елементи
+					</li>		
+                    <li>
+						14. За всеки елемент cd изведете стойността на под-елементите му title и year, спазвайки следния модел: <br>
+						Заглавие: title_value; Година на издаване: year_value
+					</li>						
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction1')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction1" class="w3-hide w3-container">
+					    За изпълнението на горните дейности, използвайте операторите mod и div, както и функциите:
+						<br>
+						<ul class="w3-ul w3-hoverable w3-white">
+							<li>position() </li>
+							<li>string-length(element_name)</li>
+							<li>last()</li>
+							<li>starts-with(text(), string)</li>
+							<li>ends-with(text(), string)</li>
+							<li>matches(text(), 'regex')</li>
+							<li>count(element_name)</li>
+							<li>starts-with(text(), string)</li>
+							<li>upper-case(text())</li>
+							<li>translate(text(), 'abcd...', 'ABCD...')</li>
+							<li>sum()</li>
+						</ul>
+					</li>
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution1')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution1" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+				    <ol>
+					    <li>catalog/cd[@id='8c0a600b']/tracklist/track[@length='4:04']</li>
+					    <li>catalog/cd/tracklist/track[position() mod 2 = 0]</li>
+						<li>catalog/cd/tracklist/track[string-length(.) > 35]</li>
+						<li>catalog/cd/tracklist/track[string-length(.) > 15]/string-length(.)</li>
+						<li>catalog/cd/tracklist/track[last()]</li>
+						<li>catalog/cd/tracklist/track[5]</li>
+						<li>catalog/cd/tracklist/count(track)</li>
+						<li>catalog/cd/tracklist/track[contains(text(),'Ya soshla s uma')]</li>
+						<li><ul>
+						<li>catalog/cd/tracklist/track[starts-with(text(),'D')]</li>
+						<li>catalog/cd/tracklist/track[matches(text(),'^D.*')]</li>
+						</ul></li>
+						<li><ul>
+						<li>catalog/cd/tracklist/track[ends-with(text(),'sta')]</li>
+						<li>catalog/cd/tracklist/track[matches(text(),'sta$')]</li>
+						</ul></li>
+						<li><ul>
+						<li>catalog/cd/tracklist/track/upper-case(text())</li>
+						<li>catalog/cd/tracklist/track/translate(text(),'abcdefghijklmnoprqstuvwxyz', 'ABCDEFGHIJKLMNOPRQSTUVWXYZ')</li>
+						</ul></li>
+						<li><ul>
+						<li>catalog/cd[tracklist/track[@length='3:55' and text()='Robot (Robotronik)']]/year</li>
+						<li>catalog/cd[tracklist/track[@length='3:55'][text()='Robot (Robotronik)']]/year</li>
+						</ul></li>
+						<li><ul>
+						<li>sum(catalog/cd/tracklist/count(track)) div catalog/count(cd)</li>
+						<li>count(catalog/cd/tracklist/track) div catalog/count(cd)</li>
+						</ul></li>
+						<li>catalog/cd/concat('Заглавие:', title/text(), '; Година на издаване:', year)</li>
+					</ol>
+				</div>
+			</div>
+		    <!--End task2-->
+			<!--Start task3-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 3: За XML документа от задача 1, като използвате оси (axes), съставете XPATH изрази, които :</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						1. Избират елемента: 
+						<ol>
+						    <li> tracklist </li>
+							<li> year </li>
+						</ol>
+						и извеждат негова стойност или стойност на негов атрибут
+					</li>
+					<li>
+						2. Избират атрибутите num и id съответно на елементите tracklist и cd
+					</li>
+					<li>
+						3. Избират всички елементи track, които се намират преди track елемента със стойност 'Doschitay do sta (Countdown)'
+					</li>	
+					<li>
+						4. Избират всички елементи track, които се намират след track елемента със стойност 'Doschitay do sta (Countdown)'
+					</li>						
+                    <li>
+						5. Избират всички елементи track, които се намират след track елемента със стойност 'Doschitay do sta (Countdown)' и имат стойност на атрибута length '4:04'
+					</li>
+					<li>
+						6. Всички стойности на под-елементите на всички елементи cd в документа
+					</li>
+					<li>
+						7. Стойностите на всички елементи, които имат атрибут с име id
+					</li>
+					<li>
+						8. Стойностите на всички елементи, които имат какъвто и да било атрибут
+					</li>
+					<li>
+						9. Атрибута num с максимална стойност
+					</li>	
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution2')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution2" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+				    <ol>
+						<li><ul>
+					    	<li>self::node()/descendant-or-self::node()/child::tracklist/attribute::num</li>
+					    	<li>catalog/cd/child::tracklist/attribute::num</li>						<li>catalog/cd/child::year</li>
+						</ul></li>
+						<li><ul>
+					    	<li>catalog/cd/tracklist/attribute::num</li>
+						<li>catalog/cd/attribute::id</li>
+						</ul></li>
+						<li>catalog/cd/tracklist/track[text()='Doschitay do sta (Countdown)']/preceding-sibling::*</li>
+						<li>catalog/cd/tracklist/track[text()='Doschitay do sta (Countdown)']/following-sibling::*</li>
+						<li>catalog/cd/tracklist/track[text()='Doschitay do sta (Countdown)']/following-sibling::track[@length='4:04']</li>
+						<li>//cd/descendant::*</li>
+						<li>//attribute::id</li>
+						<li>//attribute::*</li>
+						<li><ul>
+						<li>catalog/cd/tracklist[@num and count(self::*[xs:int(@num) < //@num]) = 0]/@num</li>
+						<li>catalog/cd/tracklist[@num=max(//*[@num !='']/number(@num))]/@num</li>
+						<li>catalog/cd/tracklist[@num=max(//*/@num)]/@num</li>
+						<li>max(//*/@num)</li>
+						</ul></li>
+					</ol>
+				</div>
+			</div>
+		    <!--End task3-->
+			<!--Start task4-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 4: За XML документа от задача 1, съставете XQUERY израз:</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						1. Селектиращ всички стойности на елемента track, който е под-елемент на tracklist, имащ атрибут num равен на 1. <br>
+						2. Подредете резултата от 1. по азбучен ред <br>
+						3. Подредете резултата от 1. в обратен азбучен ред
+					</li>
+					<li>
+						2. Създаващ следната структура:<br>
+						&lt;records&gt;<br>
+							&nbsp;&nbsp;&nbsp;&lt;record cd_ID="CD_ID_VALUE" artist="ARTIST_VALUE"&gt;<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	&lt;info>Title: TITLE_VАLUE, Year: YEAR_VALUE, Track numbers: COUNT_OF_TRACKS&lt;/info&gt;<br>
+							&nbsp;&nbsp;&nbsp;&lt;/record&gt;<br>
+						&lt;records&gt;<br>
+						в която стойностите на CD_ID_VALUE, ARTIST_VALUE, TITLE_VАLUE, YEAR_VALUE, COUNT_OF_TRACKS отговарят съответно на стойностите на атрибута id на елемента cd, на елемента artist, на елемента title, на елемента year, на броя на елементите track за съответния елемент cd
+					</li>
+					<li>
+						3. Създаващ списък със стойността на всички track елементи от всички cd елементи, следващ модела:<br>
+						&lt;tracks&gt;<br>
+							&nbsp;&nbsp;&nbsp;&lt;track&gt; TRACK_NAME_1&lt;/track&gt;<br>
+							&nbsp;&nbsp;&nbsp;&lt;track&gt; TRACK_NAME_2&lt;/track&gt;<br>
+							&nbsp;&nbsp;&nbsp;&lt;track&gt; .........................................&lt;/track&gt;<br>
+							&nbsp;&nbsp;&nbsp;&lt;track&gt; TRACK_NAME_N&lt;/track&gt;<br>
+						&lt;tracks&gt;<br>
+					</li>	
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction4')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction4" class="w3-hide w3-container">
+					    За изпълнението на горните дейности, използвайте http://videlibri.sourceforge.net/cgi-bin/xidelcgi с избор на Input file: xml, Output Options: Node format::xml и XQuery 3.0.<br>
+						Приложете конструкциите:
+						<br>
+						<ul class="w3-ul w3-hoverable w3-white">
+							<li>for $o in catalog/cd/...<br>
+where $o/@num = ...<br>
+return $o/track/...</li>
+						или   
+						<li>for $o in catalog/cd <br>let $l :=$o/tracklist <br>where $l/@num = ...<br>return $l/track</li>
+						евентуално с
+						<li>order by $o ascending/descending</li>
+						<br>За решаване на условие 2 чрез използване на http://videlibri.sourceforge.net/cgi-bin/xidelcgi, използвайте:<br>
+<li>
+element records <br>
+{<br>
+for $o in catalog/cd<br>
+return<br>
+&nbsp;&nbsp;   element record {<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;      attribute cd_ID {стойност}, attribute artist {стойност}, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;      element info { <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         text { "Title:"}, text {стойност}, text { ", Year:"} ,text{стойност}, text { ", Track numbers:"}, text{брой} <br>
+&nbsp;&nbsp;&nbsp;&nbsp;      } <br>
+&nbsp;&nbsp;   } <br>
+}<br>				<br>
+</li>
+						<br>За решаване на условие 2 чрез използване на http://try.zorba.io/ копирайте XML документа от задача 1 в текстовата област на mydoc.xml. За да го използвате, добавете в началото на горното решение редовете:<br>
+							<li>
+							for $p in doc("mydoc.xml")/catalog<br>
+&nbsp;&nbsp;return<br>
+&nbsp;&nbsp;element records<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for $o in $p/cd<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      attribute cd_ID {стойност}, attribute artist {стойност}, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      element info { <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;        text { "Title:"}, text {стойност}, text { ", Year:"} ,text{стойност}, text { ", Track numbers:"}, text{брой} <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      } <br>
+&nbsp;&nbsp;&nbsp;&nbsp;   } <br>
+&nbsp;&nbsp;}<br>				<br>
+						</li>
+						</li>
+						</ul>
+					</li>
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution3')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution3" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+				    <ol>
+					<li><ul><li>Примерно решение 1 (http://videlibri.sourceforge.net/cgi-bin/xidelcgi):<br>
+							for $o in catalog/cd/tracklist<br>
+							where $o/@num = "1"<br>
+							return $o/track/text()<br>
+						</li>
+						<li>Примерно решение 2 (http://videlibri.sourceforge.net/cgi-bin/xidelcgi):<br>
+							for $o in catalog/cd<br>
+							let $l :=$o/tracklist<br>
+							where $l/@num = "1"<br>
+							return $l/track
+						</li>
+					    <li>	Примерно решение 3 (http://videlibri.sourceforge.net/cgi-bin/xidelcgi):<br>
+							for $o in catalog/cd/tracklist[@num = "1"]/track<br>
+							order by $o ascending/descending<br>
+							return $o/text()
+						</li>
+					</ul></li>
+					    <li><ul><li>Примерно решение 1 (http://videlibri.sourceforge.net/cgi-bin/xidelcgi):<br>
+element records <br>
+{<br>
+for $o in catalog/cd<br>
+return<br>
+&nbsp;&nbsp;   element record {<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;      attribute cd_ID {$o/@id}, attribute artist {$o/artist}, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;      element info { <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         text { "Title:"}, text {$o/title}, text { ", Year:"} ,text{$o/year}, text { ", Track numbers:"}, text{count($o/tracklist/track)} <br>
+&nbsp;&nbsp;&nbsp;&nbsp;      } <br>
+&nbsp;&nbsp;   } <br>
+}<br>
+						</li><li>Примерно решение 2 (http://try.zorba.io/):<br>
+for $o in doc("mydoc.xml")/catalog<br>
+return<br>
+element records<br> 
+{ <br>
+&nbsp;&nbsp;   for $p in $o/cd<br>
+return<br>
+element record {<br> 
+&nbsp;&nbsp;      attribute cd_ID  {$o/@id}, attribute artist {$o/artist}, <br>
+&nbsp;&nbsp;      element info { <br>
+&nbsp;&nbsp;&nbsp;&nbsp;         text { "Title:"}, text {$o/title}, text { ", Year:"} ,text{$o/year}, text { ", Track numbers:"}, text{count($o/tracklist/track)}<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;      } <br>
+&nbsp;&nbsp;   } <br>
+}						<br>
+						</li></ul></li>
+						<li>
+						    for $o in .                                                                                        <br>
+							return                                                                                             <br>
+							&nbsp;&nbsp;&nbsp;element tracks                                                                   <br>
+							&nbsp;&nbsp;&nbsp;{                                                                                <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for $p in $o/catalog/cd/tracklist/track/text()                 <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return element track {$p}                                      <br>
+							&nbsp;&nbsp;&nbsp;}
+						</li>
+					</ol>
+				</div>
+			</div>
+		    <!--End task4-->
+			<!--Start task5-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 5: Решете задача 4 като дефинирате една XQUERY функция и след това я използвате</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction5')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction5" class="w3-hide w3-container">
+					    Пример за деклариране и извикване на XQUERY функция в http://try.zorba.io/ (с един аргумент-елемент и връщаща последователност от 0 или повече елементи):
+						<br>
+						declare function local:toc($book-or-section as element()) as element()*                             <br>
+						{                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;for $section in $book-or-section/section                                          <br>
+						&nbsp;&nbsp;&nbsp;return                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;section&gt;                                                 <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { $section/@* , $section/title , local:toc($section) }         <br>       
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/section&gt;                                                <br>
+						};                                                                                                  <br>
+						&lt;toc&gt;                                                                                         <br>
+						{                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;for $s in doc(&quot;book.xml&quot;)/book return local:toc($s)                     <br>
+						}                                                                                                   <br>
+						&lt;/toc&gt; 
+				    </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution4')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+				    <ol>
+					    <li>declare function local:trackElement($catalog as element()) as element()*               <br>
+							{                                                                                     <br>
+							&nbsp;&nbsp;&nbsp;for $o in $catalog/cd/tracklist[@num = "1"]/track           <br>
+							&nbsp;&nbsp;&nbsp;order by $o descending                                              <br>
+							&nbsp;&nbsp;&nbsp;return $o                                                           <br>
+							};                                                                                    <br>
+																												  <br>
+							{                                                                                     <br>
+							&nbsp;&nbsp;&nbsp;for $s in doc("mydoc.xml")/catalog return local:trackElement($s)             <br>
+							} <br><br>
+						</li>
+					    <li>
+						    declare function local:trackElement($catalog as element()) as element()*<br>
+							{ <br>
+							&nbsp;&nbsp;&nbsp;for $o in $catalog/cd                    <br>
+							&nbsp;&nbsp;&nbsp;return                                   <br>
+							&nbsp;&nbsp;&nbsp;element record {                         <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attribute c {$o/@id}, attribute artist {$o/artist},       <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element info {                                            <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text { "Title:"}, text {$o/title}, text { ", Year:"} ,text{$o/year}, text { ", Track numbers:"}, text{count($o/tracklist/track)}    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+							&nbsp;&nbsp;&nbsp;} <br>
+							};<br> <br>
+							for $o in . <br>
+							return      <br>
+							element records <br>
+							{              <br>
+							&nbsp;&nbsp;&nbsp;{for $s in doc("mydoc.xml")/catalog return local:trackElement($s) }<br>
+							} <br><br>
+						</li>
+						<li>
+						    declare function local:trackElement($catalog as element()) as element()*                                          <br>
+							{                                                                                                                 <br>
+							&nbsp;&nbsp;&nbsp;for $p in $catalog/cd/tracklist/track/text()                                                    <br>
+							&nbsp;&nbsp;&nbsp;return element track {$p}                                                                       <br>
+							};                                                                                                                <br>
+																																			  <br>
+							for $o in .                                                                                                       <br>
+							return                                                                                                            <br>
+							&nbsp;&nbsp;&nbsp;element tracks                                                                                  <br>
+							&nbsp;&nbsp;&nbsp;{                                                                                               <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{for $s in doc("mydoc.xml")/catalog return local:trackElement($s) }           <br>
+							&nbsp;&nbsp;&nbsp;}                                                                                               <br>
+						</li>
+					</ol>
+				</div>
+			</div>
+		    <!--End task4-->
+		</div>
+		<!--End tasks-->
+
+	</div><br>
+	<!-- END Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+	<div class="w3-center">
+		<div class="w3-bar w3-xlarge w3-border w3-round">
+<!--
+		  <a href="../index.html" class="w3-bar-item w3-button" active><i class="fa fa-home"></i></a>
+		  <a href="../exercise1/exercise1.html" class="w3-bar-item w3-button">1</a>
+		  <a href="../exercise2/exercise2.html" class="w3-bar-item w3-button">2</a>
+		  <a href="../exercise3/exercise3.html" class="w3-bar-item w3-button">3</a>
+		  <a href="../exercise4/exercise4.html" class="w3-bar-item w3-button w3-white">4</a>
+		  <a href="../exercise5/exercise5.html" class="w3-bar-item w3-button">5</a>
+		  <a href="../exercise6/exercise6.html" class="w3-bar-item w3-button">6</a>
+		  <a href="../exercise7/exercise7.html" class="w3-bar-item w3-button">7</a>
+		  <a href="../exercise8/exercise8.html" class="w3-bar-item w3-button">8</a>
+-->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

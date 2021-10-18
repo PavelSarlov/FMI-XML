@@ -1,0 +1,954 @@
+﻿<!DOCTYPE html>
+<html>
+<title>XML валидация чрез XML SCHEMA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../images/xml.jpg" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="../javascript/utils.js"></script>
+<body class="w3-light-grey">
+
+<div style="max-width:1200px;margin: 0 auto;">
+	<!-- Header -->
+	<header class="w3-container w3-center w3-padding-32">
+	  <h1><b>XML валидация чрез XML Schema</b></h1>
+	</header>
+
+	<!-- Content -->
+	<div class="w3-row">
+
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-panel w3-blue round-top">
+					<h3>Цели на упражнението:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<ol>
+						<li>Създаване на XML схема 				 				 </li>
+						<li>Валидация на XML документ с XML Schema				 </li>
+						<li>Дефиниране на прости и комплексни типове			 </li>
+						<li>Задаване на ограничения върху предефинираните типове  </li>
+						<li>Използване на разширени типове и предефиниране на типове</li>
+						<li>Използване на анотации, нотации, регулярни изрази</li>
+						<li>Импортиране на XML схеми от други пространства от имена</li>
+					</ol>
+					</div>
+				<div class="w3-panel w3-blue round-top">
+					<h3>Средства за XML валидация чрез XML Schema:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<p> За реализация на това упражнения могат да бъдат използвани някои от следните инструменти:</p>
+					<ul class="checked">
+					    <li><a href="https://www.xmlvalidation.com/" target="_blank">XML Validator</a></li>
+						<li><a href="http://xmlvalidator.new-studio.org/" target="_blank">XML Validator Online</a></li>
+						<li><a href="https://www.corefiling.com/opensource/schemaValidate/" target="_blank">CoreFiling XML Schema Validator</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--Start tasks-->
+		<div class="w3-col l8 s12" style="width: 100%;">
+		<!--Start task1-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 1: Превърнете дадения по-долу DTD документ в XML Schema. Създайте XML екземпляр на тази схема и я валидирайте.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+					    &lt;!ELEMENT collection (description,recipe*)&gt;<br>
+						&lt;!ELEMENT description ANY&gt;<br>
+						&lt;!ELEMENT recipe (title,ingredient*,preparation,comment?,nutrition)&gt;<br>
+						&lt;!ELEMENT title (#PCDATA)&gt;<br>
+						&lt;!ELEMENT ingredient (preparation?)&gt;<br>
+						&lt;!ATTLIST ingredient name CDATA #REQUIRED<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						amount CDATA #IMPLIED<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						unit CDATA #IMPLIED&gt;<br>
+						&lt;!ELEMENT preparation (step*)&gt;<br>
+						&lt;!ELEMENT step (#PCDATA)&gt;<br>
+						&lt;!ELEMENT comment (#PCDATA)&gt;<br>
+						&lt;!ELEMENT nutrition EMPTY&gt;<br>
+						&lt;!ATTLIST nutrition protein CDATA #REQUIRED<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						carbohydrates CDATA #REQUIRED<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						fat CDATA #REQUIRED<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						calories CDATA #REQUIRED<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						alcohol CDATA #IMPLIED&gt;
+					</li>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction1')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction1" class="w3-hide w3-container">
+					    Примерно начало на дефиниция на схемата (без зададено целево пространство от имена):
+						<br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;                                                             <br>
+					&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot;&gt;                                       <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;collection&quot;&gt;<br>
+............
+						<br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;<br>
+					&lt;/xs:schema&gt;<br><br>
+					Начало на примерен документ, рефериращ към схемата:                                               <br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                        <br>
+					&lt;collection xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;XXXX.xsd&quot;&gt;<br>
+............
+						<br>
+					&lt;/collection&gt;						</li>
+					<li class="w3-padding-16 w3-green">
+					    <a onclick="showSolution('solution1')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution1" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;                                                             <br>
+					&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot;&gt;                                       <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;collection&quot;&gt;                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;xs:sequence&gt;                                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;description&quot;/&gt;                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;recipe&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;/xs:sequence&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;description&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType mixed=&quot;true&quot;&gt;                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;xs:sequence&gt;                                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;&lt;xs:any minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;/xs:sequence&gt;                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;recipe&quot;&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;title&quot;/&gt;                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ingredient&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;preparation&quot;/&gt;                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;comment&quot; minOccurs=&quot;0&quot;/&gt;                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;nutrition&quot;/&gt;                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;title&quot;&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType mixed=&quot;true&quot;/&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;ingredient&quot;&gt;                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence minOccurs=&quot;0&quot;&gt;                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;ingredient&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;preparation&quot;/&gt;                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;name&quot; use=&quot;required&quot;/&gt;                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;amount&quot;/&gt;                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;unit&quot;/&gt;                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;preparation&quot;&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;step&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;step&quot;&gt;                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType mixed=&quot;true&quot;/&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;comment&quot;&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType mixed=&quot;true&quot;/&gt;                                                                   <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;nutrition&quot;&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;protein&quot; use=&quot;required&quot;/&gt;                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;carbohydrates&quot; use=&quot;required&quot;/&gt;                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;fat&quot; use=&quot;required&quot;/&gt;                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;calories&quot; use=&quot;required&quot;/&gt;                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;alcohol&quot;/&gt;                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                <br>
+					&lt;/xs:schema&gt;<br><br>
+					------------------------                                                <br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                        <br>
+					&lt;collection xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;XXXX.xsd&quot;&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;description&gt;description........&lt;/description&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;recipe&gt;                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;title&gt;Collection 1&lt;/title&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;ingredient name=&quot;all&quot;&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;preparation&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;step&gt;Step 1&lt;/step&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;step&gt;Step 2&lt;/step&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;step&gt;Step 3&lt;/step&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/preparation&gt;                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/ingredient&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;preparation&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;&lt;step&gt;Stage 1&lt;/step&gt;                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;&lt;step&gt;Stage 2&lt;/step&gt;                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;&lt;step&gt;Stage 3&lt;/step&gt;                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/preparation&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;comment&gt;No comments....&lt;/comment&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;nutrition fat=&quot;12%&quot; protein=&quot;10%&quot; calories=&quot;123&quot; carbohydrates=&quot;N.A.&quot;/&gt;          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/recipe&gt;                                                                                                                     <br>
+					&lt;/collection&gt;
+				</div>
+			</div>
+		<!--End task1-->
+		<!--Start task2-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 2: Даденият по-долу XML документ описва типовете сметки, които поддържа една примерна банка, нейните клиенти и сметките, които те имат. За този XML документ създайте XML Schema, която изпълнява следните условия:</h4>
+					<ul>
+						<li>Редът на срещане на под-елементите на bank (accounts, customers и customer_accounts) и accounts (saving_accounts и checking_accounts) няма значение</li>
+						<li>Всяка сметка има уникален идентификатор</li>
+						<li>Всеки клиент има уникален идентификатор</li>
+						<li>Балансът на сметката не може да бъде по-малък от -5000 - за това условие използвайте рестрикция на съществуващите предефинирани типове</li>
+						<li>Атрибутът c_id реферира към съответния клиент, а ac_id към съответната му сметка</li>
+						<li>Дефинирайте елементите customers и saving_account като комплексен глобален тип, а елемента accounts като комплексен локален тип</li>
+					</ul>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                <br>
+						&lt;bank&gt;                                                                                                                                    <br>
+							&nbsp;&nbsp;&nbsp;&lt;accounts&gt;                                                                                                          <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;saving_accounts&gt;                                                                               <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;saving_account id=&quot;a1&quot; interest=&quot;0.03&quot;&gt;                <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;balance&gt;2500&lt;/balance&gt;                           <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/saving_account&gt;                                                           <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;saving_account id=&quot;a2&quot; interest=&quot;0.03&quot;&gt;                <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;balance&gt;15075&lt;/balance&gt;                          <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/saving_account&gt;                                                           <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/saving_accounts&gt;                                                                              <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;checking_accounts&gt;                                                                             <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;checking_account id=&quot;a3&quot;&gt;                                        <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;balance&gt;4025&lt;/balance&gt;                           <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/checking_account&gt;                                                         <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;checking_account id=&quot;a4&quot;&gt;                                        <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;balance&gt;-125&lt;/balance&gt;                           <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/checking_account&gt;                                                         <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;checking_account id=&quot;a5&quot;&gt;                                        <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;balance&gt;325&lt;/balance&gt;                            <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/checking_account&gt;                                                         <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/checking_accounts&gt;                                                                            <br>
+							&nbsp;&nbsp;&nbsp;&lt;/accounts&gt;                                                                                                         <br>
+							&nbsp;&nbsp;&nbsp;&lt;customers&gt;                                                                                                         <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer id=&quot;c1&quot;&gt;                                                                    <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;name&gt;Ben Richerdson&lt;/name&gt;                                           <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;address&gt;Park Drive 2&lt;/address&gt;                                       <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/customer&gt;                                                                                     <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer id=&quot;c2&quot;&gt;                                                                    <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;name&gt;Marc Wretcher&lt;/name&gt;                                            <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;address&gt;Mill Drive 75&lt;/address&gt;                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/customer&gt;                                                                                     <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer id=&quot;c3&quot;&gt;                                                                    <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;name&gt;Angel Steady&lt;/name&gt;                                             <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;address&gt;Lake Sight 15&lt;/address&gt;                                      <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/customer&gt;                                                                                     <br>
+							&nbsp;&nbsp;&nbsp;&lt;/customers&gt;                                                                                                        <br>
+							&nbsp;&nbsp;&nbsp;&lt;customer_accounts&gt;                                                                                                 <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer_account c_id=&quot;c1&quot; ac_id=&quot;a2&quot;/&gt;                                    <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer_account c_id=&quot;c1&quot; ac_id=&quot;a3&quot;/&gt;                                    <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer_account c_id=&quot;c2&quot; ac_id=&quot;a4&quot;/&gt;                                    <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer_account c_id=&quot;c3&quot; ac_id=&quot;a1&quot;/&gt;                                    <br>
+							&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;customer_account c_id=&quot;c3&quot; ac_id=&quot;a5&quot;/&gt;                                    <br>
+							&nbsp;&nbsp;&nbsp;&lt;/customer_accounts&gt;                                                                                                <br>
+						&lt;/bank&gt;
+					</li>
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution2')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution2" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+					&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;bank&quot;&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:all&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;accounts&quot; minOccurs=&quot;1&quot;&gt;                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:all&gt;                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;saving_accounts&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;checking_accounts&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:all&gt;                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customers&quot; minOccurs=&quot;1&quot;/&gt;                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customer_accounts&quot; minOccurs=&quot;1&quot;/&gt;                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:all&gt;                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;address&quot; type=&quot;xs:string&quot;/&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;balance&quot;&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:integer&quot;&gt;                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:minInclusive value=&quot;-5000&quot;/&gt;                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer&quot;&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;name&quot;/&gt;                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;address&quot;/&gt;                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; use=&quot;required&quot; type=&quot;xs:ID&quot;/&gt;                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customers&quot;&gt;                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customer&quot; maxOccurs=&quot;unbounded&quot;/&gt;                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customers&quot; type=&quot;customers&quot;/&gt;                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;saving_account&quot;&gt;                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;balance&quot;/&gt;                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; use=&quot;required&quot; type=&quot;xs:ID&quot;/&gt;                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;interest&quot; type=&quot;xs:decimal&quot;/&gt;                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;checking_account&quot;&gt;                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;balance&quot;/&gt;                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; use=&quot;required&quot; type=&quot;xs:ID&quot;/&gt;                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer_account&quot;&gt;                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;c_id&quot; use=&quot;required&quot; type=&quot;xs:IDREF&quot;/&gt;                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ac_id&quot; use=&quot;required&quot; type=&quot;xs:IDREF&quot;/&gt;                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;saving_accounts&quot;&gt;                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;saving_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;checking_accounts&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;checking_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer_accounts&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customer_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                      <br>
+					&lt;/xs:schema&gt;
+				</div>
+			</div>
+		<!--End task2-->
+		<!--Start task3-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 3: В XML схемата от задача 2 направете следните промени:</h4>
+					<ul>
+					    <li>Дефинирайте два прости типа, задаващи горна и долна граница на стойността на елемента balance. След това променете дефиницията на елемента balance, като го представите като обединение на тези два прости типа</li>
+						<li>Използвайки разширени типове на XML Schema, създайте нов тип customerExt, който разширява дефиницията на типа customer като добавя нов негов под-елемент contacts, който от своя страна се състои от 2 под-елемента - email и telephone. Използвайте новия тип customerExt вместо customer и запишете новата XML схема под името bank.xsd</li>
+						<li>Създайте нова XML схема, която предефинира типа balance и customerExt от външната за нея XML схема - bank.xsd. Новият тип balance не трябва да бъде по-малък от -5200,a новият тип customerExt съдържа допълнително нов под-елемент image от тип base64Binary, който има един атрибут src от тип string. Запишете новата XML схема под името bankExt.xsd</li>
+						<li>Добавете няколко анотации в по-горе създадената XML схема (bank.xsd) към избрани от вас комплексните типове, описващи тяхното предназначение</li>
+					</ul>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction3')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction3" class="w3-hide w3-container">
+1. Прост тип, който е обединение от други два прости типа, задаваме така:	<br>
+   &lt;xs:simpleType name=&quot;balance&quot;&gt;								<br>
+&nbsp;&nbsp;&nbsp;&nbsp;       &lt;xs:union memberTypes=&quot;minBalance maxBalance&quot;/&gt;			<br>
+   &lt;/xs:simpleType&gt;													<br><br>
+
+2. Нова XML схема, която предефинира типа minBalance от външната за нея XML схема bank.xsd, задаваме така:<br>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;												<br>
+&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;										<br>
+&nbsp;&nbsp;   &lt;xs:redefine schemaLocation=&quot;bank.xsd&quot;&gt;													<br>
+&nbsp;&nbsp;&nbsp;&nbsp;       &lt;xs:simpleType name=&quot;minBalance&quot;&gt;													<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           &lt;xs:restriction base=&quot;minBalance&quot;&gt;												<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;              ....																						<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           &lt;/xs:restriction&gt;																		<br>
+&nbsp;&nbsp;&nbsp;&nbsp;     &lt;/xs:simpleType&gt;																			<br>
+&nbsp;&nbsp;&nbsp;&nbsp;		...																								<br>
+&nbsp;&nbsp;   &lt;/xs:redefine&gt;																					<br>
+&nbsp;&nbsp;  ...																									<br>
+&lt;/xs:schema&gt; 																						<br>
+<br>
+3. XML Schema елементът с име simpleContent не съдържа елементи, но може да съдържа атрибути.<br>
+Той задава разширения или ограничения върху:												<br>
+- complex type, който е само текст															<br>
+- simple type																				<br>
+Използвайте simpleContent за дефиниране на типа на елемента image:							<br>
+	&lt;xs:complexType name=&quot;image&quot;&gt;												<br>
+&nbsp;&nbsp;&nbsp;&nbsp;       &lt;xs:simpleContent&gt;																<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           &lt;xs:extension base=&quot;xs:base64Binary&quot;&gt;								<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               &lt;xs:attribute name=&quot;src&quot; type=&quot;xs:string&quot; use=&quot;required&quot;/&gt;	<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          &lt;/xs:extension&gt;															<br>
+&nbsp;&nbsp;&nbsp;&nbsp;       &lt;/xs:simpleContent&gt;															<br>
+   &lt;/xs:complexType&gt;																	<br>
+   <br>
+4. Елементът complexContent определя разширения или ограничения за сложен тип, който съдържа:<br>
+- смесено съдържание или <br>
+- само елементи<br>
+	&lt;xs:complexType name=&quot;customerExt&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;       &lt;xs:complexContent&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           &lt;xs:extension base=&quot;customer&quot;&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               &lt;xs:sequence&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                   &lt;xs:element ref=&quot;contacts&quot; minOccurs=&quot;1&quot;/&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;               &lt;/xs:sequence&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;           &lt;/xs:extension&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;		&lt;/xs:complexContent&gt;<br>
+	&lt;/xs:complexType&gt;<br>
+					</li>
+					<li class="w3-padding-16 w3-green">
+					<a onclick="showSolution('solution3')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution3" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					bank.xsd: <br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                              <br>
+					&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:annotation&gt;                                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:documentation xml:lang=&quot;en&quot;&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;This document defines an example of XML Schema.                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;/xs:documentation&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:annotation&gt;                                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;bank&quot;&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:annotation&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:documentation xml:lang=&quot;en&quot;&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;This element is the root.                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:documentation&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:annotation&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:all&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;accounts&quot; minOccurs=&quot;1&quot;&gt;        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:all&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;saving_accounts&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;checking_accounts&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:all&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customers&quot; minOccurs=&quot;1&quot;/&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customer_accounts&quot; minOccurs=&quot;1&quot;/&gt;              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:all&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;address&quot; type=&quot;address&quot;/&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;address&quot;&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;/&gt;                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;balance&quot; type=&quot;balance&quot;/&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;balance&quot;&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:union memberTypes=&quot;minBalance maxBalance&quot;/&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;maxBalance&quot;&gt;                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:positiveInteger&quot;&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:maxInclusive value=&quot;1000000&quot;/&gt;                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;minBalance&quot;&gt;                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:negativeInteger&quot;&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:minInclusive value=&quot;-5500&quot;/&gt;                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customer&quot;&gt;                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;name&quot;/&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;address&quot;/&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot; use=&quot;required&quot;/&gt;                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer&quot; type=&quot;customer&quot;/&gt;                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customerExt&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexContent&gt;                                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;customer&quot;&gt;                                                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;contacts&quot; minOccurs=&quot;1&quot;/&gt;   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexContent&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customerExt&quot; type=&quot;customerExt&quot;/&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;contacts&quot;&gt;                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;email&quot;/&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;telephone&quot;/&gt;                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;contacts&quot; type=&quot;contacts&quot;/&gt;                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;email&quot; type=&quot;xs:string&quot;/&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;telephone&quot; type=&quot;xs:string&quot;/&gt;                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customers&quot;&gt;                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customerExt&quot; maxOccurs=&quot;unbounded&quot;/&gt;                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customers&quot; type=&quot;customers&quot;/&gt;                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;saving_account&quot;&gt;                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;balance&quot;/&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot; use=&quot;required&quot;/&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;interest&quot; type=&quot;xs:decimal&quot;/&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;checking_account&quot;&gt;                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;balance&quot;/&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot; use=&quot;required&quot;/&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer_account&quot;&gt;                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;c_id&quot; type=&quot;xs:IDREF&quot; use=&quot;required&quot;/&gt;                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ac_id&quot; type=&quot;xs:IDREF&quot; use=&quot;required&quot;/&gt;                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;saving_accounts&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;saving_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;checking_accounts&quot;&gt;                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;checking_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer_accounts&quot;&gt;                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customer_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                               <br>
+					&lt;/xs:schema&gt;                                                                                                                                                           <br><br>
+					-------------------------------------
+					<br>
+					bankExt.xsd <br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                                 <br>
+					&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:redefine schemaLocation=&quot;bank.xsd&quot;&gt;                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;minBalance&quot;&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;minBalance&quot;&gt;                                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:minInclusive value=&quot;-5200&quot;/&gt;                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customerExt&quot;&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexContent&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;customerExt&quot;&gt;                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;image&quot; type=&quot;image&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexContent&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:redefine&gt;                                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;image&quot;&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:simpleContent&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;xs:base64Binary&quot;&gt;                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;src&quot; type=&quot;xs:string&quot; use=&quot;required&quot;/&gt; <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:simpleContent&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                    <br>
+					&lt;/xs:schema&gt;
+				</div>
+			</div>
+		<!--End task3-->
+
+		<!--Start task4-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 4: Редактирайте XML схемата от задача 3 (bank.xsd), като добавите елемент postalCode към комплексния тип customer и включите регулярен израз за:</h4>
+					<ul>
+					    <li>пощенски код (четири цифрено число, например:1000)</li>
+						<li>телефон (например в следния формат:+359-02-989-14-04)</li>
+						<li>електронна поща</li>
+					</ul>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction4')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction4" class="w3-hide w3-container">
+					    Синтаксис за използване на регулярен израз:
+						<br>
+						&lt;xsd:restriction base=&quot;XXXX&quot;&gt;<br>
+							&nbsp;&nbsp;&nbsp;&lt;xsd:pattern value=&quot;Regular_Expression&quot;/&gt;<br>
+						&lt;/xsd:restriction&gt;
+				    </li>
+					<li class="w3-padding-16 w3-green">
+					    <a onclick="showSolution('solution4')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                              <br>
+					&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:annotation&gt;                                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:documentation xml:lang=&quot;en&quot;&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;This document defines an example of XML Schema.                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&lt;/xs:documentation&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:annotation&gt;                                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;bank&quot;&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:annotation&gt;                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:documentation xml:lang=&quot;en&quot;&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;This element is the root.                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:documentation&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:annotation&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:all&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;accounts&quot; minOccurs=&quot;1&quot;&gt;        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:all&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;saving_accounts&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;checking_accounts&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:all&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customers&quot; minOccurs=&quot;1&quot;/&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customer_accounts&quot; minOccurs=&quot;1&quot;/&gt;              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:all&gt;                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;name&quot; type=&quot;xs:string&quot;/&gt;                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;address&quot; type=&quot;address&quot;/&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;address&quot;&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;/&gt;                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;balance&quot; type=&quot;balance&quot;/&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;balance&quot;&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:union memberTypes=&quot;minBalance maxBalance&quot;/&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;maxBalance&quot;&gt;                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:positiveInteger&quot;&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:maxInclusive value=&quot;1000000&quot;/&gt;                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;minBalance&quot;&gt;                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:negativeInteger&quot;&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:minInclusive value=&quot;-5500&quot;/&gt;                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customer&quot;&gt;                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;name&quot;/&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;address&quot;/&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;postalCode&quot;/&gt; <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot; use=&quot;required&quot;/&gt;                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer&quot; type=&quot;customer&quot;/&gt;                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customerExt&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexContent&gt;                                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;customer&quot;&gt;                                                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;contacts&quot; minOccurs=&quot;1&quot;/&gt;   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexContent&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customerExt&quot; type=&quot;customerExt&quot;/&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;contacts&quot;&gt;                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;email&quot;/&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;telephone&quot;/&gt;                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;contacts&quot; type=&quot;contacts&quot;/&gt;                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;email&quot; type=&quot;email&quot;/&gt;                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name="postalCode" type=&quot;postalCode&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;telephone&quot; type=&quot;telephone&quot;/&gt;                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customers&quot;&gt;                                                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customerExt&quot; maxOccurs=&quot;unbounded&quot;/&gt;                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customers&quot; type=&quot;customers&quot;/&gt;                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;saving_account&quot;&gt;                                                                                                     <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;balance&quot;/&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot; use=&quot;required&quot;/&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;interest&quot; type=&quot;xs:decimal&quot;/&gt;                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;checking_account&quot;&gt;                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;balance&quot;/&gt;                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;id&quot; type=&quot;xs:ID&quot; use=&quot;required&quot;/&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer_account&quot;&gt;                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;c_id&quot; type=&quot;xs:IDREF&quot; use=&quot;required&quot;/&gt;                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;ac_id&quot; type=&quot;xs:IDREF&quot; use=&quot;required&quot;/&gt;                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;saving_accounts&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;saving_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;checking_accounts&quot;&gt;                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;checking_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;                                                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;customer_accounts&quot;&gt;                                                                                                  <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;customer_account&quot; maxOccurs=&quot;unbounded&quot;/&gt;       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                                                           <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                            <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;  <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;postalCode&quot;&gt;                                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:pattern value=&quot;[0-9]{4}&quot;/&gt;                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;email&quot;&gt;                                                                                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:token&quot;&gt;                                                                                <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:pattern value=&quot;[_\-a-zA-Z0-9\.\+]+@[a-zA-Z0-9](\.?[\-a-zA-Z0-9]*[a-zA-Z0-9])*&quot;/&gt;        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;telephone&quot;&gt;                                                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:string&quot;&gt;                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:pattern value=&quot;\+[0-9]{2,3}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}&quot;/&gt;                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                                              <br>
+					&lt;/xs:schema&gt;
+				</div>
+			</div>
+		<!--End task4-->
+		<!--Start task5-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 5: Редактирайте XML схемата от задача 3 (bankExt.xsd), като добавите към елемента image атрибут type от тип нотация. Създайте XML инстанция на новата схема и валидирайте.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+				    <li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction5')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction5" class="w3-hide w3-container">
+					    Синтаксис за дефиниране на нотации в XML схема: &lt;notation id=ID name=NCName public=anyURI system=anyURI any attributes&gt;(annotation?)&lt;/notation&gt;
+				    </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution5')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution5" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+										&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                                 <br>
+					&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;                                                                                          <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:redefine schemaLocation=&quot;bank.xsd&quot;&gt;                                                                                   <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:simpleType name=&quot;minBalance&quot;&gt;                                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;minBalance&quot;&gt;                                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:minInclusive value=&quot;-5200&quot;/&gt;                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                                                                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                                                                 <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;customerExt&quot;&gt;                                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:complexContent&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;customerExt&quot;&gt;                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;                                        <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;image&quot; type=&quot;image&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;                                                       <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;                                                                          <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexContent&gt;                                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:redefine&gt;                                                                                                                                       <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:notation name=&quot;gif&quot; public=&quot;image/gif&quot; system=&quot;view.exe&quot;/&gt;                                                         <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:notation name=&quot;jpeg&quot; public=&quot;image/jpeg&quot; system=&quot;view.exe&quot;/&gt;                                                       <br>
+						&nbsp;&nbsp;&nbsp;&lt;xs:complexType name=&quot;image&quot;&gt;                                                                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:simpleContent&gt;                                                                                                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:extension base=&quot;xs:base64Binary&quot;&gt;                                                              <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;src&quot; type=&quot;xs:string&quot; use=&quot;required&quot;/&gt; <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:attribute name=&quot;type&quot; use=&quot;required&quot;&gt;                            <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:simpleType&gt;                                                      <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:restriction base=&quot;xs:NOTATION&quot;&gt;    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;gif&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;xs:enumeration value=&quot;jpeg&quot;/&gt;<br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:restriction&gt;                               <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:simpleType&gt;                                                    <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:attribute&gt;                                                                         <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:extension&gt;                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&lt;/xs:simpleContent&gt;                                                                                                             <br>
+						&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;                                                                                                                                   <br>
+					&lt;/xs:schema&gt;
+				</div>
+			</div>
+		<!--End task5-->
+		<!--Start task6-->
+		<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 6: Съставете XML Schema, която включва схеми от други пространства от имена. Създайте XML екземляр (инстанция) на тази схема и го валидирайте. </h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction6')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction6" class="w3-hide w3-container">
+					    Синтаксис за импортиране на външна схема: &lt;import id=ID namespace=anyURI schemaLocation=anyURI any attributes &gt;(annotation?)&lt;/import&gt;
+				    </li>
+				   <li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution6')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution6" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					Task6.xml:<br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                                              <br>
+					&lt;envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;Task6_4.xsd&quot;&gt;                        <br>
+					&nbsp;&lt;order xmlns=&quot;http://example.org/ord&quot; xmlns:prod=&quot;http://example.org/prod&quot;&gt;                                                   <br>
+					&nbsp;&nbsp;&lt;number&gt;123ABBCC123&lt;/number&gt;                                                                                                          <br>
+					&nbsp;&nbsp;&lt;items&gt;                                                                                                                                     <br>
+					&nbsp;&nbsp;&nbsp;&lt;product xmlns=&quot;http://example.org/prod&quot;&gt;                                                                                   <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;number prod:id=&quot;prod557&quot;&gt;557&lt;/number&gt;                                                                          <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;name xmlns=&quot;&quot;&gt;Short-Sleeved Linen Blouse&lt;/name&gt;                                                                <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;prod:size system=&quot;US-DRESS&quot;&gt;10&lt;/prod:size&gt;                                                                     <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;prod:color xmlns:prod=&quot;http://example.org/prod2&quot; prod:value=&quot;blue&quot;/&gt;                                       <br>
+					&nbsp;&nbsp;&nbsp;&lt;/product&gt;                                                                                                                            <br>
+					&nbsp;&nbsp;&lt;/items&gt;                                                                                                                                    <br>
+					&nbsp;&lt;/order&gt;                                                                                                                                          <br>
+					&lt;/envelope&gt;                                                                                                                                             <br><br>
+					Task6_1.xsd<br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>
+					&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; targetNamespace=&quot;http://example.org/prod&quot; xmlns=&quot;http://example.org/prod&quot; xmlns:prod2=&quot;         http://example.org/prod2&quot; elementFormDefault=&quot;qualified&quot;&gt;<br>
+					&nbsp;&lt;xsd:import namespace=&quot;http://example.org/prod2&quot; schemaLocation=&quot;Task6_1.xsd&quot;/&gt;                                  <br>
+					&nbsp;&lt;xsd:element name=&quot;product&quot; type=&quot;ProductType&quot;/&gt;                                                                 <br>
+					&nbsp;&lt;xsd:complexType name=&quot;ProductType&quot;&gt;                                                                                       <br>
+					&nbsp;&nbsp;&lt;xsd:sequence&gt;                                                                                                                 <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;number&quot; type=&quot;ProdNumType&quot;/&gt;                                                      <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;name&quot; type=&quot;xsd:string&quot; form=&quot;unqualified&quot;/&gt;                            <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;size&quot; type=&quot;SizeType&quot;/&gt;                                                           <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;prod2:color&quot;/&gt;                                                                               <br>
+					&nbsp;&nbsp;&lt;/xsd:sequence&gt;                                                                                                                <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                                                   <br>
+					&nbsp;&lt;xsd:complexType name=&quot;ProdNumType&quot;&gt;                                                                                       <br>
+					&nbsp;&nbsp;&lt;xsd:simpleContent&gt;                                                                                                            <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:extension base=&quot;xsd:integer&quot;&gt;                                                                             <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:attribute name=&quot;id&quot; type=&quot;xsd:ID&quot; form=&quot;qualified&quot; use=&quot;required&quot;/&gt;   <br>
+					&nbsp;&nbsp;&nbsp;&lt;/xsd:extension&gt;                                                                                                         <br>
+					&nbsp;&nbsp;&lt;/xsd:simpleContent&gt;                                                                                                           <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                                                   <br>
+					&nbsp;&lt;xsd:complexType name=&quot;SizeType&quot;&gt;                                                                                          <br>
+					&nbsp;&nbsp;&lt;xsd:simpleContent&gt;                                                                                                            <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:extension base=&quot;xsd:integer&quot;&gt;                                                                             <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:attribute name=&quot;system&quot; type=&quot;xsd:string&quot;/&gt;                                               <br>
+					&nbsp;&nbsp;&nbsp;&lt;/xsd:extension&gt;                                                                                                         <br>
+					&nbsp;&nbsp;&lt;/xsd:simpleContent&gt;                                                                                                           <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                                                   <br>
+					&lt;/xsd:schema&gt;                                                                                                                              <br><br>
+					Task6_2.xsd<br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>
+					&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; targetNamespace=&quot;http://example.org/prod&quot; xmlns=&quot;http://example.org/prod&quot; xmlns:prod2=&quot;http://example.org/prod2&quot; elementFormDefault=&quot;qualified&quot;&gt;<br>
+					&nbsp;&lt;xsd:import namespace=&quot;http://example.org/prod2&quot; schemaLocation=&quot;Task6_1.xsd&quot;/&gt;                                             <br>
+					&nbsp;&lt;xsd:element name=&quot;product&quot; type=&quot;ProductType&quot;/&gt;                                                                            <br>
+					&nbsp;&lt;xsd:complexType name=&quot;ProductType&quot;&gt;                                                                                                  <br>
+					&nbsp;&nbsp;&lt;xsd:sequence&gt;                                                                                                                            <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;number&quot; type=&quot;ProdNumType&quot;/&gt;                                                                 <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;name&quot; type=&quot;xsd:string&quot; form=&quot;unqualified&quot;/&gt;                                       <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;size&quot; type=&quot;SizeType&quot;/&gt;                                                                      <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;prod2:color&quot;/&gt;                                                                                          <br>
+					&nbsp;&nbsp;&lt;/xsd:sequence&gt;                                                                                                                           <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                                                              <br>
+					&nbsp;&lt;xsd:complexType name=&quot;ProdNumType&quot;&gt;                                                                                                  <br>
+					&nbsp;&nbsp;&lt;xsd:simpleContent&gt;                                                                                                                       <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:extension base=&quot;xsd:integer&quot;&gt;                                                                                        <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:attribute name=&quot;id&quot; type=&quot;xsd:ID&quot; form=&quot;qualified&quot; use=&quot;required&quot;/&gt;              <br>
+					&nbsp;&nbsp;&nbsp;&lt;/xsd:extension&gt;                                                                                                                    <br>
+					&nbsp;&nbsp;&lt;/xsd:simpleContent&gt;                                                                                                                      <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                                                              <br>
+					&nbsp;&lt;xsd:complexType name=&quot;SizeType&quot;&gt;                                                                                                     <br>
+					&nbsp;&nbsp;&lt;xsd:simpleContent&gt;                                                                                                                       <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:extension base=&quot;xsd:integer&quot;&gt;                                                                                        <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&lt;xsd:attribute name=&quot;system&quot; type=&quot;xsd:string&quot;/&gt;                                                          <br>
+					&nbsp;&nbsp;&nbsp;&lt;/xsd:extension&gt;                                                                                                                    <br>
+					&nbsp;&nbsp;&lt;/xsd:simpleContent&gt;                                                                                                                      <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                                                              <br>
+					&lt;/xsd:schema&gt;                                                                                                                                         <br><br>
+					Task6_3.xsd<br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;<br>
+					&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; targetNamespace=&quot;http://example.org/ord&quot; xmlns:ord=&quot;http://example.org/ord&quot; xmlns:prod=&quot;http://example.org/prod&quot; elementFormDefault=&quot;qualified&quot;&gt;<br>
+					&nbsp;&lt;xsd:import namespace=&quot;http://example.org/prod&quot; schemaLocation=&quot;Task6_2.xsd&quot;/&gt;               <br>
+					&nbsp;&lt;xsd:element name=&quot;order&quot; type=&quot;ord:OrderType&quot;/&gt;                                             <br>
+					&nbsp;&lt;xsd:complexType name=&quot;OrderType&quot;&gt;                                                                     <br>
+					&nbsp;&nbsp;&lt;xsd:sequence&gt;                                                                                             <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;number&quot; type=&quot;xsd:string&quot;/&gt;                                   <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element name=&quot;items&quot; type=&quot;ord:ItemsType&quot;/&gt;                                 <br>
+					&nbsp;&nbsp;&lt;/xsd:sequence&gt;                                                                                            <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                               <br>
+					&nbsp;&lt;xsd:complexType name=&quot;ItemsType&quot;&gt;                                                                     <br>
+					&nbsp;&nbsp;&lt;xsd:sequence&gt;                                                                                             <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;prod:product&quot; maxOccurs=&quot;unbounded&quot;/&gt;                          <br>
+					&nbsp;&nbsp;&lt;/xsd:sequence&gt;                                                                                            <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                               <br>
+					&lt;/xsd:schema&gt;                                                                                                          <br><br>
+					Task6_4.xsd<br>
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;                                                                <br>
+					&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ord=&quot;http://example.org/ord&quot;&gt;          <br>
+					&nbsp;&lt;xsd:import namespace=&quot;http://example.org/ord&quot; schemaLocation=&quot;Task6_3.xsd&quot;/&gt;                   <br>
+					&nbsp;&lt;xsd:element name=&quot;envelope&quot; type=&quot;EnvelopeType&quot;/&gt;                                              <br>
+					&nbsp;&lt;xsd:complexType name=&quot;EnvelopeType&quot;&gt;                                                                     <br>
+					&nbsp;&nbsp;&lt;xsd:sequence&gt;                                                                                                <br>
+					&nbsp;&nbsp;&nbsp;&lt;xsd:element ref=&quot;ord:order&quot; maxOccurs=&quot;unbounded&quot;/&gt;                                <br>
+					&nbsp;&nbsp;&lt;/xsd:sequence&gt;                                                                                               <br>
+					&nbsp;&lt;/xsd:complexType&gt;                                                                                                  <br>
+					&lt;/xsd:schema&gt;                                                                                                             <br>
+				</div>
+			</div>
+		<!--End task6-->
+		</div>
+		<!--End tasks-->
+
+
+
+	</div><br>
+	<!-- END Content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+	<div class="w3-center">
+		<div class="w3-bar w3-xlarge w3-border w3-round">
+<!--
+		  <a href="../index.html" class="w3-bar-item w3-button"><i class="fa fa-home"></i></a>
+		  <a href="../exercise1/exercise1.html" class="w3-bar-item w3-button">1</a>
+		  <a href="../exercise2/exercise2.html" class="w3-bar-item w3-button">2</a>
+		  <a href="../exercise3/exercise3.html" class="w3-bar-item w3-button w3-white">3</a>
+		  <a href="../exercise4/exercise4.html" class="w3-bar-item w3-button">4</a>
+		  <a href="../exercise5/exercise5.html" class="w3-bar-item w3-button">5</a>
+		  <a href="../exercise6/exercise6.html" class="w3-bar-item w3-button">6</a>
+		  <a href="../exercise7/exercise7.html" class="w3-bar-item w3-button">7</a>
+		  <a href="../exercise8/exercise8.html" class="w3-bar-item w3-button">8</a>
+-->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

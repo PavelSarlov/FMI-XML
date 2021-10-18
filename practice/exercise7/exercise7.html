@@ -1,0 +1,1407 @@
+﻿<!DOCTYPE html>
+<html>
+<title>CSS, XLink, XPointer и XInclude</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../images/xml.jpg" type="image/x-icon">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="../javascript/utils.js"></script>
+<body class="w3-light-grey">
+
+<div style="max-width:1200px;margin: 0 auto;">
+	<!-- Header -->
+	<header class="w3-container w3-center w3-padding-32">
+	  <h1>CSS, XLink, XPointer и XInclude</b></h1>
+	</header>
+
+	<!-- Content -->
+	<div class="w3-row">
+
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-panel w3-blue round-top">
+					<h3>Цели на упражнението:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<ul>
+					    <li>
+							Дефиниране на вграден (Inlining) CSS стил
+						</li>
+						<li>
+							Асоцииране на CSS дефиниция на стилове (вътрешна и външна) в XML и HTML документ
+						</li>
+						<li>
+							Дефиниране на CSS стилове върху различни медии (напр. принтер, екран, т.н.)
+						</li>
+						<li>
+							Използване на няколко CSS дефиниции за един XML/HTML документ
+						</li>
+						<li>
+							Вмъкване на CSS дефиниция в друга CSS дефиниция
+						</li>
+						<li>
+							Използване на CSS селектори - прости селектори, контекстови селектори, селектори и класове, различни типове селектори - пряк наследник, "брат/сестра", за атрибути и т.н.
+						</li>
+						<li>
+							Асоцииране на даден CSS стил с част/и от XML/HTML документ, чрез използване на ID, CLASS, STYLE
+						</li>
+						<li>
+							Групиране на CSS дефиниции
+						</li>
+						<li>
+							Каскаден ред
+						</li>
+						<li>
+							Кутиен модел - блокови (block) и поредови (inline) кутии
+						</li>
+						<li>
+							Позициониране
+						</li>
+						<li>
+							Използване на XLink, XPointer и XInclude
+						</li>
+					</ul>
+					</div>
+				<div class="w3-panel w3-blue round-top">
+					<h3>Средства за форматация, чрез CSS:</h3>
+				</div>
+				<div class="w3-panel round-bottom w3-pale-grey w3-border w3-border-blue">
+					<p> За създаването на CSS документи в това упражнение може да използвате произволен текстов редактор, като например Notepad, Notepad++, Atom и да тествате с Уеб браузер поддържащ CSS, като например Mozilla Firefox, Google Chrome,  Internet Explorer.</p>
+				</div>
+			</div>
+		</div>
+		<!--Start tasks-->
+		<div class="w3-col l8 s12" style="width: 100%;">
+			<!--Start task1-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 1: За дадената по-долу CSS дефиниция създайте XML и HTML документ, върху които тя се прилага като вътрешна (само за HTML документът) и външна. След това разделете външната дефиниция на три части в три отделни CSS документа и изпълнете следните задачи:
+						<ol>
+							<li>Включете трите дефиниции към вече създадения XML/HTML документ.</li>
+							<li>Импортирайте две от дефинициите в третата и я приложете (третата дефиниция с импортираните други две) към вече създадения XML/HTML документ.</li>
+							<li>Променете по различен начин един и същ стил в третата дефиниция и в импортираните дефиниции, за да видите коя промяна остава в сила.</li>
+						</ol>
+					</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						p {
+						<br>&nbsp;&nbsp;&nbsp;color:#000066;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;text-indent:.5in;
+						<br>&nbsp;&nbsp;&nbsp;line-height:1.5
+						<br>}
+						<br>p a {
+						<br>&nbsp;&nbsp;&nbsp;font-size:30px;
+						<br>&nbsp;&nbsp;&nbsp;color:black;
+						<br>&nbsp;&nbsp;&nbsp;background-color:#FFFFCC;
+						<br>}
+						<br>.quote {
+						<br>&nbsp;&nbsp;&nbsp;color:#000066;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;font-size:11pt;
+						<br>&nbsp;&nbsp;&nbsp;font-style:italic;
+						<br>&nbsp;&nbsp;&nbsp;line-height:normal
+						<br>}
+						<br>h1 {
+						<br>&nbsp;&nbsp;&nbsp;color:#000066;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;margin-left:100px;
+						<br>&nbsp;&nbsp;&nbsp;text-align:center;
+						<br>&nbsp;&nbsp;&nbsp;text-transform:uppercase
+						<br>}
+						<br>h2, h3 {
+						<br>&nbsp;&nbsp;&nbsp;color:#000066;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;margin-left:100px;
+						<br>&nbsp;&nbsp;&nbsp;text-align:left;
+						<br>&nbsp;&nbsp;&nbsp;font-style:italic
+						<br>}
+						<br>h4 {
+						<br>&nbsp;&nbsp;&nbsp;color:#000066;
+						<br>&nbsp;&nbsp;&nbsp;background-color:#d7d7d7;
+						<br>&nbsp;&nbsp;&nbsp;font-size:12pt;
+						<br>&nbsp;&nbsp;&nbsp;font-weight:bold;
+						<br>&nbsp;&nbsp;&nbsp;font-style:normal
+						<br>}
+						<br>ul li {
+						<br>&nbsp;&nbsp;&nbsp;color:#660000;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;list-style-type:disc;
+						<br>}
+						<br>ul li li {
+						<br>&nbsp;&nbsp;&nbsp;color:#660000;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;list-style-type:circle
+						<br>}
+						<br>ol li {
+						<br>&nbsp;&nbsp;&nbsp;color:#660000;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;list-style-type:upper-roman
+						<br>}
+						<br>ol li li {
+						<br>&nbsp;&nbsp;&nbsp;color:#660000;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;list-style-type:lower-alpha
+						<br>}
+						<br>a:link {
+						<br>&nbsp;&nbsp;&nbsp;color:blue;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;text-decoration:none
+						<br>}
+						<br>a:active {
+						<br>&nbsp;&nbsp;&nbsp;color:blue;
+						<br>&nbsp;&nbsp;&nbsp;background-color:red;
+						<br>&nbsp;&nbsp;&nbsp;text-decoration:none
+						<br>}
+						<br>a:visited {
+						<br>&nbsp;&nbsp;&nbsp;color:blue;
+						<br>&nbsp;&nbsp;&nbsp;background-color:white;
+						<br>&nbsp;&nbsp;&nbsp;text-decoration:none
+						<br>}
+						<br>a:hover {
+						<br>&nbsp;&nbsp;&nbsp;color:purple;
+						<br>&nbsp;&nbsp;&nbsp;background-color:yellow;
+						<br>&nbsp;&nbsp;&nbsp;text-decoration:underline
+						<br>}
+					</li>	
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction1')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction1" class="w3-hide w3-container">
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+					<br>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+					<br>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;head&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Task1&lt;/title&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- internal CSS definition --&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;style&gt;
+					<br>&lt;!-- тук запишете вътрешната CSS дефиниция --&gt;
+<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/style&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- external CSS definition --&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;link rel=&quot;stylesheet&quot; href=&quot;task1.css&quot; type=&quot;text/css&quot;/&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/head&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;body&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Header 1&lt;/h1&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Header 2&lt;/h2&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Header 3&lt;/h3&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&gt;Header 4&lt;/h4&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;#Link2&quot; id=&quot;Link&quot;&gt;Link&lt;/a&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul title=&quot;Unordered&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.2&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol title=&quot;Ordered&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.2&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;#Link&quot; id=&quot;Link2&quot;&gt;Link 2&lt;/a&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/body&gt;
+					<br>&lt;/html&gt;
+<br>
+<br>За импортиране на дефинициите от документ task1_2_1.css използвайте 
+<br>@import url('task1_2_1.css');<br>
+				    </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution1')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution1" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+					<br>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+					<br>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;head&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Task1&lt;/title&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- internal CSS definition --&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;style&gt;
+					<br>&lt;!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p {                                            <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#000066;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-indent:.5in;            <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line-height:1.5              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p a {                                          <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size:30px;              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:black;                 <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:#FFFFCC;    <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.quote {                                       <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#000066;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size:11pt;              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-style:italic;           <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line-height:normal           <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h1 {                                           <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#000066;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-left:100px;           <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align:center;           <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-transform:uppercase     <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h2, h3 {                                       <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#000066;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin-left:100px;           <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align:left;             <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-style:italic            <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h4 {                                           <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#000066;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:#d7d7d7;    <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size:12pt;              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight:bold;            <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-style:normal            <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ul li {                                        <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#660000;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list-style-type:disc;        <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ul li li {                                     <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#660000;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list-style-type:circle       <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ol li {                                        <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#660000;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list-style-type:upper-roman  <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ol li li {                                     <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:#660000;               <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list-style-type:lower-alpha  <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a:link {                                       <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:blue;                  <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration:none         <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a:active {                                     <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:blue;                  <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:red;        <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration:none         <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a:visited {                                    <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:blue;                  <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:white;      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration:none         <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}                                              <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a:hover {                                      <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:purple;                <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:yellow;     <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-decoration:underline    <br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/style&gt;--&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- external CSS definition --&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;link rel=&quot;stylesheet&quot; href=&quot;task1.css&quot; type=&quot;text/css&quot;/&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/head&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;body&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Header 1&lt;/h1&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Header 2&lt;/h2&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Header 3&lt;/h3&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h4&gt;Header 4&lt;/h4&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;#Link2&quot; id=&quot;Link&quot;&gt;Link&lt;/a&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul title=&quot;Unordered&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.2&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol title=&quot;Ordered&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.1&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;2.2&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/li&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ol&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href=&quot;#Link&quot; id=&quot;Link2&quot;&gt;Link 2&lt;/a&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/body&gt;
+					<br>&lt;/html&gt;
+				</div>
+			</div>
+		    <!--End task1-->
+			<!--Start task2-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 2: В дадения по-долу HTML документ, отделете информацията относно форматирането (fonts, colors, alignment,...) в отделен CSS документ и го приложете, за да получите същия изглед с вече редуциран код</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						&lt;html&gt;
+						<br>&lt;head&gt;
+						<br>&lt;meta http-equiv=&quot;Content-Language&quot; content=&quot;en-us&quot;&gt;
+						<br>&lt;meta name=&quot;GENERATOR&quot; content=&quot;Microsoft FrontPage 5.0&quot;&gt;
+						<br>&lt;meta name=&quot;ProgId&quot; content=&quot;FrontPage.Editor.Document&quot;&gt;
+						<br>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=windows-1252&quot;&gt;
+						<br>&lt;title&gt;Section 1&lt;/title&gt;
+						<br>&lt;/head&gt;
+						<br>&lt;body bgcolor=&quot;#FFFF00&quot; link=&quot;#00FF00&quot;&gt;
+						<br>&lt;p&gt;&lt;font color=&quot;#008080&quot; size=&quot;5&quot; face=&quot;Arial&quot;&gt;&lt;b&gt;Section 1&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;
+						<br>&lt;table border=&quot;3&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse: collapse&quot; bordercolor=&quot;#111111&quot; width=&quot;50%&quot; id=&quot;AutoNumber1&quot;&gt;
+						<br>  &lt;tr&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FF00&quot; bordercolor=&quot;#FF0000&quot; align=&quot;center&quot;&gt;&lt;b&gt;
+						<br>    Column 1 title&lt;/b&gt;&lt;/td&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FF00&quot; bordercolor=&quot;#FF0000&quot; align=&quot;center&quot;&gt;&lt;b&gt;
+						<br>    Column 2 title&lt;/b&gt;&lt;/td&gt;
+						<br>  &lt;/tr&gt;
+						<br>  &lt;tr&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FF00&quot; bordercolor=&quot;#FF0000&quot;&gt;Value 1&lt;/td&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FF00&quot; bordercolor=&quot;#FF0000&quot; align=&quot;right&quot;&gt;0.79&lt;/td&gt;
+						<br>  &lt;/tr&gt;
+						<br>  &lt;tr&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FF00&quot; bordercolor=&quot;#FF0000&quot;&gt;Value 2&lt;/td&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FF00&quot; bordercolor=&quot;#FF0000&quot; align=&quot;right&quot;&gt;10.80&lt;/td&gt;
+						<br>  &lt;/tr&gt;
+						<br>&lt;/table&gt;
+						<br>&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+						<br>&lt;p&gt;&lt;font color=&quot;#008080&quot; size=&quot;5&quot; face=&quot;Arial&quot;&gt;&lt;b&gt;Section &lt;/b&gt;&lt;/font&gt;&lt;b&gt;
+						<br>&lt;font face=&quot;Arial&quot; size=&quot;5&quot; color=&quot;#008080&quot;&gt;2&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;
+						<br>&lt;table border=&quot;3&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse: collapse&quot; bordercolor=&quot;#111111&quot; width=&quot;50%&quot; id=&quot;AutoNumber1&quot;&gt;
+						<br>  &lt;tr&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot; bordercolor=&quot;#FF0000&quot; align=&quot;center&quot;&gt;&lt;b&gt;
+						<br>    Column 1 title&lt;/b&gt;&lt;/td&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot; bordercolor=&quot;#FF0000&quot; align=&quot;center&quot;&gt;&lt;b&gt;
+						<br>    Column 2 title&lt;/b&gt;&lt;/td&gt;
+						<br>  &lt;/tr&gt;
+						<br>  &lt;tr&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot; bordercolor=&quot;#FF0000&quot;&gt;Value 1&lt;/td&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot; bordercolor=&quot;#FF0000&quot; align=&quot;right&quot;&gt;0.79&lt;/td&gt;
+						<br>  &lt;/tr&gt;
+						<br>  &lt;tr&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot; bordercolor=&quot;#FF0000&quot;&gt;Value 2&lt;/td&gt;
+						<br>    &lt;td width=&quot;50%&quot; bgcolor=&quot;#00FFFF&quot; bordercolor=&quot;#FF0000&quot; align=&quot;right&quot;&gt;10.80&lt;/td&gt;
+						<br>  &lt;/tr&gt;
+						<br>&lt;/table&gt;
+						<br>&lt;p&gt;&lt;font color=&quot;#008080&quot; size=&quot;5&quot; face=&quot;Arial&quot;&gt;&lt;b&gt;Section &lt;/b&gt;&lt;/font&gt;&lt;b&gt;
+						<br>&lt;font face=&quot;Arial&quot; size=&quot;5&quot; color=&quot;#008080&quot;&gt;3&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;
+						<br>&lt;blockquote&gt;
+						<br>  &lt;p&gt;&lt;font face=&quot;Arial&quot; color=&quot;#996600&quot;&gt;Normal paragraph text.&lt;/font&gt;&lt;/p&gt;
+						<br>  &lt;p&gt;&lt;font face=&quot;Arial&quot; color=&quot;#996600&quot;&gt;Normal paragraph text.&lt;/font&gt;&lt;/p&gt;
+						<br>  &lt;p&gt;&lt;font face=&quot;Arial&quot; color=&quot;#996600&quot;&gt;Normal paragraph text.&lt;/font&gt;&lt;/p&gt;
+						<br>  &lt;p&gt;&lt;font face=&quot;Arial&quot; color=&quot;#996600&quot;&gt;&lt;a href=&quot;http://www.dir.bg&quot;&gt;link&lt;/a&gt;&lt;/font&gt;&lt;/p&gt;
+						<br>&lt;/blockquote&gt;
+						<br>&lt;/body&gt;
+						<br>&lt;/html&gt;
+					</li>
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction2')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction2" class="w3-hide w3-container">
+					    Дефинирайте стилове с два класа за таблици, напр.
+<br>table.green{
+<br>&nbsp;&nbsp;&nbsp;    border: 3px solid #111111;
+<br>&nbsp;&nbsp;&nbsp;    padding: 0px;
+<br>&nbsp;&nbsp;&nbsp;    border-spacing: 0px;
+<br>&nbsp;&nbsp;&nbsp;    border-collapse: collapse;
+<br>&nbsp;&nbsp;&nbsp;    width: 50%;
+<br>&nbsp;&nbsp;&nbsp;    background-color: #00ff00;
+<br>}
+<br>и
+<br>table.blue{
+<br>&nbsp;&nbsp;&nbsp;	padding: 0px;
+<br>&nbsp;&nbsp;&nbsp;    border-spacing: 0px;
+<br>&nbsp;&nbsp;&nbsp;    border-collapse: collapse;
+<br>&nbsp;&nbsp;&nbsp;    width: 50%;
+<br>&nbsp;&nbsp;&nbsp;    border: 3px solid #111111;
+<br>&nbsp;&nbsp;&nbsp;    background-color: #00ffff;
+<br>}
+<br>
+				        </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution2')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution2" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					CSS дефиниция:<br>
+					body {
+					<br>&nbsp;&nbsp;&nbsp;background-color: #FFFF00;
+					<br>}
+					<br>.h1{
+					<br>&nbsp;&nbsp;&nbsp;color: #008080;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 25px;
+					<br>&nbsp;&nbsp;&nbsp;font-family: "Arial";
+					<br>&nbsp;&nbsp;&nbsp;font-weight: bold;
+					<br>}
+					<br>.h2{
+					<br>&nbsp;&nbsp;&nbsp;color: #008080;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 25px;
+					<br>&nbsp;&nbsp;&nbsp;font-family: "Arial";
+					<br>}
+					<br>table.green {
+					<br>&nbsp;&nbsp;&nbsp;border: 3px solid #111111;
+					<br>&nbsp;&nbsp;&nbsp;padding: 0px;
+					<br>&nbsp;&nbsp;&nbsp;border-spacing: 0px;
+					<br>&nbsp;&nbsp;&nbsp;border-collapse: collapse;
+					<br>&nbsp;&nbsp;&nbsp;width: 50%;
+					<br>&nbsp;&nbsp;&nbsp;background-color: #00ff00;
+					<br>}
+					<br>td {
+					<br>&nbsp;&nbsp;&nbsp;width: 50%;
+					<br>&nbsp;&nbsp;&nbsp;border: 3px solid #FF0000;
+					<br>&nbsp;&nbsp;&nbsp;background-color: #FFFF00;
+					<br>}
+					<br>table.blue {
+					<br>&nbsp;&nbsp;&nbsp;border: 3px solid #111111;
+					<br>&nbsp;&nbsp;&nbsp;padding: 0px;
+					<br>&nbsp;&nbsp;&nbsp;border-spacing: 0px;
+					<br>&nbsp;&nbsp;&nbsp;border-collapse: collapse;
+					<br>&nbsp;&nbsp;&nbsp;width: 50%;
+					<br>&nbsp;&nbsp;&nbsp;background-color: 00ffff;
+					<br>}
+					<br>td.bold {
+					<br>&nbsp;&nbsp;&nbsp;font-weight: bold;
+					<br>&nbsp;&nbsp;&nbsp;text-align: center;
+					<br>}
+					<br>&nbsp;&nbsp;&nbsp;td.right {
+					<br>&nbsp;&nbsp;&nbsp;text-align: right;
+					<br>}
+					<br>a:link {
+					<br>&nbsp;&nbsp;&nbsp;color: #00FF00;
+					<br>}
+					<br>.normalP {
+					<br>&nbsp;&nbsp;&nbsp;font-family: "Arial";
+					<br>&nbsp;&nbsp;&nbsp;color: #996600;
+					<br>}
+					<br>
+					<br>HTML документ:<br>
+					&lt;html&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&lt;head&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta http-equiv=&quot;Content-Language&quot; content=&quot;en-us&quot;&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;link rel=&quot;stylesheet&quot; href=&quot;task2.css&quot; type=&quot;text/css&quot;/&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Task 2&lt;/title&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&lt;/head&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&lt;body&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;h1&quot;&gt;Section 1&lt;/p&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td  class=&quot;bold&quot;&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Column 1 title
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td  class=&quot;bold&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Column 2 title
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Value 1&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td class=&quot;right&quot;&gt;0.79&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Value 2&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td class=&quot;right&quot;&gt;10.80&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;&amp;nbsp;&lt;/p&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;h1&quot;&gt;Section &lt;/span&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;h2&quot;&gt;2&lt;/span&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td class=&quot;bold&quot;&gt;Column 1 title&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td class=&quot;bold&quot;&gt;Column 2 title&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Value 1&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td class=&quot;right&quot;&gt;0.79&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Value 2&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td class=&quot;right&quot;&gt;10.80&lt;/td&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;h1&quot;&gt;Section &lt;/span&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;h2&quot;&gt;3&lt;/span&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;blockquote&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;normalP&quot;&gt;Normal paragraph text.&lt;/p&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;normalP&quot;&gt;Normal paragraph text.&lt;/p&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;normalP&quot;&gt;Normal paragraph text.&lt;/p&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;normalP&quot;&gt;&lt;a href=&quot;http://www.dir.bg&quot;&gt;link&lt;/p&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/blockquote&gt; 
+					<br>&nbsp;&nbsp;&nbsp;&lt;/body&gt; 
+					<br>&lt;/html&gt;
+				</div>
+			</div>
+		    <!--End task2-->
+			<!--Start task3-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 3: За дадения по-долу XML документ, създайте следните варианти на CSS дефиниция:
+						<ol>
+							<li>CSS дефиниция, която форматира по различен начин под-елементите на item - title, description и link и по един и същи начин под-елементите на textinput - title, description, name и link
+							</li>
+							<li>CSS дефиниция, която форматира по различен начин под-елементите на item - title, description и link, взависимост от изхода на клиента (принтер или екран) и взависимост от размера на екрана на клиента
+							</li>
+						</ol>
+					</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						XML документ:<br><br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+						<br>&lt;rss version=&quot;0.91&quot;&gt;
+						<br>    &nbsp;&nbsp;&nbsp;&lt;channel location=&quot;remote&quot; company=&quot;N.A.&quot;&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux Today&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;http://linuxtoday.com&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;language&gt;en-us&lt;/language&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Linux Today News Service&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;image author=&quot;anonymous&quot;&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux Today&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;url&gt;http://linuxtoday.com/pics/ltnet.png&lt;/url&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;http://linuxtoday.com&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/image&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;CNET News.com: USB 2 arrives in Linux test version&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-008-20-NW-KN-DV
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;The USB support in the world of Linux is much more freewheeling than at
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Microsoft. The Linux USB software has been created by a largely
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;self-appointed team of programmers, who feed batches of code to the
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;main kernel project.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;The Register: Open source developers face new warranty threat
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-007-20-NW-LL
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;If there&apos;s one thing free software developers hate more than writing
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;documentation, it&apos;s fighting a long-drawn out and unglamorous legal
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;battle. But the latest episode in the UCITA saga bodes ill for any
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;free software author based in the United States.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Mandrake Linux Security Update Advisory: sudo&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-012-20-SC-MD
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;The SuSE Security Team discovered a vulnerability in sudo that can be
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;exploited to obtain root privilege because sudo is installed setuid
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;root. An attacker could trick sudo to log failed sudo calls
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;executing the sendmail (or equivalent mailer) program with root
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;privileges and an environment that is not completely clean.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;NewsForge: An Open Source adventure at MacWorld&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-006-20-PS-BD
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;&apos;For me, what Darwin brings is not so much another alternative to Linux
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;or FreeBSD or whatever, as those systems I have that are running
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;some Open Source BSD are likely to continue doing that. It&apos;s the
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;fact that there is an Open Source kernel and utility suite and
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;libraries that will support proprietary commercial applications that
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;I&apos;m willing to pay for but can&apos;t run on most of my other systems.&apos;&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Linux Journal: Sysadmin Corner: Unsung Heroes, Part 2
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-005-20-RV-SW
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;It seems that several people decided I should show off their web photo
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;album generation tool of choice. So, in response to your
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;suggestions, I&apos;m going to put off the cool network tool for today;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;let&apos;s go on the premise that you all took thousands of pictures over
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;the holidays and are dying to make them available on the Web.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Conectiva Linux Security Announcement: sudo&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-004-20-SC
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;Sebastian Krahmer from SuSe found a vulnerability in the sudo package which
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;could be used by a local attacker to obtain root privileges.
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Versions prior to and including 1.6.3p7 remove a few potentially
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;dangerous environment variables prior to executing a command as
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;root, but other variables could be abused and used to obtain root
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;privileges.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;IBM developerWorks: Introducing XFS&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-003-20-PS-KN
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;Up until now, choosing the appropriate next-generation Linux
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;filesystem has been refreshingly straightforward. Those who were
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;looking for raw performance generally leaned towards ReiserFS, while
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;those more interested in meticulous data integrity features
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;preferred ext3. However, with the release of XFS for Linux, things
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;have suddenly become much more confusing. In particular, it&apos;s no
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;longer clear that ReiserFS is still the next-gen performance
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;leader.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Red Hat Security Advisory: sudo&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-002-20-SC-RH
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;Versions of sudo prior to 1.6.4 would not clear the environment before
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;sending an email notification about unauthorized sudo attempts,
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;making it possible for an attacker to supply parameters to the mail
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;program. In the worst case, this could lead to a local root
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;exploit.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;ZDNet: SuSE 7.3 offers solid server reach and desktop usability
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-16-001-20-RV-SS
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;SuSE Linux 7.3 is well prepared for corporate computing, offering
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;support for a broad range of server architectures and significant
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;advances in usability for both administrators and end users.
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Companies looking for a solid server platform--and perhaps even a
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;desktop replacement for Windows--would be well advised to evaluate
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;SuSE 7.3&apos;s stellar offerings.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux 2.4.18-pre4 Released&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-025-20-NW-KN
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Changelog, link within.&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Linux 2.5.3-pre1 Released&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-024-20-NW-KN
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Changelog, link within.&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;LinuxProgramming: Tcl-URL! - weekly Tcl news and links (Jan 15)
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-023-20-PS
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;All the latest news from the Tcl world.&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;MLUG.ca: Up2date with RedHat&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-022-20-PS-RH-SW
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;What up2date does is similar to what Debian has been doing for years
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;now, namely, finding updates and installing packages without having
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;dependency issues. For those who have used Debian I&apos;m refering to
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;the program apt-get which does exactly what up2date does. Some might
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;argue that apt-get is a better program, but I certainly don&apos;t want
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;to start a holy war.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Call for papers out for Ottawa Linux Symposium 2002
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-021-20-NW-CY-DV
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;OLS is Linux and Linux related software developers symposium with a
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;strong focus on emerging technologies, research projects, and works
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;in progress. We invite contribution from the free software and
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;commercial developers.&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Newsforge: Community commentary: The case for &apos;lagom&apos; copyright
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;http://linuxtoday.com/news_story.php3?ltsn=2002-01-15-021-20-OP-LL
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&quot;One of the big issues of free software during 2001 was whether Richard
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;M Stallman was for or against a codified GNU GPL. Hence, did
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Stallman --the father of Free Software -- propagate a law to support
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;his beliefs?&quot;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/item&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;textinput&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;title&gt;Search&lt;/title&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;description&gt;Search Linux Today:&lt;/description&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;name&gt;query&lt;/name&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;link&gt;http://linuxtoday.com/search.php3&lt;/link&gt;
+						<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/textinput&gt;
+						<br>    &nbsp;&nbsp;&nbsp;&lt;/channel&gt;
+						<br>&lt;/rss&gt;
+					</li>
+
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction3')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction3" class="w3-hide w3-container">
+					    След като зададете стилове по подразбиране, предефинирайте (в края на документа!) същите стилове като използвате <br>@media screen and (min-width: 480px) { ... } <br> и <br>@media print {...} <br>
+				        </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution3')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution3" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					rss {
+					<br>&nbsp;&nbsp;&nbsp;display:table;
+					<br>&nbsp;&nbsp;&nbsp;font-family: Tahoma, Arial;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 15px;
+					<br>&nbsp;&nbsp;&nbsp;background-color: white;
+					<br>}
+					<br>channel *{
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;background-color: white;
+					<br>&nbsp;&nbsp;&nbsp;color: black;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 14px;
+					<br>}
+					<br>textinput *{
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;background-color: yellow;
+					<br>&nbsp;&nbsp;&nbsp;color: blue;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 15px;
+					<br>&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>}
+					<br>textinput::before { 
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;padding-bottom:5px;
+					<br>&nbsp;&nbsp;&nbsp;content: "Textinput section: ";
+					<br>}
+					<br>item {
+					<br>&nbsp;&nbsp;&nbsp;padding-top:10px;
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>}
+					<br>item title {
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;background-color: white;
+					<br>&nbsp;&nbsp;&nbsp;color: black;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 12px;
+					<br>&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>}
+					<br>item description {
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;background-color: white;
+					<br>&nbsp;&nbsp;&nbsp;color: black;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 15px;
+					<br>&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;margin: 5px;
+					<br>&nbsp;&nbsp;&nbsp;padding: 5px;
+					<br>}
+					<br>item link {
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;background-color: green;
+					<br>&nbsp;&nbsp;&nbsp;color: blue;
+					<br>&nbsp;&nbsp;&nbsp;margin: 5px;
+					<br>&nbsp;&nbsp;&nbsp;padding: 5px;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 11px;
+					<br>&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>}
+					<br>@media screen and (min-width: 480px) {
+					<br>&nbsp;&nbsp;&nbsp;item title {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: yellow;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: black;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 12px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;item description {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: green;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: black;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 15px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 5px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 5px;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;item link{
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: white;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: blue;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 5px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 5px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 11px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+					<br>@media print {
+					<br>&nbsp;&nbsp;&nbsp;item title {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: pink;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: black;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 12px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;item description {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: purple;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: black;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 15px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 5px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 5px;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>&nbsp;&nbsp;&nbsp;item link {
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:block;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color: orange;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: blue;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin: 5px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: 5px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size: 11px;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-indent: 20px;
+					<br>&nbsp;&nbsp;&nbsp;}
+					<br>}
+				</div>
+			</div>
+		    <!--End task3-->
+			<!--Start task4-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 4: За дадения по-долу HTML документ, използвайки различни според случая CSS селектори (прости селектори, контекстови селектори, класове, селектори от тип пряк наследник, "брат/сестра", за атрибути и т.н.), създайте CSS дефиниция, която приложена върху него го форматира със същия изглед както на фигурата по-долу</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						HTML документ: <br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+						<br>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+						<br>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;head&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Test file for sample 3&lt;/title&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;link rel=&quot;stylesheet&quot; href=&quot;task4.css&quot; type=&quot;text/css&quot;/&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/head&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;body&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Only in the first paragraph: a green backround and yellow color.&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p lang=&quot;en-us&quot;&gt;A black paragraph when the lang attribute is available.&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;A brown paragraph in the default case.&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;warning&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span lang=&quot;en-us&quot;&gt;A green span&lt;/span&gt; in a red paragraph.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;warning&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;A yellow background and blue color&lt;/span&gt; in a red paragraph.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p id=&quot;maincontent&quot; lang=&quot;en-gb&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;warning&quot;&gt;A red span&lt;/span&gt; in a green paragraph.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;This is not red, but orange.&lt;/div&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here is a blue paragraph. Here is a blue paragraph. Here is a blue paragraph. Here is a blue paragraph.&lt;br&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here is a blue paragraph. Here is a blue paragraph. Here is a blue paragraph. Here is a blue paragraph.&lt;br&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Here is a blue paragraph. Here is a blue paragraph. Here is a blue paragraph. Here is a blue paragraph.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;Here is some span with css definition in the default case.&lt;/span&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;And here is a red div!&lt;/div&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;code&gt;More code... with css definition in the default case.&lt;/code&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;And this is a green div!&lt;/div&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/body&gt;
+						<br>&lt;/html&gt;
+					</li>
+					<li>
+						Изглед на горния HTML документ: <br>
+						<img src="task4.png"/>
+					</li>
+
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction4')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction4" class="w3-hide w3-container">
+					    Дефинирайте стилове с използване на селекторите за елементи от слайд 32 от лекцията за CSS, селекторите за атрибути от слайд 33, псевдо-класовете и псевдо-елементите от слайд 39, както и комбинации между тях. <br>
+				        </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution4')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution4" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					p:first-of-type {
+					<br>&nbsp;&nbsp;&nbsp;background: green;
+					<br>&nbsp;&nbsp;&nbsp;color:yellow;
+					<br>}
+					<br>
+					<br>.warning &gt; *[lang^=en] {
+					<br>&nbsp;&nbsp;&nbsp;color: green;
+					<br>}
+					<br>
+					<br>*[lang^=en] {
+					<br>&nbsp;&nbsp;&nbsp;color: black;
+					<br>}
+					<br>
+					<br>.warning {
+					<br>&nbsp;&nbsp;&nbsp;color: red;
+					<br>}
+					<br>
+					<br>.warning &gt; span:not([lang]) {
+					<br>&nbsp;&nbsp;&nbsp;background: yellow;
+					<br>&nbsp;&nbsp;&nbsp;color:blue;
+					<br>}
+					<br>
+					<br>#maincontent {
+					<br>&nbsp;&nbsp;&nbsp;border: 1px solid blue;
+					<br>}
+					<br>
+					<br>p+p+div {
+					<br>&nbsp;&nbsp;&nbsp;color: orange;
+					<br>&nbsp;&nbsp;&nbsp;text-transform: uppercase;
+					<br>&nbsp;&nbsp;&nbsp;text-indent: 20px
+					<br>}
+					<br>
+					<br>p ~ div {
+					<br>  color: red;
+					<br>}
+					<br>
+					<br>code + div { 
+					<br>&nbsp;&nbsp;&nbsp;color: green;
+					<br>}
+					<br>
+					<br>div + p {
+					<br>&nbsp;&nbsp;&nbsp;color: blue;
+					<br>}
+					<br>
+					<br>div + p:first-letter {
+					<br>&nbsp;&nbsp;&nbsp;color: orange;
+					<br>&nbsp;&nbsp;&nbsp;font-size: 33px;
+					<br>}
+					<br>
+					<br>div + p::first-line {
+					<br>&nbsp;&nbsp;&nbsp;background-color: green;
+					<br>&nbsp;&nbsp;&nbsp;color: yellow;
+					<br>}
+					<br>
+					<br>body {
+					<br>&nbsp;&nbsp;&nbsp;color: brown;
+					<br>}
+				</div>
+			</div>
+		    <!--End task4-->
+			<!--Start task5-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 5:  За дадения по-долу HTML документ, използвайки подходящи според случая стойности за margin, padding, border и други CSS свойства, създайте CSS дефиниция, която приложена върху него го форматира със същия изглед както на фигурата по-долу</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						HTML документ: <br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+						<br>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+						<br>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;head&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Exercise 5&lt;/title&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;link rel=&quot;stylesheet&quot; href=&quot;task5.css&quot; type=&quot;text/css&quot;/&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/head&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;body&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Brad Pitt&lt;/h1&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id=&quot;blockSection&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img class=&quot;picture&quot; src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Angelina_Jolie_Brad_Pitt_Cannes.jpg/220px-Angelina_Jolie_Brad_Pitt_Cannes.jpg&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img class=&quot;picture&quot; src=&quot;https://i0.wp.com/eju.tv/wp-content/uploads/2011/10/brad_pitt.jpg&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id=&quot;text&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;boldAndUnderline&quot;&gt;William Bradley Pitt (born December 18, 1963) is an American actor and producer.&lt;/span&gt; As a public figure, Pitt has been cited as one of the most influential and powerful people in the American entertainment industry.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;boldAndUnderline&quot;&gt;Pitt first gained recognition as a cowboy hitchhiker in the road movie Thelma &amp; Louise (1991). His first leading roles in big-budget productions came with the drama films A River Runs Through It (1992) and Legends of the Fall (1994), and horror film Interview with the Vampire (1994). He gave critically acclaimed performances in the crime thriller Seven and the science fiction film 12 Monkeys (both 1995), the latter earning him a Golden Globe Award for Best Supporting Actor and an Academy Award nomination. Pitt starred in the cult film Fight Club (1999) and the heist film Ocean&apos;s Eleven (2001) and its sequels, Ocean&apos;s Twelve (2004) and Ocean&apos;s Thirteen (2007). His greatest commercial successes have been Troy (2004), Mr. &amp; Mrs. Smith (2005), and World War Z (2013). Pitt received his second and third Academy Award nominations for his leading performances in The Curious Case of Benjamin Button (2008) and Moneyball (2011). He produced The Departed (2006) and 12 Years a Slave (2013), both of which won the Academy Award for Best Picture, and also The Tree of Life, Moneyball, and The Big Short (2015), all of which garnered Best Picture nominations.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div id=&quot;text&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;boldAndUnderline&quot;&gt;In the late 1980s and early 1990s&lt;/span&gt;, Pitt was involved in successive relationships with several of his co-stars, including Robin Givens (Head of the Class), Jill Schoelen (Cutting Class), and Juliette Lewis (Too Young to Die? and Kalifornia). In addition, Pitt had a much-publicized romance and engagement to his Seven co-star, Gwyneth Paltrow, whom he dated from 1994 to 1997.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;boldAndUnderline&quot;&gt;Pitt met Friends actress Jennifer Aniston in 1998 and married her in a private wedding ceremony in Malibu on July 29, 2000. In January 2005, Pitt and Aniston announced they had decided to separate. Two months later, Aniston filed for divorce, citing irreconcilable differences. &lt;/span&gt;Pitt and Aniston&apos;s divorce was finalized by the Los Angeles Superior Court on October 2, 2005. Despite media reports that Pitt and Aniston had an acrimonious relationship, Pitt said in a February 2009 interview that he and Aniston &quot;check in with each other&quot;, adding that they were both big parts of each other&apos;s lives.
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/body&gt;
+						<br>&lt;/html&gt;
+					</li>
+					<li>
+						Изглед на горния HTML документ: <br>
+						<img src="task5.png"/>
+					</li>
+
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction5')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction5" class="w3-hide w3-container">
+					    Използвайте стиловете
+					<br>.picture {
+					<br>&nbsp;&nbsp;&nbsp;width: 310px;
+					<br>&nbsp;&nbsp;&nbsp;height: 150px;
+					<br>&nbsp;&nbsp;&nbsp;border: 6px solid #a0a7c1;
+					<br>&nbsp;&nbsp;&nbsp;display: inline-block;
+					<br>&nbsp;&nbsp;&nbsp;border-radius: 20px;
+					<br>}
+					<br>#blockSection
+					<br>{
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>}
+					<br>body {
+					<br>&nbsp;&nbsp;&nbsp;margin: auto;
+					<br>&nbsp;&nbsp;&nbsp;width: 650px;
+					<br>&nbsp;&nbsp;&nbsp;background-color: #e8e8e8;
+					<br>&nbsp;&nbsp;&nbsp;border: 3px solid #1e64cc;
+					<br>&nbsp;&nbsp;&nbsp;border-bottom-left-radius: 20px;
+					<br>&nbsp;&nbsp;&nbsp;padding: 10px;
+					<br>&nbsp;&nbsp;&nbsp;border-top-right-radius: 20px;
+					<br>}
+				        </li>
+
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution5')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution5" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					#text {
+					<br>&nbsp;&nbsp;&nbsp;width: 300px;
+					<br>&nbsp;&nbsp;&nbsp;background-color: yellow;
+					<br>&nbsp;&nbsp;&nbsp;height: 200px;
+					<br>&nbsp;&nbsp;&nbsp;overflow: auto;
+					<br>&nbsp;&nbsp;&nbsp;margin-top: 20px;
+					<br>&nbsp;&nbsp;&nbsp;padding-left: 5px;
+					<br>&nbsp;&nbsp;&nbsp;padding-right: 5px;
+					<br>&nbsp;&nbsp;&nbsp;border-top: 6px dashed #289030;
+					<br>&nbsp;&nbsp;&nbsp;border-bottom: 3px solid #5f4dc5;
+					<br>&nbsp;&nbsp;&nbsp;border-left: 6px double orange;
+					<br>&nbsp;&nbsp;&nbsp;display: inline-block;
+					<br>}
+					<br>p {
+					<br>&nbsp;&nbsp;&nbsp;display:inline;
+					<br>}
+					<br>.boldAndUnderline {
+					<br>&nbsp;&nbsp;&nbsp;font-weight: bold;
+					<br>&nbsp;&nbsp;&nbsp;text-decoration: underline;
+					<br>}
+					<br>.picture {
+					<br>&nbsp;&nbsp;&nbsp;width: 310px;
+					<br>&nbsp;&nbsp;&nbsp;height: 150px;
+					<br>&nbsp;&nbsp;&nbsp;border: 6px solid #a0a7c1;
+					<br>&nbsp;&nbsp;&nbsp;display: inline-block;
+					<br>&nbsp;&nbsp;&nbsp;border-radius: 20px;
+					<br>}
+					<br>#blockSection
+					<br>{
+					<br>&nbsp;&nbsp;&nbsp;display:block;
+					<br>}
+					<br>body {
+					<br>&nbsp;&nbsp;&nbsp;margin: auto;
+					<br>&nbsp;&nbsp;&nbsp;width: 650px;
+					<br>&nbsp;&nbsp;&nbsp;background-color: #e8e8e8;
+					<br>&nbsp;&nbsp;&nbsp;border: 3px solid #1e64cc;
+					<br>&nbsp;&nbsp;&nbsp;border-bottom-left-radius: 20px;
+					<br>&nbsp;&nbsp;&nbsp;padding: 10px;
+					<br>&nbsp;&nbsp;&nbsp;border-top-right-radius: 20px;
+					<br>}
+				</div>
+			</div>
+		    <!--End task5-->
+			<!--Start task6-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 6:  Създайте XML документ, който чрез XInclude включва дадените по-долу два XML документа и е валиден спрямо дадената по-долу XML схема</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						XML документ 1:<br>
+						&lt;?xml version=&quot;1.0&quot;?&gt;
+						<br>&lt;chapter&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;content&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Introduction
+						<br>&nbsp;&nbsp;&nbsp;&lt;/content&gt;
+						<br>&lt;/chapter&gt;
+					</li>
+					<li>
+						XML документ 2:<br>
+						&lt;?xml version=&quot;1.0&quot;?&gt;
+						<br>&lt;chapter&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;content&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chapter 1
+						<br>&nbsp;&nbsp;&nbsp;&lt;/content&gt;
+						<br>&lt;/chapter&gt;
+					</li>
+					<li>
+						XML схема, според която изходния XML документ трябва да бъде валиден:<br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+						<br>&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;book&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;chapters&quot;/&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;chapters&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element maxOccurs=&quot;unbounded&quot; ref=&quot;chapter&quot;/&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;chapter&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;content&quot;/&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;content&quot; type=&quot;xs:NCName&quot;/&gt;
+						<br>&lt;/xs:schema&gt;
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution6')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution6" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					<?xml version="1.0"?>
+					<br>&lt;book xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="task6.xsd">
+					<br>&nbsp;&nbsp;&nbsp;&lt;chapters>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xi:include href="task6_1.xml" parse="xml">
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xi:fallback >
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;chapter>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;content>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N.A.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/content>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/chapter>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xi:fallback>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xi:include>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xi:include href="task6_2.xml" parse="xml">
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;xi:fallback >
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;chapter>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;content>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N.A.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/content>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/chapter>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xi:fallback>
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/xi:include>
+					<br>&nbsp;&nbsp;&nbsp;&lt;/chapters>
+					<br>&lt;/book>
+				</div>
+			</div>
+		    <!--End task6-->
+			<!--Start task7-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 7:  Създайте XML документ, който чрез XPointer и XLink дефинира връзки, които се отварят в нов прозорец, към елементите number на дадения по-долу XML документ и е валиден спрямо дадената по-долу XML схема</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						XML документ към който, изходния XML документ трябва да реферира (към неговите елементи number):<br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+						<br>&lt;numbers&gt;
+						<br>    &nbsp;&nbsp;&nbsp;&lt;number id=&quot;number1&quot;&gt;1&lt;/number&gt;
+						<br>    &nbsp;&nbsp;&nbsp;&lt;number id=&quot;number2&quot;&gt;2&lt;/number&gt;
+						<br>&lt;/numbers&gt;
+					</li>
+					<li>
+						XML схема, според която изходния XML документ трябва да бъде валиден:<br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+						<br>&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;xs:import namespace=&quot;http://www.w3.org/1999/xlink&quot; schemaLocation=&quot;xlink.xsd&quot;/&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;book&quot;&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;chapters&quot;/&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;chapters&quot;&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:element maxOccurs=&quot;unbounded&quot; ref=&quot;chapter&quot;/&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;chapter&quot;&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:complexType&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:sequence&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:element ref=&quot;content&quot;/&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;/xs:sequence&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;xlink:href&quot; use=&quot;required&quot;/&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;xlink:show&quot; use=&quot;required&quot;/&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;xs:attribute ref=&quot;xlink:type&quot; use=&quot;required&quot;/&gt;
+						<br>  &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&lt;/xs:complexType&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;/xs:element&gt;
+						<br>  &nbsp;&nbsp;&nbsp;&lt;xs:element name=&quot;content&quot; type=&quot;xs:string&quot;/&gt;
+						<br>&lt;/xs:schema&gt;
+					</li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution7')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution7" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;?xml version=&quot;1.0&quot;?&gt;
+					<br>&lt;book xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:noNamespaceSchemaLocation=&quot;task7.xsd&quot;&gt;
+					<br>    &nbsp;&nbsp;&nbsp;&lt;chapters&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;chapter xlink:type=&quot;simple&quot;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;xlink:href=&quot;task7_2.xml#xpointer(id(&apos;number1&apos;))&quot;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;xlink:show=&quot;new&quot;&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;content&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Introduction
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/content&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/chapter&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;chapter xlink:type=&quot;simple&quot;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;xlink:href=&quot;task7_2.xml#xpointer(id(&apos;number2&apos;))&quot;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;xlink:show=&quot;new&quot;&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;content&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;Chapter1
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/content&gt;
+					<br>    &nbsp;&nbsp;&nbsp;    &nbsp;&nbsp;&nbsp;&lt;/chapter&gt;
+					<br>    &nbsp;&nbsp;&nbsp;&lt;/chapters&gt;
+					<br>&lt;/book&gt;
+				</div>
+			</div>
+		    <!--End task7-->
+			<!--Start task8-->
+			<div class="w3-card-2 w3-margin">
+				<div class="w3-container w3-padding">
+					<h4>Задача 8:  По-долу е даден SVG документ, дефиниращ кръг (с id="circle") и правоъгълник (с id="retangle"). Създайте HTML документ и включете в него тези две фигури, използвайки XLink.</h4>
+				</div>
+				<ul class="w3-ul w3-hoverable w3-white">
+					<li>
+						SVG документ:<br>
+						&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+						<br>&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;
+						<br>&lt;svg version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;176&quot; height=&quot;32&quot; viewBox=&quot;0 0 176 32&quot;&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;3&quot; fill=&quot;red&quot; id=&quot;circle&quot;/&gt;
+						<br>&nbsp;&nbsp;&nbsp;&lt;rect width=&quot;300&quot; height=&quot;100&quot; style=&quot;fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)&quot; id=&quot;retangle&quot;/&gt;
+						<br>&lt;/svg&gt;
+					</li>
+					<li class="w3-padding-16 w3-blue">
+					  <a onclick="showSolution('insrtuction8')" href="javascript:void(0)" style="text-decoration:none;color:white">Упътване</a>
+					</li>
+					<li id="insrtuction8" class="w3-hide w3-container">
+					    Използвайте браузър поддържащ SVG като напр. IE 9, 10, 11, 	Firefox.
+						<br>
+						Синтаксис за включване на SVG елемент в HTML документ:
+						&lt;svg&gt;&lt;use xlink:href=&quot;pathToSVGFile#idName&quot; /&gt;&lt;/svg&gt;<br>
+				    </li>
+					<li class="w3-padding-16 w3-green">
+						<a onclick="showSolution('solution8')" href="javascript:void(0)" style="text-decoration:none;color:white">Решение</a>
+					</li>
+				</ul>
+				<div id="solution8" class="w3-hide w3-container" style="background-color: #e0e3e6;">
+					&lt;!DOCTYPE html&gt;
+					<br>&lt;html&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;head&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta charset=&quot;UTF-8&quot;&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Task8&lt;/title&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/head&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;body&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Task 8 for including inline SVG with &amp;lt;use&gt; example&lt;/h1&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;svg&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;use xlink:href=&quot;svg1.svg#circle&quot;&gt;&lt;/use&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/svg&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;svg&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;use xlink:href=&quot;svg1.svg#retangle&quot;&gt;&lt;/use&gt;
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/svg&gt;
+					<br>&nbsp;&nbsp;&nbsp;&lt;/body&gt;
+					<br>&lt;/html&gt;
+				</div>
+			</div>
+		    <!--End task8-->
+		</div>
+		<!--End tasks-->  
+	</div>
+	<!-- END Content -->
+</div><br>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+	<div class="w3-center">
+		<div class="w3-bar w3-xlarge w3-border w3-round">
+<!--
+		  <a href="../index.html" class="w3-bar-item w3-button" active><i class="fa fa-home"></i></a>
+		  <a href="../exercise1/exercise1.html" class="w3-bar-item w3-button">1</a>
+		  <a href="../exercise2/exercise2.html" class="w3-bar-item w3-button">2</a>
+		  <a href="../exercise3/exercise3.html" class="w3-bar-item w3-button">3</a>
+		  <a href="../exercise4/exercise4.html" class="w3-bar-item w3-button">4</a>
+		  <a href="../exercise5/exercise5.html" class="w3-bar-item w3-button">5</a>
+		  <a href="../exercise6/exercise6.html" class="w3-bar-item w3-button">6</a>
+		  <a href="../exercise7/exercise7.html" class="w3-bar-item w3-button w3-white">7</a>
+		  <a href="../exercise8/exercise8.html" class="w3-bar-item w3-button">8</a>
+-->
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>
