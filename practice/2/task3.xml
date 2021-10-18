@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Course_Catalog SYSTEM "task3.dtd">
+<Course_Catalog>
+	<Department Code="CS">
+		<Title>Компютърни науки</Title>
+		<Chair>
+			<Professor>
+				<First_Name>Някой</First_Name>
+				<Last_Name>Там</Last_Name>
+			</Professor>
+		</Chair>
+		<Course Number="CS106A">
+			<Title>XML технологии</Title>
+			<Instructors>
+				<Professor>
+					<First_Name>Някой</First_Name>
+					<Last_Name>Там</Last_Name>
+				</Professor>
+				<Lecturer>
+					<First_Name>Някой</First_Name>
+					<Middle_Initial>Си</Middle_Initial>
+					<Last_Name>Там</Last_Name>
+				</Lecturer>
+			</Instructors>
+			<Prerequisites>
+				<Prereq>Нулеви знания по XML</Prereq>
+			</Prerequisites>
+		</Course>
+	</Department>
+</Course_Catalog>

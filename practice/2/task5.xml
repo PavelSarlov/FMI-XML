@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE channel SYSTEM "task5.dtd">
+<channel>
+	<item>
+		<title>Item1</title>
+		<link></link>
+		<description></description>
+	</item>
+</channel>
