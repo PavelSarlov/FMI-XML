@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='ISO-8859-1'?>
-<formulas>
-	<formula>∀ x ∈ {y-10, y+10} ∃ i</formula>
-	<formula>Einführung</formula>
-	<formula>Γεια Γιάννη</formula>
-	<formula>嗨你好</formula>
-</formulas>
+<?xml version="1.0" encoding="UTF-8"?>
+<expressions>
+  <expr>∀ x ∈ {y-10, y+10} ∃ i</expr>
+  <expr>Einführung</expr>
+  <expr>Γεια Γιάννη</expr>
+  <expr>嗨你好</expr>
+</expressions>

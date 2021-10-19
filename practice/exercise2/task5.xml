@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE channel SYSTEM "task5.dtd">
+<channel version="0.1">
+  <item>
+    <title>BNT1</title>
+    <link>https://bnt1.bnt.bg/</link>
+  </item>
+  <item>
+    <link>https://bnt2.bnt.bg</link>
+    <description>Българска национална телевизия, канал 2.</description>
+    <title>BNT2</title>
+  </item>
+  <title>BNT</title>
+  <link>https://bnt.bg/</link>
+  <image>
+    <title>BNT1 Shows</title>
+    <link>Show BNT1 shows</link>
+    <url>https://bnt.bg/box/img/BNT1.svg</url>
+  </image>
+  <image>
+    <link>Go to homepage.</link>
+    <title>BNT Homepage</title>
+    <url>https://bnt.bg/box/img/wlogo.svg</url>
+  </image>
+  <language>BG</language>
+  <description>Българската национална телевизия (БНТ) е обществената телевизия в България. Открита е официално на 26 декември 1959 г. в резултат от осемгодишна разработка и изпитания на екип от учени от Машинно-електротехническия институт в София.</description>
+</channel>

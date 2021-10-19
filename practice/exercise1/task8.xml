@@ -1,196 +1,506 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <cinemaCityParadise>
-    <generalInfo>
-        <address>ПАРАДАЙС ЦЕНТЪР, БУЛ. "ЧЕРНИ ВРЪХ" 100, 1407 СОФИЯ</address>
-        <phone>(02) 903 74 74</phone>
-        <email>paradise@cinemacity.bg</email>
-        <description>Cinema City България е част от Cineworld PLC Group - една от водещите киновериги в Европа. С придобиването на Regal Entertainment Group, Cineworld се превърна във втората по големина кино верига в света (по брой екрани). Понастоящем Cineworld оперира във Великобритания, Ирландия, Полша, Чехия, Словакия, Унгария, България, Румъния, Израел и САЩ.  Групата управлява 790 кина с 9 518 екрана. Cinema City България управлява 7 мултиплекса в 6 различни града в страната – София, Пловдив, Стара Загора, Русе, Бургас и Варна. Първият мултиплекс с 13 зали е изграден в София през 2006 г. В него се помещава и първият и най-голям IMAX екран в България.Tова поставя само началото на едно бързо бизнес развитие на веригата в страната. Вторият мултиплекс с 11 зали в Пловдив отвори врати през март, 2009 година. Мултиплекс със 7 зали беше открит и в Стара Загора през ноември, 2010. Същата година, през декември, е открит и модерният обект в град Русе. Cinema City Галерия Бургас отваря врати през 2012-та година.Оборудвано е с последно поколение кинотехника, 10 модерни зали, 5 от които са 3D. Cinema City Парадайс e  с 14 зали, като там за първи път пред българския зрител беше представено абсолютното кино преживяване 4DX – ексклузивно предлагано от Cinema City за България. От 2016 година, 4DX зала има и в Cinema City Пловдив. Март 2019 отвори и най-новото ни и модерно кино: Cinema City Варна. Мултиплексът се състои от 12 зали, сред които зала с Dolby Atmos Surround звук, както и първият 4DX на Българското Черноморие.</description>
-    </generalInfo>
-    <ticketPriceList>
-        <projection2d>
-            <monday hasPreviews="true">
-                <regular>10.90 лв.</regular>
-                <discounted>8.40 лв.</discounted>
-            </monday>
-            <tuesday hasPreviews="true">
-                <regular>10.90 лв.</regular>
-                <discounted>8.40 лв.</discounted>
-            </tuesday>
-            <wednesday hasPreviews="true">
-                <regular>10.90 лв.</regular>
-                <discounted>8.40 лв.</discounted>
-            </wednesday>
-            <thursday hasPreviews="false">
-                <regular>7.50 лв.</regular>
-                <discounted>7.50 лв.</discounted>
-            </thursday>
-            <friday hasPreviews="true">
-                <regular>12.00 лв.</regular>
-                <discounted>9.00 лв.</discounted>
-            </friday>
-            <saturday hasPreviews="true">
-                <regular>12.00 лв.</regular>
-                <discounted>9.00 лв.</discounted>
-            </saturday>
-            <sunday hasPreviews="true">
-                <regular>12.00 лв.</regular>
-                <discounted>9.00 лв.</discounted>
-            </sunday>
-            <preview>
-                <regular>14.00 лв.</regular>
-                <discounted>14.00 лв.</discounted>
-            </preview>
-        </projection2d>
-        <projection3d>
-            <monday hasPreviews="true">
-                <regular>13.00 лв. + 1.75 лв.</regular>
-                <discounted>10.50 лв. + 1.75 лв.</discounted>
-            </monday>
-            <tuesday hasPreviews="false">
-                <regular>8.50 лв. + 1.75 лв.</regular>
-                <discounted>8.50 лв. + 1.75 лв.</discounted>
-            </tuesday>
-            <wednesday hasPreviews="true">
-                <regular>13.00 лв. + 1.75 лв.</regular>
-                <discounted>10.50 лв. + 1.75 лв.</discounted>
-            </wednesday>
-            <thursday hasPreviews="true">
-                <regular>13.00 лв. + 1.75 лв.</regular>
-                <discounted>10.50 лв. + 1.75 лв.</discounted>
-            </thursday>
-            <friday hasPreviews="true">
-                <regular>13.50 лв. + 1.75 лв.</regular>
-                <discounted>11.00 лв. + 1.75 лв.</discounted>
-            </friday>
-            <saturday hasPreviews="true">
-                <regular>13.50 лв. + 1.75 лв.</regular>
-                <discounted>11.00 лв. + 1.75 лв.</discounted>
-            </saturday>
-            <sunday hasPreviews="true">
-                <regular>13.50 лв. + 1.75 лв.</regular>
-                <discounted>11.00 лв. + 1.75 лв.</discounted>
-            </sunday>
-            <preview>
-                <regular>15.50 лв. + 1.75 лв.</regular>
-                <discounted>12.50 лв. + 1.75 лв.</discounted>
-            </preview>
-        </projection3d>
-        <projection4dx>
-            <projection2d>
-                <monday hasPreviews="true">
-                    <regular>16.90 лв.</regular>
-                    <discounted>14.40 лв.</discounted>
-                </monday>
-                <tuesday hasPreviews="true">
-                    <regular>16.90 лв.</regular>
-                    <discounted>14.40 лв.</discounted>
-                </tuesday>
-                <wednesday hasPreviews="true">
-                    <regular>16.90 лв.</regular>
-                    <discounted>14.40 лв.</discounted>
-                </wednesday>
-                <thursday hasPreviews="true">
-                    <regular>16.90 лв.</regular>
-                    <discounted>14.40 лв.</discounted>
-                </thursday>
-                <friday hasPreviews="true">
-                    <regular>18.00 лв.</regular>
-                    <discounted>17.00 лв.</discounted>
-                </friday>
-                <saturday hasPreviews="true">
-                    <regular>18.00 лв.</regular>
-                    <discounted>17.00 лв.</discounted>
-                </saturday>
-                <sunday hasPreviews="true">
-                    <regular>18.00 лв.</regular>
-                    <discounted>17.00 лв.</discounted>
-                </sunday>
-                <preview>
-                    <regular>20.00 лв.</regular>
-                    <discounted>20.00 лв.</discounted>
-                </preview>
-            </projection2d>
-            <projection3d>
-                <monday hasPreviews="true">
-                    <regular>19.00 лв. + 1.75 лв.</regular>
-                    <discounted>16.50 лв. + 1.75 лв.</discounted>
-                </monday>
-                <tuesday hasPreviews="true">
-                    <regular>19.00 лв. + 1.75 лв.</regular>
-                    <discounted>16.50 лв. + 1.75 лв.</discounted>
-                </tuesday>
-                <wednesday hasPreviews="true">
-                    <regular>19.00 лв. + 1.75 лв.</regular>
-                    <discounted>16.50 лв. + 1.75 лв.</discounted>
-                </wednesday>
-                <thursday hasPreviews="true">
-                    <regular>19.00 лв. + 1.75 лв.</regular>
-                    <discounted>16.50 лв. + 1.75 лв.</discounted>
-                </thursday>
-                <friday hasPreviews="true">
-                    <regular>19.50 лв. + 1.75 лв.</regular>
-                    <discounted>19.00 лв. + 1.75 лв.</discounted>
-                </friday>
-                <saturday hasPreviews="true">
-                    <regular>19.50 лв. + 1.75 лв.</regular>
-                    <discounted>19.00 лв. + 1.75 лв.</discounted>
-                </saturday>
-                <sunday hasPreviews="true">
-                    <regular>19.50 лв. + 1.75 лв.</regular>
-                    <discounted>19.00 лв. + 1.75 лв.</discounted>
-                </sunday>
-                <preview>
-                    <regular>21.50 лв. + 1.75 лв.</regular>
-                    <discounted>21.50 лв. + 1.75 лв.</discounted>
-                </preview>
-            </projection3d>
-        </projection4dx>
-    </ticketPriceList>
-    <movies>
-        <movie>
-            <title>100% ВЪЛК</title>
-            <projections>
-                <projection>
-                    <projectionType>2D</projectionType>
-                    <date>11/10/2021</date>
-                    <time>17:10</time>
-                </projection>
-                <projection>
-                    <projectionType>2D</projectionType>
-                    <date>11/10/2021</date>
-                    <time>19:10</time>
-                </projection>
-            </projections>
-        </movie>
-        <movie>
-            <title>ESCAPE ROOM: БЕЗ ИЗХОД</title>
-            <projections>
-                <projection>
-                    <projectionType>2D</projectionType>
-                    <date>11/10/2021</date>
-                    <time>21:10</time>
-                </projection>
-            </projections>
-        </movie>
-        <movie>
-            <title>ВЕНЪМ 2: ВРЕМЕ Е ЗА КАРНИДЖ</title>
-            <projections>
-                <projection>
-                    <projectionType>3D</projectionType>
-                    <date>11/10/2021</date>
-                    <time>20:00</time>
-                </projection>
-                <projection>
-                    <projectionType>3D</projectionType>
-                    <date>11/10/2021</date>
-                    <time>21:30</time>
-                </projection>
-                <projection>
-                    <projectionType>3D</projectionType>
-                    <date>11/10/2021</date>
-                    <time>22:00</time>
-                </projection>
-            </projections>
-        </movie>
-    </movies>
+  <generalInfo>
+    <address>София, бул. Черни връх 100, в сградата на Paradise Center</address>
+    <phones>
+      <phone>(02) 903 74 74</phone>
+    </phones>
+    <email>info.paradise@cinemacity.bg</email>
+    <description>Cinema City България е част от Cineworld PLC Group - една от водещите киновериги в Европа. С придобиването на Regal Entertainment Group, Cineworld се превърна във втората по големина кино верига в света (по брой екрани). Понастоящем Cineworld оперира във Великобритания, Ирландия, Полша, Чехия, Словакия, Унгария, България, Румъния, Израел и САЩ.  Групата управлява 790 кина с 9 518 екрана. Cinema City България управлява 7 мултиплекса в 6 различни града в страната – София, Пловдив, Стара Загора, Русе, Бургас и Варна. Първият мултиплекс с 13 зали е изграден в София през 2006 г. В него се помещава и първият и най-голям IMAX екран в България.Tова поставя само началото на едно бързо бизнес развитие на веригата в страната. Вторият мултиплекс с 11 зали в Пловдив отвори врати през март, 2009 година. Мултиплекс със 7 зали беше открит и в Стара Загора през ноември, 2010. Същата година, през декември, е открит и модерният обект в град Русе. Cinema City Галерия Бургас отваря врати през 2012-та година.Оборудвано е с последно поколение кинотехника, 10 модерни зали, 5 от които са 3D. Cinema City Парадайс e  с 14 зали, като там за първи път пред българския зрител беше представено абсолютното кино преживяване 4DX – ексклузивно предлагано от Cinema City за България. От 2016 година, 4DX зала има и в Cinema City Пловдив. Март 2019 отвори и най-новото ни и модерно кино: Cinema City Варна. Мултиплексът се състои от 12 зали, сред които зала с Dolby Atmos Surround звук, както и първият 4DX на Българското Черноморие.</description>
+  </generalInfo>
+  <ticketPriceList currency="BGN">
+    <projection2d>
+      <monday>
+        <tickets>
+          <ticket type="regular">
+            <price>10.90</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>8.40</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>14.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.00</price>
+          </ticket>
+        </tickets>
+      </monday>
+      <tuesday>
+        <tickets>
+          <ticket type="regular">
+            <price>10.90</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>8.40</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>14.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.00</price>
+          </ticket>
+        </tickets>
+      </tuesday>
+      <wednesday>
+        <tickets>
+          <ticket type="regular">
+            <price>10.90</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>8.40</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>14.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.00</price>
+          </ticket>
+        </tickets>
+      </wednesday>
+      <thursday>
+        <tickets>
+          <ticket type="regular">
+            <price>7.50</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>7.50</price>
+          </ticket>
+        </tickets>
+      </thursday>
+      <friday>
+        <tickets>
+          <ticket type="regular">
+            <price>12.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>9.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>14.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.00</price>
+          </ticket>
+        </tickets>
+      </friday>
+      <saturday>
+        <tickets>
+          <ticket type="regular">
+            <price>12.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>9.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>14.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.00</price>
+          </ticket>
+        </tickets>
+      </saturday>
+      <sunday>
+        <tickets>
+          <ticket type="regular">
+            <price>12.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>9.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>14.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.00</price>
+          </ticket>
+        </tickets>
+      </sunday>
+    </projection2d>
+    <projection3d>
+      <monday>
+        <tickets>
+          <ticket type="regular">
+            <price>14.75</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>12.25</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>17.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.25</price>
+          </ticket>
+        </tickets>
+      </monday>
+      <tuesday>
+        <tickets>
+          <ticket type="regular">
+            <price>10.25</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>10.25</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>17.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.25</price>
+          </ticket>
+        </tickets>
+      </tuesday>
+      <wednesday>
+        <tickets>
+          <ticket type="regular">
+            <price>14.75</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>12.25</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>17.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.25</price>
+          </ticket>
+        </tickets>
+      </wednesday>
+      <thursday>
+        <tickets>
+          <ticket type="regular">
+            <price>14.75</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>12.25</price>
+          </ticket>
+        </tickets>
+      </thursday>
+      <friday>
+        <tickets>
+          <ticket type="regular">
+            <price>12.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>9.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>17.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.25</price>
+          </ticket>
+        </tickets>
+      </friday>
+      <saturday>
+        <tickets>
+          <ticket type="regular">
+            <price>12.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>9.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>17.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.25</price>
+          </ticket>
+        </tickets>
+      </saturday>
+      <sunday>
+        <tickets>
+          <ticket type="regular">
+            <price>15.25</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>12.75</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>17.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>14.25</price>
+          </ticket>
+        </tickets>
+      </sunday>
+    </projection3d>
+    <projection4dx>
+      <projection2d>
+        <monday>
+          <tickets>
+            <ticket type="regular">
+              <price>16.90</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>14.40</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>20.00</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>20.00</price>
+            </ticket>
+          </tickets>
+        </monday>
+        <tuesday>
+          <tickets>
+            <ticket type="regular">
+              <price>16.90</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>14.40</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>20.00</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>20.00</price>
+            </ticket>
+          </tickets>
+        </tuesday>
+        <wednesday>
+          <tickets>
+            <ticket type="regular">
+              <price>16.90</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>14.40</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>20.00</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>20.00</price>
+            </ticket>
+          </tickets>
+        </wednesday>
+        <thursday>
+          <tickets>
+            <ticket type="regular">
+              <price>16.90</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>14.40</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>20.00</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>20.00</price>
+            </ticket>
+          </tickets>
+        </thursday>
+        <friday>
+          <tickets>
+            <ticket type="regular">
+              <price>18.00</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>17.00</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>20.00</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>20.00</price>
+            </ticket>
+          </tickets>
+        </friday>
+        <saturday>
+          <tickets>
+            <ticket type="regular">
+              <price>18.00</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>17.00</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>20.00</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>20.00</price>
+            </ticket>
+          </tickets>
+        </saturday>
+        <sunday>
+          <tickets>
+            <ticket type="regular">
+              <price>18.00</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>17.00</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>20.00</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>20.00</price>
+            </ticket>
+          </tickets>
+        </sunday>
+      </projection2d>
+      <projection3d>
+        <monday>
+          <tickets>
+            <ticket type="regular">
+              <price>20.75</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>18.25</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>23.25</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>23.25</price>
+            </ticket>
+          </tickets>
+        </monday>
+        <tuesday>
+          <tickets>
+            <ticket type="regular">
+              <price>20.75</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>18.25</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>23.25</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>23.25</price>
+            </ticket>
+          </tickets>
+        </tuesday>
+        <wednesday>
+          <tickets>
+            <ticket type="regular">
+              <price>20.75</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>18.25</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>23.25</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>23.25</price>
+            </ticket>
+          </tickets>
+        </wednesday>
+        <thursday>
+          <tickets>
+            <ticket type="regular">
+              <price>20.75</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>18.25</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>23.25</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>23.25</price>
+            </ticket>
+          </tickets>
+        </thursday>
+        <friday>
+          <tickets>
+            <ticket type="regular">
+              <price>21.25</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>20.75</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>23.25</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>23.25</price>
+            </ticket>
+          </tickets>
+        </friday>
+        <saturday>
+          <tickets>
+            <ticket type="regular">
+              <price>21.25</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>20.75</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>23.25</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>23.25</price>
+            </ticket>
+          </tickets>
+        </saturday>
+        <sunday>
+          <tickets>
+            <ticket type="regular">
+              <price>21.25</price>
+            </ticket>
+            <ticket type="discounted">
+              <price>20.75</price>
+            </ticket>
+            <ticket type="preview-regular">
+              <price>23.25</price>
+            </ticket>
+            <ticket type="preview-discounted">
+              <price>23.25</price>
+            </ticket>
+          </tickets>
+        </sunday>
+      </projection3d>
+    </projection4dx>
+  </ticketPriceList>
+  <movies>
+    <movie>
+      <title>100% ВЪЛК</title>
+      <projections>
+        <projection>
+          <projectionType>2D</projectionType>
+          <date>11/10/2021</date>
+          <time>17:10</time>
+        </projection>
+        <projection>
+          <projectionType>2D</projectionType>
+          <date>11/10/2021</date>
+          <time>19:10</time>
+        </projection>
+      </projections>
+    </movie>
+    <movie>
+      <title>ESCAPE ROOM: БЕЗ ИЗХОД</title>
+      <projections>
+        <projection>
+          <projectionType>2D</projectionType>
+          <date>11/10/2021</date>
+          <time>21:10</time>
+        </projection>
+      </projections>
+    </movie>
+    <movie>
+      <title>ВЕНЪМ 2: ВРЕМЕ Е ЗА КАРНИДЖ</title>
+      <projections>
+        <projection>
+          <projectionType>3D</projectionType>
+          <date>11/10/2021</date>
+          <time>20:00</time>
+        </projection>
+        <projection>
+          <projectionType>3D</projectionType>
+          <date>11/10/2021</date>
+          <time>21:30</time>
+        </projection>
+        <projection>
+          <projectionType>3D</projectionType>
+          <date>11/10/2021</date>
+          <time>22:00</time>
+        </projection>
+      </projections>
+    </movie>
+  </movies>
 </cinemaCityParadise>

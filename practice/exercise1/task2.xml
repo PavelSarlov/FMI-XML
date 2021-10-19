@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<recipe author="">
-    <name>Бисквитена торта</name>
-    <address>
-    	<site>www.recipes.com</site>
-    </address>
-    <ingredients>
-        <list>
-            <item count="1" grams="200">1 пакет бисквити</item>
-            <item count="1" grams="200">1 кофичка кисело мляко</item>
-            <item count="1" grams="200">1 бурканче сладко</item>
-            <item count="1" grams="200">1 бурканче лютеница</item>
-            <item count="1" grams="200">1 бутилка майонеза</item>
-        </list>
-    </ingredients>
-    <process>
-        <p>Разбъркваме млякото и сладкото. Един ред бисквити, един ред от сместа и пак така, най-отгоре поръсваме орехи. Изчаква се до омекване на бисквитите.</p>
-        <p>
-            <i>Много вкусно!</i>
-        </p>
-    </process>
-    <images>
-        <image/>
-        <image/>
-        <image/>
-    </images>
+<recipe author="anonymous">
+  <name>Бисквитена торта</name>
+  <address>
+    <site>www.recipes.com</site>
+  </address>
+  <ingredients>
+    <list>
+      <item count="1" grams="50">пакет бисквити</item>
+      <item count="1" grams="200">кофичка кисело мляко</item>
+      <item count="1" grams="100">бурканче сладко</item>
+      <item count="1" grams="150">бурканче лютеница</item>
+      <item count="1" grams="200">бутилка майонеза</item>
+    </list>
+  </ingredients>
+  <process>
+    <p>Разбъркваме млякото и сладкото. Един ред бисквити, един ред от сместа и пак така, най-отгоре поръсваме орехи. Изчаква се до омекване на бисквитите.</p>
+    <p>
+      <i>Много вкусно!</i>
+    </p>
+  </process>
+  <images>
+    <image>https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2F10TXp3XfYBE%2Fmaxresdefault.jpg</image>
+    <image>https://i.imgflip.com/5qz508.jpg</image>
+  </images>
 </recipe>
