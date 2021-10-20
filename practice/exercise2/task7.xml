@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Коренът ни е channel, който съдържа задължителни елементи item, title, link и description, image и language не са.
-За поделементите на item и image трябваше да се извъртят пермутациите, тъй като нямат определена последователност.
-Тъй като item и image се срещат много пъти, имат квантори в зависимост от това дали са задължителни (+) или не (*).
-Останалото е тривиално.
 -->
 <!DOCTYPE channel [
-<!ELEMENT channel (item+ , title , link , image* , language? , description)>
-<!ELEMENT item ((title , ((link , description?) | (description? , link))) | (link , ((title , description?) | (description? , title))) | (description? , ((title , link) | (link , title))))>
-<!ELEMENT title (#PCDATA)>
+<!NOTATION SVG_PUBLIC PUBLIC "SVG 1.0" >
+<!NOTATION SVG_SYSTEM SYSTEM "image/svg" >
+<!ENTITY bntShowsSVG SYSTEM "https://bnt.bg/box/img/BNT1.svg" NDATA SVG>
+<!ENTITY bntHomeSVG PUBLIC "" "https://bnt.bg/box/img/wlogo.svg" NDATA SVG>
+<!ENTITY imageLink "Go to page">
+<!ENTITY % titleElement "title">
+<!ELEMENT channel (item+ , %titleElement; , link , image* , language? , description)>
+<!ELEMENT item ((%titleElement; , ((link , description?) | (description? , link))) | (link , ((%titleElement; , description?) | (description? , %titleElement;))) | (description? , ((%titleElement; , link) | (link , %titleElement;))))>
+<!ELEMENT %titleElement; (#PCDATA)>
 <!ELEMENT link (#PCDATA)>
 <!ELEMENT description (#PCDATA)>
-<!ELEMENT image ((title , ((link , url) | (url , link))) | (link , ((title , url) | (url , title))) | (url , ((title , link) | (link , title))))>
+<!ELEMENT image ((%titleElement; , ((link , url) | (url , link))) | (link , ((%titleElement; , url) | (url , %titleElement;))) | (url , ((%titleElement; , link) | (link , %titleElement;))))>
 <!ELEMENT url (#PCDATA)>
 <!ELEMENT language (#PCDATA)>
 <!ATTLIST channel version CDATA #IMPLIED>

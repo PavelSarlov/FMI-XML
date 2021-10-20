@@ -1,5 +1,24 @@
 <?xml version="1.0"?>
-<!DOCTYPE shiporder SYSTEM "task1.dtd">
+<!--
+В случая е използван вътрешен dtd, ако искаме можем да го преместим в друг файл
+и да използваме <!DOCTYPE корен SYSTEM "име–на-файл">.
+За упражненията ще използвам вътрешни dtd, за по-лесно коментиране.
+-->
+<!DOCTYPE shiporder [
+<!ELEMENT shiporder (orderperson , shipto , item+)>
+<!ELEMENT orderperson (#PCDATA)>
+<!ELEMENT shipto (name , address , city , country)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT address (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT item (title , note? , quantity , price)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT note (#PCDATA)>
+<!ELEMENT quantity (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ATTLIST shiporder orderid CDATA #REQUIRED>
+]>
 <shiporder orderid="889923">
   <orderperson>John Smith</orderperson>
   <shipto>

@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Имаме корен games, който съдържа една или повече игри (game).
+Играта е съставена от два отбора (home-team & ex-team), резултати (scores) и разделение на отборите на жълти и червени (yellows & reds).
+Home-team и ex-team представляват имената на отборите, затова са просто PCDATA.
+Scores съдържа неопределен брой попадения (score*). Всеки score съдържа името на извършителя (player).
+Yellows и reds съдържат един или повече играчи.
+Елементът game има атрибут score, който се предполага, че е задължителен, със стойност CDATA.
+Елементът score има атрибути me (като id, може да е CDATA или NMTOKEN) и type (не е задължителен, CDATA).
+-->
 <!ELEMENT games (game+)>
 <!ELEMENT game (home-team,ex-team,scores,yellows,reds)>
 <!ELEMENT home-team (#PCDATA)>

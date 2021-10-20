@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Първо беше добре да се подреди малко dtd-то, та да се вижда някаква йерархия. Коренът в случания ни е Course_Catalog
+-->
 <!ELEMENT Course_Catalog (Department+)>
 <!ELEMENT Department (Title, Chair, Course+)>
 <!ELEMENT Title (#PCDATA)>

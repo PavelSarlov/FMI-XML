@@ -1,21 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Course_Catalog SYSTEM "task3.dtd">
+<!--
+Първо беше добре да се подреди малко dtd-то, та да се вижда някаква йерархия. Коренът в случaя ни е Course_Catalog.
+След това вече йерархията в документа ни е ясна. Стойностите за имената са примерни, не съм си играл да мисля цял отдел.
+-->
+<!DOCTYPE Course_Catalog [
+<!ELEMENT Course_Catalog (Department)+>
+<!ELEMENT Department (Title , Chair , Course+)>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT Chair (Professor)>
+<!ELEMENT Professor (First_Name , Middle_Initial? , Last_Name)>
+<!ELEMENT First_Name (#PCDATA)>
+<!ELEMENT Middle_Initial (#PCDATA)>
+<!ELEMENT Last_Name (#PCDATA)>
+<!ELEMENT Course (Title , Description? , Instructors , Prerequisites?)>
+<!ELEMENT Description (#PCDATA)>
+<!ELEMENT Instructors ((Lecturer , Professor*) | (Professor+ , Lecturer?))>
+<!ELEMENT Lecturer (First_Name , Middle_Initial? , Last_Name)>
+<!ELEMENT Prerequisites (Prereq)+>
+<!ELEMENT Prereq (#PCDATA)>
+<!ATTLIST Course Number (CS106A | CS106B | CS107 | CS109 | CS124 | CS143 | CS145 | CS221 | CS228 | CS229 | EE108A | EE108B | LING180) #REQUIRED>
+<!ATTLIST Course Enrollment (1070 | 110 | 130 | 180 | 280 | 320 | 500 | 60 | 620 | 90) #IMPLIED>
+<!ATTLIST Department Code (CS | EE | LING) #REQUIRED>
+]>
 <Course_Catalog>
   <Department Code="CS">
     <Title>Компютърни науки</Title>
     <Chair>
       <Professor>
-        <First_Name>Някой</First_Name>
-        <Last_Name>Там</Last_Name>
+        <First_Name>Ганьо</First_Name>
+        <Last_Name>Балкански</Last_Name>
       </Professor>
     </Chair>
     <Course Number="CS106A">
       <Title>XML технологии</Title>
       <Instructors>
         <Professor>
-          <First_Name>Някой</First_Name>
-          <Last_Name>Там</Last_Name>
+          <First_Name>Боян</First_Name>
+          <Last_Name>Бончев</Last_Name>
         </Professor>
+        <Lecturer>
+          <First_Name>Боян</First_Name>
+          <Middle_Initial>Паскалев</Middle_Initial>
+          <Last_Name>Бончев</Last_Name>
+        </Lecturer>
+      </Instructors>
+      <Prerequisites>
+        <Prereq>Нулеви знания по XML</Prereq>
+      </Prerequisites>
+    </Course>
+    <Course Number="EE108B" Enrollment="620">
+      <Title>Някакъв курс</Title>
+      <Instructors>
         <Lecturer>
           <First_Name>Някой</First_Name>
           <Middle_Initial>Си</Middle_Initial>
@@ -23,7 +58,7 @@
         </Lecturer>
       </Instructors>
       <Prerequisites>
-        <Prereq>Нулеви знания по XML</Prereq>
+        <Prereq>Няма</Prereq>
       </Prerequisites>
     </Course>
   </Department>

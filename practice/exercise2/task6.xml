@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+Единственото нещо, което различава тази задача от зад.2, е времето, в което е отбелязан всеки гол.
+-->
+<!DOCTYPE games [
+<!ELEMENT games (game+)>
+<!ELEMENT game (home-team , ex-team , scores , yellows , reds)>
+<!ELEMENT home-team (#PCDATA)>
+<!ELEMENT ex-team (#PCDATA)>
+<!ELEMENT scores (score*)>
+<!ELEMENT score (time,player)>
+<!ELEMENT time (#PCDATA)>
+<!ELEMENT player (#PCDATA)>
+<!ELEMENT yellows (player*)>
+<!ELEMENT reds (player*)>
+<!ATTLIST game score CDATA #REQUIRED>
+<!ATTLIST score me CDATA #REQUIRED>
+<!ATTLIST score type CDATA #IMPLIED>
+]>
+<games>
+  <game score="1-1">
+    <home-team>Roma</home-team>
+    <ex-team>Lazio</ex-team>
+    <scores>
+      <score me="15">
+        <time>12:20</time>
+        <player>Klose</player>
+      </score>
+      <score me="85" type="penalty">
+        <time>85:59</time>
+        <player>Tox</player>
+      </score>
+    </scores>
+    <yellows>
+      <player>Tox</player>
+      <player>Hernanes</player>
+    </yellows>
+    <reds>
+      <player>Kjaer</player>
+    </reds>
+  </game>
+</games>
