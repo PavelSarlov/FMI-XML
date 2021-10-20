@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+За определяно на пространството от имената използваме пространството по подразбиране, за да не се налага да пишем на всеки поделемент префикс.
+--> 
 <record xmlns="https://pers.com">
   <name>Miller</name>
   <title>Dr.</title>
-  <publications xmlns="https://publ.com">
-    <book>
+  <publications>
+    <book xmlns="https://publ.com">
       <title>A true story</title>
       <description>A real cool publication</description>
     </book>

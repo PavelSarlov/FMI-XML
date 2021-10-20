@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Източници на информацията (предоставеният линк беше счупен по едно време):
+  - https://www.cinemacity.bg/cinemas/paradisecenter/1266#/getting-here
+  - https://www.cinemacity.bg/static/bg/bg/about-us
+  - https://www.cinemacity.bg/cinemas/paradisecenter/1266#/summary от файла "Цени"
+  - https://www.cinemacity.bg/cinemas/paradisecenter/1266#/buy-tickets-by-cinema?in-cinema=1266&at=2021-10-20&view-mode=list
+
+Корен на документа ни е името на киното.
+Като поделемент имаме основна информация (generalInfo), която от своя страна съдържа адрес, телефон, имейл и описание, взети от източниците по-горе.
+Списъка на цените на билетите (ticketPriceList) има атрибут "currency", показващ използваната валута. Поделементите му разграничават видовете прожекции (2D, 3D, 4DX2D, 4DX3D), като за всеки вид прожекция са посочени цените на билетите (биват обикновени {редовни или с намаление} или предпремиерни {редовни или с намаление}) за съответните дни от седмицата.
+За всеки филм в "movies" е дадена информация за неговото заглавие и предстоящите прожекции с техните тип, дата и час. Информация за програмата е взета отново от източниците по-горе. 
+-->
 <cinemaCityParadise>
   <generalInfo>
-    <address>София, бул. Черни връх 100, в сградата на Paradise Center</address>
+    <address>ПАРАДАЙС ЦЕНТЪР, БУЛ. "ЧЕРНИ ВРЪХ" 100, 1407 СОФИЯ</address>
     <phones>
       <phone>(02) 903 74 74</phone>
     </phones>
-    <email>info.paradise@cinemacity.bg</email>
+    <email>paradise@cinemacity.bg</email>
     <description>Cinema City България е част от Cineworld PLC Group - една от водещите киновериги в Европа. С придобиването на Regal Entertainment Group, Cineworld се превърна във втората по големина кино верига в света (по брой екрани). Понастоящем Cineworld оперира във Великобритания, Ирландия, Полша, Чехия, Словакия, Унгария, България, Румъния, Израел и САЩ.  Групата управлява 790 кина с 9 518 екрана. Cinema City България управлява 7 мултиплекса в 6 различни града в страната – София, Пловдив, Стара Загора, Русе, Бургас и Варна. Първият мултиплекс с 13 зали е изграден в София през 2006 г. В него се помещава и първият и най-голям IMAX екран в България.Tова поставя само началото на едно бързо бизнес развитие на веригата в страната. Вторият мултиплекс с 11 зали в Пловдив отвори врати през март, 2009 година. Мултиплекс със 7 зали беше открит и в Стара Загора през ноември, 2010. Същата година, през декември, е открит и модерният обект в град Русе. Cinema City Галерия Бургас отваря врати през 2012-та година.Оборудвано е с последно поколение кинотехника, 10 модерни зали, 5 от които са 3D. Cinema City Парадайс e  с 14 зали, като там за първи път пред българския зрител беше представено абсолютното кино преживяване 4DX – ексклузивно предлагано от Cinema City за България. От 2016 година, 4DX зала има и в Cinema City Пловдив. Март 2019 отвори и най-новото ни и модерно кино: Cinema City Варна. Мултиплексът се състои от 12 зали, сред които зала с Dolby Atmos Surround звук, както и първият 4DX на Българското Черноморие.</description>
   </generalInfo>
   <ticketPriceList currency="BGN">
-    <projection2d>
+    <projection2D>
       <monday>
         <tickets>
           <ticket type="regular">
@@ -116,8 +128,8 @@
           </ticket>
         </tickets>
       </sunday>
-    </projection2d>
-    <projection3d>
+    </projection2D>
+    <projection3D>
       <monday>
         <tickets>
           <ticket type="regular">
@@ -224,237 +236,235 @@
           </ticket>
         </tickets>
       </sunday>
-    </projection3d>
-    <projection4dx>
-      <projection2d>
-        <monday>
-          <tickets>
-            <ticket type="regular">
-              <price>16.90</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>14.40</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>20.00</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>20.00</price>
-            </ticket>
-          </tickets>
-        </monday>
-        <tuesday>
-          <tickets>
-            <ticket type="regular">
-              <price>16.90</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>14.40</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>20.00</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>20.00</price>
-            </ticket>
-          </tickets>
-        </tuesday>
-        <wednesday>
-          <tickets>
-            <ticket type="regular">
-              <price>16.90</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>14.40</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>20.00</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>20.00</price>
-            </ticket>
-          </tickets>
-        </wednesday>
-        <thursday>
-          <tickets>
-            <ticket type="regular">
-              <price>16.90</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>14.40</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>20.00</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>20.00</price>
-            </ticket>
-          </tickets>
-        </thursday>
-        <friday>
-          <tickets>
-            <ticket type="regular">
-              <price>18.00</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>17.00</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>20.00</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>20.00</price>
-            </ticket>
-          </tickets>
-        </friday>
-        <saturday>
-          <tickets>
-            <ticket type="regular">
-              <price>18.00</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>17.00</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>20.00</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>20.00</price>
-            </ticket>
-          </tickets>
-        </saturday>
-        <sunday>
-          <tickets>
-            <ticket type="regular">
-              <price>18.00</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>17.00</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>20.00</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>20.00</price>
-            </ticket>
-          </tickets>
-        </sunday>
-      </projection2d>
-      <projection3d>
-        <monday>
-          <tickets>
-            <ticket type="regular">
-              <price>20.75</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>18.25</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>23.25</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>23.25</price>
-            </ticket>
-          </tickets>
-        </monday>
-        <tuesday>
-          <tickets>
-            <ticket type="regular">
-              <price>20.75</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>18.25</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>23.25</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>23.25</price>
-            </ticket>
-          </tickets>
-        </tuesday>
-        <wednesday>
-          <tickets>
-            <ticket type="regular">
-              <price>20.75</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>18.25</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>23.25</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>23.25</price>
-            </ticket>
-          </tickets>
-        </wednesday>
-        <thursday>
-          <tickets>
-            <ticket type="regular">
-              <price>20.75</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>18.25</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>23.25</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>23.25</price>
-            </ticket>
-          </tickets>
-        </thursday>
-        <friday>
-          <tickets>
-            <ticket type="regular">
-              <price>21.25</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>20.75</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>23.25</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>23.25</price>
-            </ticket>
-          </tickets>
-        </friday>
-        <saturday>
-          <tickets>
-            <ticket type="regular">
-              <price>21.25</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>20.75</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>23.25</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>23.25</price>
-            </ticket>
-          </tickets>
-        </saturday>
-        <sunday>
-          <tickets>
-            <ticket type="regular">
-              <price>21.25</price>
-            </ticket>
-            <ticket type="discounted">
-              <price>20.75</price>
-            </ticket>
-            <ticket type="preview-regular">
-              <price>23.25</price>
-            </ticket>
-            <ticket type="preview-discounted">
-              <price>23.25</price>
-            </ticket>
-          </tickets>
-        </sunday>
-      </projection3d>
-    </projection4dx>
+    </projection3D>
+    <projection4DX2D>
+      <monday>
+        <tickets>
+          <ticket type="regular">
+            <price>16.90</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>14.40</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>20.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>20.00</price>
+          </ticket>
+        </tickets>
+      </monday>
+      <tuesday>
+        <tickets>
+          <ticket type="regular">
+            <price>16.90</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>14.40</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>20.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>20.00</price>
+          </ticket>
+        </tickets>
+      </tuesday>
+      <wednesday>
+        <tickets>
+          <ticket type="regular">
+            <price>16.90</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>14.40</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>20.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>20.00</price>
+          </ticket>
+        </tickets>
+      </wednesday>
+      <thursday>
+        <tickets>
+          <ticket type="regular">
+            <price>16.90</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>14.40</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>20.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>20.00</price>
+          </ticket>
+        </tickets>
+      </thursday>
+      <friday>
+        <tickets>
+          <ticket type="regular">
+            <price>18.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>17.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>20.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>20.00</price>
+          </ticket>
+        </tickets>
+      </friday>
+      <saturday>
+        <tickets>
+          <ticket type="regular">
+            <price>18.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>17.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>20.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>20.00</price>
+          </ticket>
+        </tickets>
+      </saturday>
+      <sunday>
+        <tickets>
+          <ticket type="regular">
+            <price>18.00</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>17.00</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>20.00</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>20.00</price>
+          </ticket>
+        </tickets>
+      </sunday>
+    </projection4DX2D>
+    <projection4DX3D>
+      <monday>
+        <tickets>
+          <ticket type="regular">
+            <price>20.75</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>18.25</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>23.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>23.25</price>
+          </ticket>
+        </tickets>
+      </monday>
+      <tuesday>
+        <tickets>
+          <ticket type="regular">
+            <price>20.75</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>18.25</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>23.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>23.25</price>
+          </ticket>
+        </tickets>
+      </tuesday>
+      <wednesday>
+        <tickets>
+          <ticket type="regular">
+            <price>20.75</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>18.25</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>23.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>23.25</price>
+          </ticket>
+        </tickets>
+      </wednesday>
+      <thursday>
+        <tickets>
+          <ticket type="regular">
+            <price>20.75</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>18.25</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>23.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>23.25</price>
+          </ticket>
+        </tickets>
+      </thursday>
+      <friday>
+        <tickets>
+          <ticket type="regular">
+            <price>21.25</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>20.75</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>23.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>23.25</price>
+          </ticket>
+        </tickets>
+      </friday>
+      <saturday>
+        <tickets>
+          <ticket type="regular">
+            <price>21.25</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>20.75</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>23.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>23.25</price>
+          </ticket>
+        </tickets>
+      </saturday>
+      <sunday>
+        <tickets>
+          <ticket type="regular">
+            <price>21.25</price>
+          </ticket>
+          <ticket type="discounted">
+            <price>20.75</price>
+          </ticket>
+          <ticket type="preview-regular">
+            <price>23.25</price>
+          </ticket>
+          <ticket type="preview-discounted">
+            <price>23.25</price>
+          </ticket>
+        </tickets>
+      </sunday>
+    </projection4DX3D>
   </ticketPriceList>
   <movies>
     <movie>

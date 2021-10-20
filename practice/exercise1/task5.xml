@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Същата работа като в задача 4, с изключение на това, че използваме екранните последователности
+-->
 <excelLogicalOperators>
   <logicalOperator>
     <condition>Equal to</condition>

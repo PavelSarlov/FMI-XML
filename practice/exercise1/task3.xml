@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Йерархията е очевидна от схемата.
+Единствено стойностите на поставените атрибути трябва да се спекулират.
+-->
 <bookstore>
   <book category="culinary">
     <title lang="en">Everyday Italian</title>
