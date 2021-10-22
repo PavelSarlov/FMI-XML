@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+За целта използваме две отделни параметрични единици - за всички елементи и само за задължителните - съответно channelAll и channelMandatory.
+Също така си правим параметрични единици за INCLUDE и IGNORE съответно varChannelAll и varChannelMandatory.
+Тях ги използваме за деклариране на съответните секции.
+-->
+<!NOTATION SVG_PUBLIC PUBLIC "SVG 1.0" >
+<!NOTATION SVG_SYSTEM SYSTEM "image/svg" >
+<!ENTITY bntShowsSVG SYSTEM "https://bnt.bg/box/img/BNT1.svg" NDATA SVG_SYSTEM>
+<!ENTITY bntHomeSVG PUBLIC "" "https://bnt.bg/box/img/wlogo.svg" NDATA SVG_PUBLIC>
+<!ENTITY imageLink "Go to page">
+<!ENTITY % titleElement "title">
+<!ENTITY % channelAll "(item+ , %titleElement; , link , image* , language? , description)">
+<!ENTITY % channelMandatory "(item+ , %titleElement; , link ,  description)">
+<!ENTITY % varChannelAll "INCLUDE">
+<!ENTITY % varChannelMandatory "IGNORE">
+<![%varChannelAll;[<!ELEMENT channel %channelAll;>]]>
+<![%varChannelMandatory;[<!ELEMENT channel %channelMandatory;>]]>
+<!ELEMENT item ((%titleElement; , ((link , description?) | (description? , link))) | (link , ((%titleElement; , description?) | (description? , %titleElement;))) | (description? , ((%titleElement; , link) | (link , %titleElement;))))>
+<!ELEMENT %titleElement; (#PCDATA)>
+<!ELEMENT link (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT image ((%titleElement; , ((link , url) | (url , link))) | (link , ((%titleElement; , url) | (url , %titleElement;))) | (url , ((%titleElement; , link) | (link , %titleElement;))))>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT language (#PCDATA)>
+<!ATTLIST channel version CDATA #IMPLIED>
+<!ATTLIST image src ENTITY #REQUIRED>

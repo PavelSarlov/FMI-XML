@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+Текущия документ е дефиниран спрямо варианта с всички поделементи за channel.
 -->
-<!DOCTYPE channel [
-<!NOTATION SVG_PUBLIC PUBLIC "SVG 1.0" >
-<!NOTATION SVG_SYSTEM SYSTEM "image/svg" >
-<!ENTITY bntShowsSVG SYSTEM "https://bnt.bg/box/img/BNT1.svg" NDATA SVG>
-<!ENTITY bntHomeSVG PUBLIC "" "https://bnt.bg/box/img/wlogo.svg" NDATA SVG>
-<!ENTITY imageLink "Go to page">
-<!ENTITY % titleElement "title">
-<!ELEMENT channel (item+ , %titleElement; , link , image* , language? , description)>
-<!ELEMENT item ((%titleElement; , ((link , description?) | (description? , link))) | (link , ((%titleElement; , description?) | (description? , %titleElement;))) | (description? , ((%titleElement; , link) | (link , %titleElement;))))>
-<!ELEMENT %titleElement; (#PCDATA)>
-<!ELEMENT link (#PCDATA)>
-<!ELEMENT description (#PCDATA)>
-<!ELEMENT image ((%titleElement; , ((link , url) | (url , link))) | (link , ((%titleElement; , url) | (url , %titleElement;))) | (url , ((%titleElement; , link) | (link , %titleElement;))))>
-<!ELEMENT url (#PCDATA)>
-<!ELEMENT language (#PCDATA)>
-<!ATTLIST channel version CDATA #IMPLIED>
-]>
+<!DOCTYPE channel SYSTEM "task9.dtd">
 <channel version="0.1">
   <item>
     <title>BNT1</title>
@@ -30,13 +15,13 @@
   </item>
   <title>BNT</title>
   <link><![CDATA[https://bnt.bg/]]></link>
-  <image>
+  <image src="bntShowsSVG">
     <title>BNT1 Shows</title>
-    <link>Show BNT1 shows</link>
+    <link>&imageLink;</link>
     <url><![CDATA[https://bnt.bg/box/img/BNT1.svg]]></url>
   </image>
-  <image>
-    <link>Go to homepage.</link>
+  <image src="bntHomeSVG">
+    <link>&imageLink;</link>
     <title>BNT Homepage</title>
     <url><![CDATA[https://bnt.bg/box/img/wlogo.svg]]></url>
   </image>
