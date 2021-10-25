@@ -2,13 +2,13 @@
 <!--
 Това публично dtd нещо не може да се зареди както трябва, та валидацията гърми.
 --> 
-<!DOCTYPE html PUBLIC "" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Best Webpage</title>
+    <title>Some Webpage Title</title>
   </head>
   <body>
-    <h1>Best Website</h1>
+    <h1>Heading 1</h1>
   </body>
 </html>

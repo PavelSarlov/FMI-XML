@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Коренът ни е channel, който съдържа задължителни елементи item, title, link и description, image и language не са.
+Коренът ни е channel, който съдържа задължителни елементи item, title, link и description; image и language не са.
 За поделементите на item и image трябваше да се извъртят пермутациите, тъй като нямат определена последователност.
 Тъй като item и image се срещат много пъти, имат квантори в зависимост от това дали са задължителни (+) или не (*).
 Останалото е тривиално.
@@ -22,7 +22,7 @@
     <link><![CDATA[https://bnt1.bnt.bg/]]></link>
   </item>
   <item>
-    <link><![CDATA[https://bnt2.bnt.bg]]></link>
+    <link><![CDATA[https://bnt2.bnt.bg/]]></link>
     <description>Българска национална телевизия, канал 2.</description>
     <title>BNT2</title>
   </item>

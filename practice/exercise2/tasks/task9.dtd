@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Като външна и вътрешна декларация за SVG са направени съответно нотациите SVG_PUBLIC и SVG_SYSTEM. Използват се в единиците bntHomeSVG и bntShowsSVG.
-Общата единица е imageLink.
-Параметризираната единица е titleElement.
-Нея я влагаме в единицата, описваща елементите на channel - channelElements.
-Не ми е ясно какво е рекурсивна единица.
+За целта използваме две отделни параметрични единици - една за всички елементи и една само за задължителните - съответно channelAll и channelMandatory.
+Също така си правим параметрични единици за INCLUDE и IGNORE съответно varChannelAll и varChannelMandatory.
+Тях ги използваме за деклариране на съответните секции като това позволява лесна смяна на кое да се включи за валидация.
 -->
 <!NOTATION SVG_PUBLIC PUBLIC "SVG 1.0" >
 <!NOTATION SVG_SYSTEM SYSTEM "image/svg" >
@@ -12,8 +10,12 @@
 <!ENTITY bntHomeSVG PUBLIC "" "https://bnt.bg/box/img/wlogo.svg" NDATA SVG_PUBLIC>
 <!ENTITY imageLink "Go to page">
 <!ENTITY % titleElement "title">
-<!ENTITY % channelElements "(item+ , %titleElement; , link , image* , language? , description)">
-<!ELEMENT channel %channelElements;>
+<!ENTITY % channelAll "(item+ , %titleElement; , link , image* , language? , description)">
+<!ENTITY % channelMandatory "(item+ , %titleElement; , link ,  description)">
+<!ENTITY % varChannelAll "INCLUDE">
+<!ENTITY % varChannelMandatory "IGNORE">
+<![%varChannelAll;[<!ELEMENT channel %channelAll;>]]>
+<![%varChannelMandatory;[<!ELEMENT channel %channelMandatory;>]]>
 <!ELEMENT item ((%titleElement; , ((link , description?) | (description? , link))) | (link , ((%titleElement; , description?) | (description? , %titleElement;))) | (description? , ((%titleElement; , link) | (link , %titleElement;))))>
 <!ELEMENT %titleElement; (#PCDATA)>
 <!ELEMENT link (#PCDATA)>
