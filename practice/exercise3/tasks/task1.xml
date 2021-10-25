@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="task1.xsd">
+  <description>
+    This is some weird collection
+  </description>
+  <recipe>
+    <title>Baked potato</title>
+    <ingredient name="potato" amount="1" unit="piece">
+      <preparation>
+        <step>Plant potatoes.</step>
+        <step>Wait for harvest season.</step>
+        <step>Harvest.</step>
+      </preparation>
+    </ingredient>
+    <ingredient name="butter" amount="100" unit="gram"/>
+    <ingredient name="salt" amount="1/2" unit="teaspoon"/>
+    <preparation>
+      <step>Carve a hole in the potato.</step>
+      <step>Put the other ingredients inside.</step>
+      <step>Bake in the oven for 20 minutes.</step>
+    </preparation>
+    <comment>Careful, it's hot.</comment>
+    <nutrition protein="4.3g" carbohydrates="36.6g" fat="0.2g" calories="160.9"/>
+  </recipe>
+</collection>

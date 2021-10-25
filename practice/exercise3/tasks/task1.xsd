@@ -1,11 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-  <element name="collection">
-    <complexType>
-      <sequence>
-        <element ref="description"/>
-        <element ref="recipe" minOccurs="0" maxOccurs="unbounded"/>
-      </sequence>
-    </complexType>
-  </element>
-</schema>
+<!--
+Декларацията на елементи я правим в глобалния scope и използваме референции за да ги достъпваме.
+--> 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <!-- Използваме сложен тип за collection, тъй като съдържа други елементи. -->
+  <xs:element name="collection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="description"/>
+        <!-- recipe се среща неопределен брой пъти. -->
+        <xs:element ref="recipe" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Сложен тип и атрибут mixed, който е true, тъй като може има всякакво съдържание. -->
+  <xs:element name="description">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <!-- Определя всякакво съдържание, което няма ограничение за брой. -->
+        <xs:any minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Сложен тип - ясно е защо. -->
+  <xs:element name="recipe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="title"/>
+        <!-- Неограничен брой. -->
+        <xs:element ref="ingredient" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="preparation"/>
+        <!-- Или има, или няма. -->
+        <xs:element ref="comment" minOccurs="0"/>
+        <xs:element ref="nutrition"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- PCDATA -> string -->
+  <xs:element name="title" type="xs:string"/>
+  <!-- Съдържа елементи и атрибути - сложен тип. -->
+  <xs:element name="ingredient">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Има или няма. -->
+        <xs:element ref="preparation" minOccurs="0"/>
+      </xs:sequence>
+      <!-- Задължително поле. -->
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <!-- По подразбиране не са задължителни. -->
+      <xs:attribute name="amount" type="xs:string"/>
+      <xs:attribute name="unit" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="preparation">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- Неопределен брой. -->
+        <xs:element ref="step" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- Останалото е ясно. -->
+  <xs:element name="step" type="xs:string"/>
+  <xs:element name="comment" type="xs:string"/>
+  <xs:element name="nutrition">
+    <xs:complexType>
+      <xs:attribute name="protein" type="xs:string" use="required"/>
+      <xs:attribute name="carbohydrates" type="xs:string" use="required"/>
+      <xs:attribute name="fat" type="xs:string" use="required"/>
+      <xs:attribute name="calories" type="xs:string" use="required"/>
+      <xs:attribute name="alcohol" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
