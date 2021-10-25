@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <element name="collection">
+    <complexType>
+      <sequence>
+        <element ref="description"/>
+        <element ref="recipe" minOccurs="0" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>
