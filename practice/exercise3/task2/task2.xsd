@@ -1,4 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
+    <xs:element name="bank">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="accounts"/>
+                <xs:element ref="customers"/>
+                <xs:element ref="customer_accounts"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="accounts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="saving_accounts"/>
+                <xs:element ref="checking_accounts"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="saving_accounts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="saving_account"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="saving_account">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="balance"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="interest" type="xs:double"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="balance" type="xs:double"/>
+    <xs:element name="checking_accounts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="saving_account"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="checking_account">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="balance"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="customers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="customer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="customer">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="address"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
