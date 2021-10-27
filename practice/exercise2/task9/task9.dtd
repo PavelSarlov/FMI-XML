@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 За целта използваме две отделни параметрични единици - една за всички елементи и една само за задължителните - съответно channelAll и channelMandatory.
 Също така си правим параметрични единици за INCLUDE и IGNORE съответно varChannelAll и varChannelMandatory.

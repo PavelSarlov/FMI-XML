@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Като външна и вътрешна декларация за SVG са направени съответно нотациите SVG_PUBLIC и SVG_SYSTEM. Използват се в единиците bntHomeSVG и bntShowsSVG.
 Общата единица е imageLink.

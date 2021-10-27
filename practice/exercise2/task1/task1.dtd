@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!ELEMENT shiporder (orderperson,shipto,item+)>
 <!ELEMENT orderperson (#PCDATA)>
 <!ELEMENT shipto (name,address,city,country)>
