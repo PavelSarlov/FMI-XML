@@ -38,12 +38,21 @@
     </xs:element>
     <xs:element name="balance">
         <xs:simpleType>
-            <!-- Слагаме рестрикция, определяща долната граница на салдото. -->
-            <xs:restriction base="xs:decimal">
-                <xs:minInclusive value="-5000"/>
-            </xs:restriction>
+            <!-- Обединяваме двата прости типа, които дефинирахме. -->
+            <xs:union memberTypes="minBalance maxBalance"/>
         </xs:simpleType>
     </xs:element>
+    <!-- Простите типове, дефиниращи границите на balancе. -->
+    <xs:simpleType name="minBalance">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-5000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="maxBalance">
+        <xs:restriction base="xs:decimal">
+            <xs:maxInclusive value="100000"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:element name="checking_accounts">
         <xs:complexType>
             <xs:sequence>
@@ -77,6 +86,26 @@
             <xs:attribute name="id" type="xs:ID"/>
         </xs:complexType>
     </xs:element>
+    <!-- Дефинираме разширението, както е указано в упътването. Email и telephone ги дефинираме глобално. -->
+    <xs:complexType name="customerExt">
+        <xs:complexContent>
+            <xs:extension base="customer">
+                <xs:sequence>
+                    <xs:element ref="contacts"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="contacts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="email"/>
+                <xs:element ref="telephone"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="email" type="xs:string"/>
+    <xs:element name="telephone" type="xs:string"/>
     <!-- Няма указания за името и адреса, затова остават просто като string. -->
     <xs:element name="name" type="xs:string"/>
     <xs:element name="address" type="xs:string"/>

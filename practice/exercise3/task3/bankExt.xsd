@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:redefine schemaLocation="bank.xsd">
+        <xs:simpleType name="minBalance">
+            <xs:restriction base="minBalance">
+                <xs:minInclusive value="-5200"/>
+            </xs:restriction>
+        </xs:simpleType>
+        <xs:complexType name="customerExt">
+            <xs:complexContent>
+                <xs:extension base="customerExt">
+                    <xs:sequence>
+                        <xs:element name="image" type="base64Binary">
+                    </xs:sequence>
+                    <xs:attribute name="src" type="xs:string"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:redefine>
+</xs:schema>
