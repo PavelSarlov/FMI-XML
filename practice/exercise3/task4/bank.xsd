@@ -54,7 +54,6 @@
     <!-- Простите типове, дефиниращи границите на balancе. -->
     <xs:simpleType name="minBalance">
         <xs:restriction base="xs:negativeInteger">
-            <!-- Тъй като не можем да предефинираме рестрикции с по-ниски стойности от вече зададените, ще сложим първата минимална граница да е 5400 и ще я променим на 5200. -->
             <xs:minExclusive value="-5400"/>
         </xs:restriction>
     </xs:simpleType>
@@ -111,6 +110,7 @@
         <xs:sequence>
             <xs:element ref="name"/>
             <xs:element ref="address"/>
+            <xs:element ref="postalCode"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:ID"/>
     </xs:complexType>
@@ -141,9 +141,29 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <!-- Дефинираме си елементите за имейл и телефон като string. -->
-    <xs:element name="email" type="xs:string"/>
-    <xs:element name="telephone" type="xs:string"/>
+    <!-- Използваме регулярни изрази за имейл, телефон и пощенски код. -->
+    <xs:element name="email">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="telephone">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <!-- Използван е pattern, който хваща телефони като примерния даден. -->
+                <xs:pattern value="\+\d{3}-\d{2}-\d{3}-\d{2}-\d{2}"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="postalCode">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="\d{4}"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
     <!-- Няма указания за името и адреса, затова остават просто като string. -->
     <xs:element name="name" type="xs:string"/>
     <xs:element name="address" type="xs:string"/>

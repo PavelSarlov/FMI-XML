@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Добавени са примерни contacts и image.
+Премахнах image от предишния документ, тъй като то беше добавено чрез предефиниращата схема.
 -->
 <bank xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="bankExt.xsd">
@@ -29,15 +29,16 @@
     <customer id="c1">
       <name>Ben Richerdson</name>
       <address>Park Drive 2</address>
+      <postalCode>1000</postalCode>
       <contacts>
           <email>mail@mail.bg</email>
-          <telephone>02344324</telephone>
+          <telephone>+359-02-989-44-04</telephone>
       </contacts>
-      <image src="https://thumbor.sd-cdn.fr/2gh0lDtRm-nVuCcHaQrUwYZJDYk=/770x515/cdn.sd-cdn.fr/wp-content/uploads/2017/05/Rickroll.jpg"/>
     </customer>
     <customer id="c2">
       <name>Marc Wretcher</name>
       <address>Mill Drive 75</address>
+      <postalCode>1001</postalCode>
       <contacts>
           <email>mail@gmail.bg</email>
       </contacts>
@@ -45,8 +46,9 @@
     <customer id="c3">
       <name>Angel Steady</name>
       <address>Lake Sight 15</address>
+      <postalCode>1002</postalCode>
       <contacts>
-          <telephone>02344314</telephone>
+          <telephone>+359-02-989-14-04</telephone>
       </contacts>
     </customer>
   </customers>

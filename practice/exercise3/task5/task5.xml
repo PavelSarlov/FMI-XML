@@ -33,7 +33,7 @@
           <email>mail@mail.bg</email>
           <telephone>02344324</telephone>
       </contacts>
-      <image src="https://thumbor.sd-cdn.fr/2gh0lDtRm-nVuCcHaQrUwYZJDYk=/770x515/cdn.sd-cdn.fr/wp-content/uploads/2017/05/Rickroll.jpg"/>
+      <image src="https://thumbor.sd-cdn.fr/2gh0lDtRm-nVuCcHaQrUwYZJDYk=/770x515/cdn.sd-cdn.fr/wp-content/uploads/2017/05/Rickroll.jpg" type="jpeg"/>
     </customer>
     <customer id="c2">
       <name>Marc Wretcher</name>
