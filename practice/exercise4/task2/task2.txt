@@ -1,0 +1,42 @@
+(: 1) Избираме cd-то със съответният id и от него хващаме непряк наследник track със съответния length. :)
+//cd[@id="8c0a600b"]//track[@length="4:04"]
+
+(: 2) Използваме функцията position(). :)
+//track[position() mod 2 = 0]
+//track[position() mod 2 != 0]
+
+(: 3) Използваме функцията text() за да вземем текстовото съдържание на елемента и чрез string-length взимаме дължината му. :)
+//track[string-length(text()) > 35]
+
+(: 4) Като предишната, с разликата че взимаме самата дължина. :)
+//track[string-length(text()) > 15]/string-length(text())
+
+(: 5) Тривиално. :)
+//cd//track[last()]
+
+(: 6) -||- :)
+//cd//track[position()=5]
+
+(: 7) За всяко cd взимаме бройката на наследяващите го track. :)
+//cd/count(.//track)
+
+(: 8) Използваме matches функцията като ѝ подаваме цялото съдържане и търсения шаблон. :)
+//track[matches(text(), 'Ya soshla s uma')]
+
+(: 9) Аналогично на 8). :)
+//track[starts-with(text(), 'D')]
+
+(: 10) Аналогично на 9). :)
+//track[ends-with(text(), 'sta')]
+
+(: 11) Използваме готовите функции. :)
+//track/upper-case(text())
+
+(: 12) Взимаме този cd, който отговаря на зададените ограничения и дърпаме стойността на неговия year поделемент. :)
+//cd[.//track[@length="3:55" and text()="Robot (Robotronik)"]]/year/text()
+
+(: 13) Брой на track, наследници на cd / брой на cd. :)
+count(//cd//track) div count(//cd)
+
+(: 14) Използваме concat за сливане на низове. :)
+//cd/concat("Заглавие: ", title, "; Година на издаване: ", year)

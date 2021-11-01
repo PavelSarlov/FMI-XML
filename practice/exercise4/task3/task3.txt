@@ -1,0 +1,28 @@
+(: 1) За атрибутът трябва да използваме string(), за да вземем стойността му. :)
+/catalog/child::cd/child::tracklist/string(attribute::num)
+/catalog/child::cd/child::year/text()
+
+(: 2) Аналогично на 1). :)
+/catalog/child::cd/child::tracklist/attribute::num
+/catalog/child::cd/attribute::id
+
+(: 3) Взимаме съответния track елемент, отговарящ на изискванията, и дърпаме всички предхождащи го siblings. :)
+//track[text()="Doschitay do sta (Countdown)"]/preceding-sibling::track
+
+(: 4) Аналогично на 3). :)
+//track[text()="Doschitay do sta (Countdown)"]/following-sibling::track
+
+(: 5) Аналогично на 4). :)
+//track[text()="Doschitay do sta (Countdown)"]/following-sibling::track[@length="4:04"]
+
+(: 6) Чрез descendant взимаме всички наследници (преки и непреки) и дърпаме стойността им. :)
+//cd/descendant::*/text()
+
+(: 7) В случая ще изкара празни редове, тъй като елементите cd са сложни (имат поделементи). :)
+//node()[attribute::id]/text()
+
+(: 8) Аналогично на 7). :)
+//node()[attribute::]/text()
+
+(: 9) Готова функция max(). :)
+max(//attribute::num)
