@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="bank">
+        <!-- Добена е анотация на някои елементи. -->
         <xs:annotation>
             <xs:documentation>Root of the XML document. Contains customers and their corresponding accounts. The order of the subelements is not important.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
-            <!-- Позволява неопределена подредба на поделементите. -->
             <xs:all>
-                <!-- Локално дефиниран елемент accounts. -->
                 <xs:element name="accounts">
                     <xs:complexType>
                         <xs:sequence>
@@ -21,65 +20,66 @@
             </xs:all>
         </xs:complexType>
     </xs:element>
+
     <xs:element name="saving_accounts">
         <xs:annotation>
             <xs:documentation>Subelement of bank. Contains a sequence of accounts.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <!-- От xml файла виждаме, че може да има няколко сметки. -->
                 <xs:element ref="saving_account" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="saving_account">
+
+    <xs:element name="saving_account" type="saving_account"/>
+    <xs:complexType name="saving_account">
         <xs:annotation>
-            <xs:documentation>Subelement of saving_accounts. Contains a balance and has id and interest as attributes.</xs:documentation>
+            <xs:documentation>Complex type for saving_accounts. Contains a balance and has id and interest as attributes.</xs:documentation>
         </xs:annotation>
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="balance"/>
-            </xs:sequence>
-            <xs:attribute name="id" type="xs:ID"/>
-            <!-- Когато работим с пари е хубаво да използваме decimal типа. -->
-            <xs:attribute name="interest" type="xs:decimal"/>
-        </xs:complexType>
-    </xs:element>
+        <xs:sequence>
+            <xs:element ref="balance"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID"/>
+        <xs:attribute name="interest" type="xs:decimal"/>
+    </xs:complexType>
+
     <xs:element name="balance">
         <xs:simpleType>
-            <!-- Обединяваме двата прости типа, които дефинирахме. -->
             <xs:union memberTypes="minBalance maxBalance decimal"/>
         </xs:simpleType>
     </xs:element>
-    <!-- Простите типове, дефиниращи границите на balancе. -->
+
     <xs:simpleType name="minBalance">
         <xs:restriction base="xs:negativeInteger">
-            <xs:minExclusive value="-5400"/>
+            <xs:minExclusive value="-6000"/>
         </xs:restriction>
     </xs:simpleType>
+
     <xs:simpleType name="maxBalance">
         <xs:restriction base="xs:positiveInteger">
             <xs:maxInclusive value="100000"/>
         </xs:restriction>
     </xs:simpleType>
-    <!-- Тъй като е хубаво да използваме decimal, когато работим с пари, ще дефинирам и граници върху тип decimal, който ще прибавя към обединението на типовете. Ясно е, че може да се ползва само decimal със съответните рестрикции, но в задачата е указано да има два отделни типа за горна и долна граница, които стават само с negativeInteger и positiveInteger. -->
+
     <xs:simpleType name="decimal">
         <xs:restriction base="xs:decimal">
             <xs:minInclusive value="-5400"/>
             <xs:maxInclusive value="100000"/>
         </xs:restriction>
     </xs:simpleType>
+
     <xs:element name="checking_accounts">
         <xs:annotation>
             <xs:documentation>Subelement of bank. Contains a sequence of accounts.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>
-                <!-- Отново от xml файла виждаме, че може да има няколко сметки. -->
                 <xs:element ref="checking_account" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
     <xs:element name="checking_account">
         <xs:annotation>
             <xs:documentation>Subelement of checking_accounts. Contains a balance and has id as an attribute.</xs:documentation>
@@ -91,18 +91,18 @@
             <xs:attribute name="id" type="xs:ID"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="customers">
+
+    <xs:element name="customers" type="customers"/>
+    <xs:complexType name="customers">
         <xs:annotation>
-            <xs:documentation>Subelement of bank. Contains a sequence of customers.</xs:documentation>
+            <xs:documentation>Complex type for customers. Contains a sequence of customers.</xs:documentation>
         </xs:annotation>
-        <xs:complexType>
-            <xs:sequence>
-                <!-- Логично е да има неопределен брой потребители. -->
-                <xs:element ref="customer" maxOccurs="unbounded"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <!-- Наложи се да отделим типа на customer и да му дадем име, за да го разширим. -->
+        <xs:sequence>
+            <xs:element ref="customer" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="customer" type="customerExt"/>
     <xs:complexType name="customer">
         <xs:annotation>
             <xs:documentation>Complex type representing a customer.</xs:documentation>
@@ -110,12 +110,12 @@
         <xs:sequence>
             <xs:element ref="name"/>
             <xs:element ref="address"/>
+            <!-- Добавяме пощенски код. -->
             <xs:element ref="postalCode"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:ID"/>
     </xs:complexType>
-    <xs:element name="customer" type="customerExt"/>
-    <!-- Дефинираме разширението, както е указано в упътването. Email и telephone ги дефинираме глобално. -->
+
     <xs:complexType name="customerExt">
         <xs:annotation>
             <xs:documentation>An extension to customer which adds element contacts.</xs:documentation>
@@ -128,23 +128,21 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
+    
     <xs:element name="contacts">
         <xs:complexType>
-            <!--
-            По-логично би било да използваме all вместо sequence, тъй като няма определен ред, в който да са поделементите,
-            но не е позволено да имаме unbounded елемент в all за версия 1.0.
-            -->
             <xs:sequence>
-                <!-- Няма ограничение за контактите. -->
                 <xs:element ref="email" minOccurs="0" maxOccurs="unbounded"/>
                 <xs:element ref="telephone" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
     <!-- Използваме регулярни изрази за имейл, телефон и пощенски код. -->
     <xs:element name="email">
         <xs:simpleType>
             <xs:restriction base="xs:string">
+                <!-- Доста прост регулярен израз за имейл, няма нужда от сложнотии. -->
                 <xs:pattern value="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"/>
             </xs:restriction>
         </xs:simpleType>
@@ -164,20 +162,20 @@
             </xs:restriction>
         </xs:simpleType>
     </xs:element>
-    <!-- Няма указания за името и адреса, затова остават просто като string. -->
+
     <xs:element name="name" type="xs:string"/>
     <xs:element name="address" type="xs:string"/>
+
     <xs:element name="customer_accounts">
         <xs:complexType>
             <xs:sequence>
-                <!-- Логично е да има неопределен брой сметки. -->
                 <xs:element ref="customer_account" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
     <xs:element name="customer_account">
         <xs:complexType>
-            <!-- Референции съответно към id на клиента и неговата сметка. Логично е да са задължителни. -->
             <xs:attribute name="c_id" type="xs:IDREF" use="required"/>
             <xs:attribute name="ac_id" type="xs:IDREF" use="required"/>
         </xs:complexType>

@@ -18,6 +18,7 @@
             </xs:all>
         </xs:complexType>
     </xs:element>
+
     <xs:element name="saving_accounts">
         <xs:complexType>
             <xs:sequence>
@@ -26,16 +27,19 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="saving_account">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="balance"/>
-            </xs:sequence>
-            <xs:attribute name="id" type="xs:ID"/>
-            <!-- Когато работим с пари е хубаво да използваме decimal типа. -->
-            <xs:attribute name="interest" type="xs:decimal"/>
-        </xs:complexType>
-    </xs:element>
+
+    <!-- Дефинираме глобален комплексен тип за saving_account. -->
+    <xs:element name="saving_account" type="saving_account"/>
+    <xs:complexType name="saving_account">
+        <xs:sequence>
+            <xs:element ref="balance"/>
+        </xs:sequence>
+        <!-- Атрибутът id трябва да е от тип ID, за да предоставя уникалност. -->
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+        <!-- Когато работим с пари е хубаво да използваме decimal типа. -->
+        <xs:attribute name="interest" type="xs:decimal"/>
+    </xs:complexType>
+
     <xs:element name="balance">
         <xs:simpleType>
             <!-- Слагаме рестрикция, определяща долната граница на салдото. -->
@@ -44,6 +48,7 @@
             </xs:restriction>
         </xs:simpleType>
     </xs:element>
+
     <xs:element name="checking_accounts">
         <xs:complexType>
             <xs:sequence>
@@ -52,34 +57,41 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
     <xs:element name="checking_account">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="balance"/>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:ID"/>
+            <!-- Атрибутът id трябва да е от тип ID, за да предоставя уникалност. -->
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="customers">
-        <xs:complexType>
-            <xs:sequence>
-                <!-- Логично е да има неопределен брой потребители. -->
-                <xs:element ref="customer" maxOccurs="unbounded"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+
+    <!-- Дефинираме глобален комплексен тип и за customers. -->
+    <xs:element name="customers" type="customers"/>
+    <xs:complexType name="customers">
+        <xs:sequence>
+            <!-- Логично е да има неопределен брой потребители. -->
+            <xs:element ref="customer" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:element name="customer">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="name"/>
                 <xs:element ref="address"/>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:ID"/>
+            <!-- Атрибутът id трябва да е от тип ID, за да предоставя уникалност. -->
+            <xs:attribute name="id" type="xs:ID" use="required"/>
         </xs:complexType>
     </xs:element>
+
     <!-- Няма указания за името и адреса, затова остават просто като string. -->
     <xs:element name="name" type="xs:string"/>
     <xs:element name="address" type="xs:string"/>
+
     <xs:element name="customer_accounts">
         <xs:complexType>
             <xs:sequence>
@@ -88,6 +100,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
     <xs:element name="customer_account">
         <xs:complexType>
             <!-- Референции съответно към id на клиента и неговата сметка. Логично е да са задължителни. -->

@@ -6,17 +6,18 @@
                 <xs:minInclusive value="-5200"/>
             </xs:restriction>
         </xs:simpleType>
+
         <xs:complexType name="customerExt">
             <xs:complexContent>
                 <xs:extension base="customerExt">
                     <xs:sequence>
-                        <!-- Не е ясно задължителна ли е снимката или не. -->
                         <xs:element ref="image" minOccurs="0"/>
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
     </xs:redefine>
+
     <xs:element name="image">
         <xs:complexType>
             <xs:simpleContent>
@@ -37,7 +38,9 @@
             </xs:simpleContent>
         </xs:complexType>
     </xs:element>
-    <xs:notation name="png" public="image/png" system="imageviewer"/>
-    <xs:notation name="jpeg" public="image/jpeg" system="imageviewer"/>
-    <xs:notation name="gif" public="image/gif" system="imageviewer"/>
+
+    <!-- Дефинираме нотациите глобално. -->
+    <xs:notation name="png" public="image/png" system="png"/>
+    <xs:notation name="jpeg" public="image/jpeg" system="jpeg"/>
+    <xs:notation name="gif" public="image/gif" system="gif"/>
 </xs:schema>

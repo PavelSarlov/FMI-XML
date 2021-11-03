@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="schema1.xsd">
+    <branch>
+        <branch></branch>
+        <leaf>Leaf1</leaf>
+        <leaf>leaf2<node/>leaf2</leaf>
+    </branch>
+    <leaf>leaf3<node>node</node>leaf3<node/></leaf>
+</root>
