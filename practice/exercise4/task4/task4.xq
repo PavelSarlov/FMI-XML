@@ -21,7 +21,7 @@ element records {
             attribute cd_ID { $cd/@id },
             attribute artist { $cd/artist/text() },
             element info {
-    	        text {"Title: "}, text { $cd/title/text() }, text {", Year: "}, text { $cd/year/text() }, text {", Track numbers: "}, text { count($cd//track) }
+    	        text { concat("Title: ", $cd/title/text()), ", Year: ", $cd/year/text(), ", Track numbers: ", count($cd//track) }
             }
         }
 }

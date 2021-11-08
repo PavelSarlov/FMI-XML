@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xs2="http://leaf.node">
-    <xs:import namespace="http://leaf.node" schemaLocation="schema2.xsd"/>
+    xmlns="https://schema1.xsd"
+    xmlns:xsd2="http://schema2.xsd"
+    targetNamespace="https://schema1.xsd">
+    <xs:import namespace="http://schema2.xsd" schemaLocation="schema2.xsd"/>
 
+    <!-- Реших малко да си поиграя с рекурсия в XML Schema. Имаме корен, който може да има листа и клони. Клоните по същия начин. -->
     <xs:element name="root">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="branch" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="xs2:leaf" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="branch">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element ref="branch" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="xs2:leaf" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="leaf" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="branch" type="xsd2:branch" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

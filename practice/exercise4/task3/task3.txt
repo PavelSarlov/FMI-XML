@@ -1,28 +1,31 @@
-(: 1) За атрибутът трябва да използваме string(), за да вземем стойността му. :)
+1. Избират елемента:
+    tracklist
+    year
+    и извеждат негова стойност или стойност на негов атрибут
 /catalog/child::cd/child::tracklist/string(attribute::num)
 /catalog/child::cd/child::year/text()
 
-(: 2) Аналогично на 1). :)
+2. Избират атрибутите num и id съответно на елементите tracklist и cd
 /catalog/child::cd/child::tracklist/attribute::num
 /catalog/child::cd/attribute::id
 
-(: 3) Взимаме съответния track елемент, отговарящ на изискванията, и дърпаме всички предхождащи го siblings. :)
+3. Избират всички елементи track, които се намират преди track елемента със стойност 'Doschitay do sta (Countdown)'
 //track[text()="Doschitay do sta (Countdown)"]/preceding-sibling::track
 
-(: 4) Аналогично на 3). :)
+4. Избират всички елементи track, които се намират след track елемента със стойност 'Doschitay do sta (Countdown)'
 //track[text()="Doschitay do sta (Countdown)"]/following-sibling::track
 
-(: 5) Аналогично на 4). :)
+5. Избират всички елементи track, които се намират след track елемента със стойност 'Doschitay do sta (Countdown)' и имат стойност на атрибута length '4:04'
 //track[text()="Doschitay do sta (Countdown)"]/following-sibling::track[@length="4:04"]
 
-(: 6) Чрез descendant взимаме всички наследници (преки и непреки) и дърпаме стойността им. :)
+6. Всички стойности на под-елементите на всички елементи cd в документа
 //cd/descendant::*/text()
 
-(: 7) В случая ще изкара празни редове, тъй като елементите cd са сложни (имат поделементи). :)
+7. Стойностите на всички елементи, които имат атрибут с име id
 //node()[attribute::id]/text()
 
-(: 8) Аналогично на 7). :)
+8. Стойностите на всички елементи, които имат какъвто и да било атрибут
 //node()[attribute::]/text()
 
-(: 9) Готова функция max(). :)
+9. Атрибута num с максимална стойност
 max(//attribute::num)

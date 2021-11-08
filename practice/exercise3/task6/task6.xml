@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="schema1.xsd">
+<!--
+Указваме си пространството от имена на схемата и я зареждаме. 
+На корена му слагаме пространството на базовата схема, а не го използваме по подразбиране,
+защото то ще бъде присвоено и на неговите поделементи, които всъщност принадлежат на друго пространство.
+-->
+<xsd1:root xmlns:xsd1="https://schema1.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://schema1.xsd schema1.xsd">
+    <leaf>leaf3</leaf>
     <branch>
-        <branch></branch>
         <leaf>Leaf1</leaf>
-        <leaf>leaf2<node/>leaf2</leaf>
+        <leaf>leaf2</leaf>
+        <branch></branch>
     </branch>
-    <leaf>leaf3<node>node</node>leaf3<node/></leaf>
-</root>
+</xsd1:root>

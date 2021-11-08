@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://leaf.node" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="leaf">
-        <xs:complexType mixed="true">
-            <xs:sequence>
-                <xs:element ref="node" minOccurs="0" maxOccurs="unbounded"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+<xs:schema targetNamespace="http://schema2.xsd"
+    xmlns="http://schema2.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="node" type="xs:string"/>
+    <!-- Използваме глобални типове, за да може директно да ги реферираме. -->
+    <xs:element name="branch" type="branch"/>
+    <xs:complexType name="branch">
+        <xs:sequence>
+            <xs:element name="leaf" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="branch" type="branch" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
