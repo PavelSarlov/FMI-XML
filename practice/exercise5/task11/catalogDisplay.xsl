@@ -12,6 +12,7 @@
                             <th>Tracklist</th>
                         </thead>
                         <tr>
+                            <!-- Прилагаме си дефинираните шаблони -->
                             <td><xsl:apply-templates select="title"/></td>
                             <td><xsl:apply-templates select="year"/></td>
                             <td>

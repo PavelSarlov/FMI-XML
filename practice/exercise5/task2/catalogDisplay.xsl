@@ -5,6 +5,7 @@
             <head></head>
             <body>
                 <table border="1px solid">
+                    <!-- Обикаляме по всички track елементи -->
                     <xsl:for-each select=".//track">
                         <tr>
                             <xsl:choose> 
@@ -21,6 +22,9 @@
                                     <td>A medium string</td>
                                 </xsl:otherwise>
                             </xsl:choose>
+                            <!-- Извеждам съдържанието и дължината за справка -->
+                            <td><xsl:value-of select="text()"/></td>
+                            <td><xsl:value-of select="string-length()"/></td>
                         </tr>
                     </xsl:for-each>
                 </table>

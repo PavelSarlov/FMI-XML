@@ -25,6 +25,7 @@
                 <h1>В нарастващ или намаляващ ред в следния формат: track_1, track_2,..., track_n</h1>
                 <xsl:for-each select=".//track">
                     <xsl:sort select="text()"/>
+                    <!-- Взимаме стойностите в указания формат, внимаваме на последния елемент да не слагаме запетайка -->
                     <xsl:value-of select="text()"/>_<xsl:value-of select="position()"/>
                     <xsl:if test="position() != last()">, </xsl:if>
                 </xsl:for-each>
