@@ -13,15 +13,18 @@
                                 <xsl:when test="string-length() &gt; 15">
                                     <td>A big string</td>
                                 </xsl:when>
+
                                 <!-- Ако дължината е по-малка от 15 -->
                                 <xsl:when test="string-length() &lt; 15">
                                     <td>A small string</td>
                                 </xsl:when>
+
                                 <!-- В противен случай -->
                                 <xsl:otherwise>
                                     <td>A medium string</td>
                                 </xsl:otherwise>
                             </xsl:choose>
+
                             <!-- Извеждам съдържанието и дължината за справка -->
                             <td><xsl:value-of select="text()"/></td>
                             <td><xsl:value-of select="string-length()"/></td>
