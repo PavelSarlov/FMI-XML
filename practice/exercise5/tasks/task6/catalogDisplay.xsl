@@ -5,6 +5,7 @@
             <head></head>
             <body>
                 <table border="1px solid">
+                    <!-- Заглавен ред на таблицата -->
                     <tr>
                         <th>Year</th>
                         <th>Title</th>
@@ -12,7 +13,7 @@
                     </tr>
                     <xsl:for-each select=".//cd">
                         <tr>
-                            <!-- Извикваме темплейтите за всяко cd -->
+                            <!-- Извикваме темплейтите за поделементите на всяко cd съответно -->
                             <td><xsl:call-template name="year"/></td>
                             <td><xsl:call-template name="title"/></td>
                             <td><xsl:call-template name="artist"/></td>

@@ -4,7 +4,7 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8"/>
 
     <xsl:template match="/">
-        <xsl:element name="newCatalog">
+        <xsl:element name="catalog">
             <xsl:for-each select=".//cd">
                 <!-- За всяко cd създаваме елемент със същото име, атрибути и поделементи, които са ни зададени в условието -->
                 <xsl:element name="{.}">

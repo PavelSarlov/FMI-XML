@@ -12,7 +12,7 @@
                     </tr>
                     <xsl:for-each select=".//cd">
                         <tr>
-                            <!-- Извикваме темплейтите за всяко cd със съответните параметри. -->
+                            <!-- Извикваме темплейтите за поделементите на всяко cd със съответните параметри. -->
                             <td>
                                 <xsl:call-template name="year">
                                     <xsl:with-param name="yearName" select="year"/>

@@ -4,6 +4,7 @@
         <html>
             <body>
                 <xsl:for-each select="//cd">
+                    <!-- Заглавие, разграничаващо различните cd-та -->
                     <h1>CD_<xsl:value-of select="position()"/></h1>
                     <table border="1px solid" cellpadding="20">
                         <thead>

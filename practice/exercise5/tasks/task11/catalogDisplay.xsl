@@ -55,13 +55,14 @@
         </li>
     </xsl:template>
 
+    <!-- Взима само стойността на track, без атрибутите -->
     <xsl:template match="track" mode="withoutAttributes">
         <li>
             <xsl:value-of select="."/>
         </li>
     </xsl:template>
 
-    <!-- Тъй като се повтаря изкарването на атрибутите, реших да го отделя в друг шаблон -->
+    <!-- В случая само на track изкарваме атрибутите, тъй че този шаблон е излишен, но все пак ще го използваме -->
     <xsl:template name="attributes">
         <ul>
             <xsl:for-each select="@*">
