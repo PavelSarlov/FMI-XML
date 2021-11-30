@@ -1,0 +1,47 @@
+@import url("task1-1.css");
+@import url("task1-2.css");
+
+ol li {
+    color: #660000;
+    background-color: white;
+    list-style-type: upper-roman;
+}
+
+ol li li {
+    color: #660000;
+    background-color: white;
+    list-style-type: lower-alpha;
+}
+
+a:link {
+    color: blue;
+    background-color: white;
+    text-decoration: none;
+}
+
+a:active {
+    color: blue;
+    background-color: red;
+    text-decoration: none;
+}
+
+a:visited {
+    color: blue;
+    background-color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: purple;
+    background-color: yellow;
+    text-decoration: underline;
+}
+
+/* Предефинираме цвета на синьо, като тази промяна остава окончателна */
+h1 {
+    color: blue;
+    background-color: white;
+    margin-left: 100px;
+    text-align: center;
+    text-transform: uppercase;
+}

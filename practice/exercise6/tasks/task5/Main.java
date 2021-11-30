@@ -28,10 +28,10 @@ public class Main {
         linkToAttribute(((Element) rootNode).getElementsByTagName("item"));
         keepFirstTenItems(((Element) rootNode).getElementsByTagName("item"));
         channelAddSponsor(((Element) rootNode).getElementsByTagName("channel"));
+        // Ще забележим, че на мястото на изтритите елементи има празни редове.
 
-        String tab = "";
         skipNL = false;
-        return (printXML(rootNode, tab));
+        return (printOutXML(rootNode));
     }
 
     // Фунцкия за трансформирането на link елемента на item към атрибут.
@@ -68,12 +68,12 @@ public class Main {
         }
     }
 
-    private static String printXML(Node rootNode, String tab) {
+    private static String printOutXML(Node rootNode) {
         String print = "";
         if (rootNode.getNodeType() == Node.ELEMENT_NODE) {
             // Между другото, индентацията и новите редове някак си стават
             // автоматично, така и не разбрах как, никъде не се променя tab,
-            // затова ги премахнах.
+            // затова го премахнах.
             print += "<" + rootNode.getNodeName().trim();
             NamedNodeMap attributes = rootNode.getAttributes();
             for (int j = 0; j < attributes.getLength(); j++) {
@@ -89,7 +89,7 @@ public class Main {
         if (nl.getLength() > 0) {
             // Прибавяме рекурсивно съдържанието на всеки поделемент на текущия елемент
             for (int i = 0; i < nl.getLength(); i++) {
-                print += printXML(nl.item(i), tab);
+                print += printOutXML(nl.item(i));
             }
         } else {
             if (rootNode.getNodeValue() != null) {
@@ -109,4 +109,3 @@ public class Main {
         return (print);
     }
 }
-

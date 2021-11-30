@@ -1,0 +1,36 @@
+h2, h3 {
+    color: #000066;
+    background-color: white;
+    margin-left: 100px;
+    text-align: left;
+    font-style: italic;
+}
+
+h4 {
+    color: #000066;
+    background-color: #d7d7d7;
+    font-size: 12pt;
+    font-weight: bold;
+    font-style: normal;
+}
+
+ul li {
+    color: #660000;
+    background-color: white;
+    list-style-type: disc;
+}
+
+ul li li {
+    color: #660000;
+    background-color: white;
+    list-style-type: circle;
+}
+
+/* Дефинираме червен цвят на текста */
+h1 {
+    color: red;
+    background-color: white;
+    margin-left: 100px;
+    text-align: center;
+    text-transform: uppercase;
+}

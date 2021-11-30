@@ -1,0 +1,49 @@
+/* Ще представим документа като таблица, за да центрираме body-то. */
+html{
+    display: table;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+/* Тялото ще съдържа синята рамка, която виждаме от условието */
+body {
+    display: table-cell;
+    vertical-align: middle;
+    border: 3px solid blue ;
+    border-radius: 0em 1.5em;
+    padding: 10px;
+}
+
+/* Снимките имат съответните атрибути. Размерите са преценени на око. */
+.picture {
+    border: 8px solid #a0a7c1;
+    border-radius: 2em;
+}
+
+/* Снимките и блоковете с текст под тях имат еднаква размерност */
+.picture, #text {
+    height: 200px;
+    width: 400px;
+}
+
+/* div-овете с id='text' трябва да са inline-block, за да минат на един ред */ 
+#text {
+    display: inline-block;
+    border-top: 8px dashed #289030;
+    border-left: 8px double #ffa500;
+    border-bottom: 5px solid #5f4dc5;
+    background: yellow;
+    overflow-y: auto;
+    margin: 25px 5px 5px 5px;
+}
+
+/* Този клас говори сам за себе си */
+.boldAndUnderline {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Параграфите трябва да са inline, за да не минават на нов ред */
+p {
+    display: inline;
+}

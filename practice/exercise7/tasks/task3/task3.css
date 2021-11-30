@@ -1,0 +1,102 @@
+/* За малко по-прегледно ще изведем елементите като блокове */
+item {
+    display: block;
+    margin: 10px;
+}
+
+/* Отделни стилове за title, description и link. Не съм си играл много с оформление */
+item title {
+    display: block;
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+item description {
+    display: block;
+    color: green;
+    font-size: 16px;
+}
+
+item link {
+    display: block;
+    color: blue;
+    font-size: 12px;
+    text-decoration: underline;
+}
+
+/* Общ стил за поделементите на textinput, използвам псевдо-класа :is(), който селектира посочените елементи */
+textinput :is(title,description,name,link) {
+    display: block;
+    color: purple;
+    font-size: 20px;
+}
+
+/* Стил само за принтери */
+@media print {
+    item title {
+        display: block;
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    item description {
+        display: block;
+        color: black;
+        font-size: 12px;
+    }
+
+    item link {
+        display: block;
+        color: blue;
+        font-size: 12px;
+        text-decoration: underline;
+    }
+}
+
+/* Стил за екран с максимална широчина 1080px */
+@media screen and (max-width: 1080px){
+    item title {
+        display: block;
+        color: red;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    item description {
+        display: block;
+        color: green;
+        font-size: 16px;
+    }
+
+    item link {
+        display: block;
+        color: blue;
+        font-size: 12px;
+        text-decoration: underline;
+    }
+}
+
+/* Стил за екран с максимална широчина 720px */
+@media screen and (max-width: 720px){
+    item title {
+        display: block;
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    item description {
+        display: block;
+        color: green;
+        font-size: 8px;
+    }
+
+    item link {
+        display: block;
+        color: blue;
+        font-size: 10px;
+        text-decoration: underline;
+    }
+}

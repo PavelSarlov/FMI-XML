@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Task1</title>
+    <!-- Външна CSS дефиниция -->
+    <link rel="stylesheet" href="task1-3.css" type="text/css" />
+  </head>
+  <body>
+    <h1>Header 1</h1>
+    <h2>Header 2</h2>
+    <h3>Header 3</h3>
+    <h4>Header 4</h4>
+    <table>
+      <tr>
+        <td>
+          <a href="#Link2" id="Link">Link</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ul title="Unordered">
+            <li>1</li>
+            <li>2
+               <ol><li>2.1</li><li>2.2</li></ol>
+               </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <ol title="Ordered">
+            <li>1</li>
+            <li>2
+               <ol><li>2.1</li><li>2.2</li></ol>
+               </li>
+          </ol>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            <a href="#Link" id="Link2">Link 2</a>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

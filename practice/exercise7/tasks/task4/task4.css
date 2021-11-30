@@ -1,0 +1,60 @@
+/* Първият параграф в body и първият ред от параграф след div */
+p:first-child, div + p:first-line{
+    color: yellow;
+    background: green;
+}
+
+/* Параграф с атрибут lang */
+p[lang] {
+    color: black;
+}
+
+/* По подразбиране са кафеви */
+p, span, code {
+    color: brown;
+}
+
+/* Класът warning и div елементите са червени по подразбиране */
+.warning, div {
+    color: red;
+}
+
+/* Наследниците на червени (warning) параграфи span с атрибут lang */
+p.warning span[lang] {
+    color: green;
+}
+
+/* Наследниците на червени (warning) параграфи span без атрибути */
+p.warning span:not([lang]) {
+    color: blue;
+    background: yellow;
+}
+
+/* Елементът (в случая параграф) с id='maincontent' */
+#maincontent {
+    border: 1px solid blue;
+    color: green;
+}
+
+/* div-ът след елемента с id='maincontent' */
+#maincontent + div {
+    text-indent: 15px;
+    text-transform: uppercase;
+    color: orange;
+}
+
+/* Параграфът след горния div */
+div + p {
+    color: blue;
+}
+
+/* Първата буква на параграфа след горния div */
+div + p:first-letter {
+    font-size: 32px;
+    color: orange;
+}
+
+/* div-ът след code елемента; може и div:last-child */
+code + div {
+    color: green;
+}

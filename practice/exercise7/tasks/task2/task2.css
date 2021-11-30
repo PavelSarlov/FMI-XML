@@ -1,0 +1,76 @@
+/* Цветовете за body и линковете (елементи a) са очевидни */
+body {
+    background-color: #ffff00;
+}
+
+a {
+    color: #00ff00;
+}
+
+/* Параграфите, преки наследници на body, ще имат съответните стилове (т.е. това са трите секции) */
+body > p {
+    color: #008080;
+    font-size: 24;
+    font-weight: bold;
+}
+
+/* Всички параграфи имат един и същ шрифт */
+p {
+    /* За да уеднаквим напълно, трябва да имат и съответния margin */
+    margin: 16px 0px;
+    font-family: Arial;
+}
+
+/* За да отделим параграфа с &nbsp;, който трябва да има шрифт по подразбиране, ще използваме клас */
+p.nbsp {
+    font-size: 16px;
+}
+
+/* Поради някаква причина margin на първия параграф от оригиналния html не съответства на зададения (16 отгоре и отдолу), затова ще си го нагласим */
+body > p:first-child {
+    margin-top: 8px;
+}
+
+/* Общи атрибути за таблиците */
+table {
+    margin: 0;
+    width: 50%;
+    border: 3px solid;
+    border-color: #111111;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+/* Отделни класове за зелената и синята таблица */
+table.green {
+    background-color: #00ff00;
+}
+
+table.blue {
+    background-color: #00ffff;
+}
+
+/* Атрибути за клетките в таблиците. Трябва и на тях да зададем border, защото на таблицата е отделно. */
+td {
+    width: 50%;
+    border-color: #ff0000;
+    border: 1px solid;
+    padding: 0px;
+}
+
+/* Първия ред съдържа заглавните клетки, които имат съответния стил */
+tr:first-child td {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Последната клетка (с изключение на тази от първия ред) е дясно подравнена */
+td:last-child {
+    text-align: right;
+}
+
+/* Параграфите в цитирания блок имат съответния цвят */
+blockquote p {
+    color: #996600;
+}
+
