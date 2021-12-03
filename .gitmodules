@@ -1,0 +1,3 @@
+[submodule "project/Wikipedia-XML-Generator"]
+	path = project/Wikipedia-XML-Generator
+	url = git@github.com:PavelSarlov/Wikipedia-XML-Generator

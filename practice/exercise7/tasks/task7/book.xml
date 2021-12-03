@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <book xmlns:xi="http://www.w3.org/2003/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink">
     <chapters>
-        <!-- Дефинираме си атрибутите както подобава (show="new" за нов прозорец, -->
+        <!-- Дефинираме си атрибутите както подобава (show="new" за нов прозорец), -->
         <!-- href указва пътя към numbers документа, като от него взимаме елемента number със съответното id --> 
         <chapter xlink:href="numbers.xml#xpointer(//number[@id='number1'])" xlink:show="new" xlink:type="simple">
             <content>Chapter 1</content>
