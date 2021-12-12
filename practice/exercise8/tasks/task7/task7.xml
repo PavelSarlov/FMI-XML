@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ще си дефинирам единици за пространствата за по-лесно -->
+<!DOCTYPE rdf [
+<!ENTITY animals "http://animals.fake/animals#">
+<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+]>
+<rdf:RDF xmlns:rdf="&rdf;" xmlns:rdfs="&rdfs;" xmlns:animals="&animals;">
+
+    <!-- Дефинираме си описание за horse, като указваме, че е подклас на animal -->
+    <rdf:Description rdf:about="&animals;horse">
+        <rdf:type rdf:resource="&rdfs;Class"/>
+        <rdfs:subClassOf rdf:resource="&animals;animal"/>
+    </rdf:Description>
+
+    <!-- Дефинираме си и описание за базовия клас animal -->
+    <rdf:Description rdf:about="&animals;animal">
+        <rdf:type rdf:resource="&rdfs;Class"/>
+    </rdf:Description>
+</rdf:RDF>

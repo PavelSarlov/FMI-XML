@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ще си дефинирам единица за линка към пространството за по-лесно -->
+<!DOCTYPE rdf [
+<!ENTITY ex "http://example.org/example/">
+]>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ex="&ex;">
+
+    <!-- Дефинираме си описание, съдържащо дефиниран клас от тип Bag -->
+    <rdf:Description rdf:about="&ex;Bag">
+        <ex:exampleBag>
+            <rdf:Bag>
+                <rdf:li rdf:resource="&ex;Bag/1"/>
+                <rdf:li rdf:resource="&ex;Bag/2"/>
+                <rdf:li rdf:resource="&ex;Bag/3"/>
+            </rdf:Bag>
+        </ex:exampleBag>
+    </rdf:Description>
+
+    <!-- Дефинираме си описание, съдържащо дефиниран клас от тип Seq -->
+    <rdf:Description rdf:about="&ex;Seq">
+        <ex:exampleSeq>
+            <rdf:Seq>
+                <rdf:li rdf:resource="&ex;Seq/1"/>
+                <rdf:li rdf:resource="&ex;Seq/2"/>
+                <rdf:li rdf:resource="&ex;Seq/3"/>
+            </rdf:Seq>
+        </ex:exampleSeq>
+    </rdf:Description>
+
+    <!-- Дефинираме си описание, съдържащо дефиниран клас от тип Alt -->
+    <rdf:Description rdf:about="&ex;Alt">
+        <ex:exampleAlt>
+            <rdf:Alt>
+                <rdf:li rdf:resource="&ex;Alt/1"/>
+                <rdf:li rdf:resource="&ex;Alt/2"/>
+                <rdf:li rdf:resource="&ex;Alt/3"/>
+            </rdf:Alt>
+        </ex:exampleAlt>
+    </rdf:Description>
+</rdf:RDF>
