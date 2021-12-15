@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Ще си дефинирам единица за линка към пространството за по-лесно -->
 <!DOCTYPE rdf [
-<!ENTITY ex "http://example.org/example/">
+<!ENTITY rec "http://www.recshop.fake/cd/">
 ]>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ex="&ex;">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rec="&rec;">
 
     <!-- Дефинираме си описание, съдържащо дефиниран клас от тип Bag -->
-    <rdf:Description rdf:about="&ex;Bag">
-        <ex:exampleBag>
+    <rdf:Description rdf:about="&rec;Beatles">
+        <rec:artist>
             <rdf:Bag>
-                <rdf:li rdf:resource="&ex;Bag/1"/>
-                <rdf:li rdf:resource="&ex;Bag/2"/>
-                <rdf:li rdf:resource="&ex;Bag/3"/>
+                <rdf:li>John</rdf:li>
+                <rdf:li>Paul</rdf:li>
+                <rdf:li>George</rdf:li>
+                <rdf:li>Ringo</rdf:li>
             </rdf:Bag>
-        </ex:exampleBag>
+        </rec:artist>
     </rdf:Description>
 
     <!-- Дефинираме си описание, съдържащо дефиниран клас от тип Seq -->
-    <rdf:Description rdf:about="&ex;Seq">
-        <ex:exampleSeq>
+    <rdf:Description rdf:about="&rec;Beatles">
+        <rec:artist>
             <rdf:Seq>
-                <rdf:li rdf:resource="&ex;Seq/1"/>
-                <rdf:li rdf:resource="&ex;Seq/2"/>
-                <rdf:li rdf:resource="&ex;Seq/3"/>
+                <rdf:li>John</rdf:li>
+                <rdf:li>Paul</rdf:li>
+                <rdf:li>George</rdf:li>
+                <rdf:li>Ringo</rdf:li>
             </rdf:Seq>
-        </ex:exampleSeq>
+        </rec:artist>
     </rdf:Description>
 
     <!-- Дефинираме си описание, съдържащо дефиниран клас от тип Alt -->
-    <rdf:Description rdf:about="&ex;Alt">
-        <ex:exampleAlt>
+    <rdf:Description rdf:about="&rec;Beatles">
+        <rec:format>
             <rdf:Alt>
-                <rdf:li rdf:resource="&ex;Alt/1"/>
-                <rdf:li rdf:resource="&ex;Alt/2"/>
-                <rdf:li rdf:resource="&ex;Alt/3"/>
+                <rdf:li>CD</rdf:li>
+                <rdf:li>Record</rdf:li>
+                <rdf:li>Tape</rdf:li>
             </rdf:Alt>
-        </ex:exampleAlt>
+        </rec:format>
     </rdf:Description>
 </rdf:RDF>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Ще си дефинирам единица за линка към пространството за по-лесно -->
 <!DOCTYPE rdf [
-<!ENTITY ex "http://example.org/example/">
+<!ENTITY rec "http://www.recshop.fake/cd/">
 ]>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ex="&ex;">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rec="&rec;">
 
     <!-- Дефинираме си описание, съдържащо дефиниран атрибут rdf:parseType от тип Collection -->
-    <rdf:Description rdf:about="&ex;1">
-        <ex:example1 rdf:parseType="Collection">
-            <rdf:Description rdf:about="&ex;1/1.1"/>
-            <rdf:Description rdf:about="&ex;1/1.2"/>
-            <rdf:Description rdf:about="&ex;1/1.3"/>
-            <rdf:Description rdf:about="&ex;1/1.4"/>
-        </ex:example1>
+    <rdf:Description rdf:about="&rec;Beatles">
+        <rec:artist rdf:parseType="Collection">
+            <rdf:Description rdf:about="&rec;Beatles/George"/>
+            <rdf:Description rdf:about="&rec;Beatles/John"/>
+            <rdf:Description rdf:about="&rec;Beatles/Paul"/>
+            <rdf:Description rdf:about="&rec;Beatles/Ringo"/>
+        </rec:artist>
     </rdf:Description>
 </rdf:RDF>
